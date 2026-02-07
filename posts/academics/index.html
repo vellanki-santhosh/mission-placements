@@ -2,54 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Academics - Mission Placements</title>
     <style>
-        :root {
-            --primary-navy: #1B365D;
-            --primary-teal: #17A2B8;
-            --primary-green: #28A745;
-            --accent-orange: #F5A623;
-            --accent-yellow: #FFC107;
-            --light-bg: #f5f8fa;
-            --white: #ffffff;
-            --dark-text: #1B365D;
-            --gray-text: #5a6a7a;
-        }
+        :root { --primary-navy: #1B365D; --primary-teal: #17A2B8; --primary-green: #28A745; --accent-orange: #F5A623; --accent-yellow: #FFC107; --light-bg: #f5f8fa; --white: #ffffff; --dark-text: #1B365D; --gray-text: #5a6a7a; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--dark-text); background: var(--light-bg); }
-        header { background: linear-gradient(135deg, var(--primary-navy) 0%, #2d4a6f 100%); color: white; padding: 2rem; text-align: center; }
-        header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-        header p { opacity: 0.9; }
-        .back-link { display: inline-block; margin: 1rem; color: var(--primary-teal); text-decoration: none; font-weight: bold; }
-        .back-link:hover { color: var(--primary-green); }
-        main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
-        .section { background: var(--white); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(27, 54, 93, 0.1); }
-        .section h2 { color: var(--primary-navy); margin-bottom: 1rem; border-bottom: 3px solid var(--primary-navy); padding-bottom: 0.5rem; display: inline-block; }
-        .coming-soon { text-align: center; padding: 3rem; color: var(--gray-text); }
-        footer { background: var(--primary-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 2rem; }
-        footer a { color: var(--accent-yellow); }
+        header { background: linear-gradient(135deg, var(--primary-navy) 0%, #2d4a6f 100%); color: white; padding: 1.5rem 1rem; text-align: center; }
+        header h1 { font-size: 1.5rem; margin-bottom: 0.3rem; }
+        header p { opacity: 0.9; font-size: 0.9rem; }
+        .back-link { display: inline-flex; align-items: center; margin: 0.8rem; padding: 0.6rem 1rem; color: white; background: var(--primary-navy); text-decoration: none; font-weight: bold; border-radius: 25px; font-size: 0.9rem; }
+        main { max-width: 900px; margin: 1rem auto; padding: 0 0.5rem; }
+        .section { background: var(--white); border-radius: 10px; padding: 1rem; margin-bottom: 1rem; box-shadow: 0 2px 10px rgba(27, 54, 93, 0.1); }
+        .section h2 { color: var(--primary-navy); font-size: 1.1rem; margin-bottom: 0.8rem; border-bottom: 3px solid var(--primary-navy); padding-bottom: 0.5rem; display: inline-block; }
+        .coming-soon { text-align: center; padding: 2rem 1rem; color: var(--gray-text); }
+        footer { background: var(--primary-navy); color: white; text-align: center; padding: 1.5rem 1rem; margin-top: 1rem; }
+        footer a { color: var(--accent-yellow); text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
     <a href="../../index.html" class="back-link">← Back to Home</a>
-    <header>
-        <h1>🎓 Academics</h1>
-        <p>Subject-wise study materials & resources</p>
-    </header>
-
+    <header><h1>🎓 Academics</h1><p>Subject-wise study materials & resources</p></header>
     <main>
         <section class="section">
             <h2>📚 Study Materials</h2>
-            <div class="coming-soon">
-                <p>🚀 Academic resources will appear here!</p>
-                <p style="margin-top: 1rem;">Check back soon for fresh content.</p>
-            </div>
+            <div class="coming-soon"><p>🚀 Academic resources will appear here!</p><p style="margin-top: 0.8rem;">Check back soon for fresh content.</p></div>
         </section>
     </main>
-
-    <footer>
-        <p>Mission Placements © 2026 | <a href="../../index.html">Home</a></p>
-    </footer>
+    <footer><p>Mission Placements © 2026 | <a href="../../index.html">Home</a></p></footer>
 </body>
 </html>

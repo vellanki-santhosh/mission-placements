@@ -194,20 +194,148 @@
         .card:nth-child(8) { border-left-color: #8BC34A; }
         .card:nth-child(9) { border-left-color: #FF5722; }
         
-        @media (max-width: 600px) {
-            .header-text h1 {
-                font-size: 1.8rem;
+        /* MOBILE-FIRST RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+            .header-content {
+                flex-direction: column;
+                gap: 0.8rem;
             }
             .logo {
-                width: 100px;
-                height: 100px;
+                width: 80px;
+                height: 80px;
+                padding: 8px;
+            }
+            .header-text h1 {
+                font-size: 1.5rem;
+            }
+            .header-text p {
+                font-size: 0.9rem;
+            }
+            nav {
+                padding: 0.5rem;
+                position: sticky;
+                top: 0;
             }
             nav ul {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
                 gap: 0.3rem;
+                padding: 0 0.2rem;
             }
             nav a {
-                padding: 0.4rem 0.7rem;
+                padding: 0.4rem 0.2rem;
+                font-size: 0.65rem;
+                text-align: center;
+                border-radius: 4px;
+                display: block;
+            }
+            main {
+                margin: 1rem auto;
+                padding: 0 0.5rem;
+            }
+            .section {
+                padding: 1rem;
+                margin-bottom: 1rem;
+                border-radius: 8px;
+            }
+            .section h2 {
+                font-size: 1.1rem;
+                margin-bottom: 0.8rem;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+                margin-top: 1rem;
+            }
+            .card {
+                padding: 1rem;
+                border-radius: 8px;
+            }
+            .card h3 {
+                font-size: 1rem;
+            }
+            .card p {
+                font-size: 0.85rem;
+            }
+            .card a {
+                font-size: 0.9rem;
+                padding: 0.5rem 0;
+                display: block;
+                text-align: center;
+                background: var(--primary-teal);
+                color: white;
+                border-radius: 5px;
+                margin-top: 0.8rem;
+            }
+            .card:hover {
+                transform: none;
+            }
+            .updates {
+                padding: 1rem;
+            }
+            .updates p {
+                font-size: 0.9rem;
+            }
+            footer {
+                padding: 1.5rem 1rem;
+            }
+            footer img {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            footer h3 {
+                font-size: 1.1rem;
+            }
+            .community-links {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+            .community-links a {
+                padding: 0.8rem 0.5rem;
                 font-size: 0.8rem;
+                text-align: center;
+                border-radius: 8px;
+            }
+        }
+
+        /* Extra small phones */
+        @media (max-width: 380px) {
+            .header-text h1 {
+                font-size: 1.3rem;
+            }
+            nav ul {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            nav a {
+                font-size: 0.6rem;
+                padding: 0.35rem 0.15rem;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .card a {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .community-links a {
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            nav a {
+                min-height: 36px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
     </style>
