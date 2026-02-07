@@ -16,6 +16,13 @@
     <link rel="icon" type="image/png" href="LOGO.png">
     <link rel="apple-touch-icon" href="LOGO.png">
     
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1B365D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Mission Placements">
+    
     <!-- Preconnect hints for external resources -->
     <link rel="preconnect" href="https://www.linkedin.com">
     <link rel="preconnect" href="https://www.instagram.com">
@@ -121,6 +128,39 @@
             top: 0;
             z-index: 100;
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            background: none;
+            border: none;
+            z-index: 101;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
         }
         nav ul {
             list-style: none;
@@ -272,22 +312,57 @@
                 font-size: 0.9rem;
             }
             nav {
-                padding: 0.5rem;
+                padding: 0.8rem 1rem;
                 position: sticky;
                 top: 0;
             }
+            .nav-container {
+                justify-content: space-between;
+            }
+            .hamburger {
+                display: flex;
+                min-width: 44px;
+                min-height: 44px;
+                justify-content: center;
+                align-items: center;
+            }
+            .nav-title {
+                display: block;
+                color: white;
+                font-weight: bold;
+                font-size: 1rem;
+            }
             nav ul {
-                display: grid;
-                grid-template-columns: repeat(5, 1fr);
-                gap: 0.3rem;
-                padding: 0 0.2rem;
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-navy);
+                flex-direction: column;
+                padding: 0.5rem;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+                max-height: 70vh;
+                overflow-y: auto;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            nav li {
+                width: 100%;
             }
             nav a {
-                padding: 0.4rem 0.2rem;
-                font-size: 0.65rem;
-                text-align: center;
-                border-radius: 4px;
+                padding: 0.9rem 1rem;
+                font-size: 1rem;
+                text-align: left;
+                border-radius: 8px;
                 display: block;
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+            }
+            nav a:active {
+                background: var(--primary-teal);
             }
             main {
                 margin: 1rem auto;
@@ -365,13 +440,28 @@
             .header-text h1 {
                 font-size: 1.3rem;
             }
+            .nav-title {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Short screens - reduce heights */
+        @media (max-height: 500px) {
+            header {
+                padding: 0.5rem;
+            }
+            .logo {
+                width: 50px;
+                height: 50px;
+            }
             nav ul {
-                grid-template-columns: repeat(4, 1fr);
+                max-height: 50vh;
             }
-            nav a {
-                font-size: 0.6rem;
-                padding: 0.35rem 0.15rem;
-            }
+        }
+
+        /* Desktop nav title hidden */
+        .nav-title {
+            display: none;
         }
 
         /* Touch-friendly improvements */
@@ -461,7 +551,15 @@
     </header>
 
     <nav aria-label="Main navigation">
-        <ul role="menubar">
+        <div class="nav-container">
+            <span class="nav-title">☰ Menu</span>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <ul role="menubar" id="nav-menu">
             <li><a href="#updates">Latest Updates</a></li>
             <li><a href="#aptitude">Aptitude</a></li>
             <li><a href="#coding">Coding</a></li>
@@ -573,5 +671,37 @@
         </div>
         <p style="margin-top: 1.5rem; font-size: 0.9rem;">Made with ❤️ for students | © 2026 Mission Placements</p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            const hamburger = document.querySelector('.hamburger');
+            const isActive = menu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', isActive);
+        }
+
+        // Close menu when clicking a link
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                const menu = document.getElementById('nav-menu');
+                const hamburger = document.querySelector('.hamburger');
+                menu.classList.remove('active');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const nav = document.querySelector('nav');
+            const menu = document.getElementById('nav-menu');
+            if (!nav.contains(e.target) && menu.classList.contains('active')) {
+                menu.classList.remove('active');
+                document.querySelector('.hamburger').classList.remove('active');
+                document.querySelector('.hamburger').setAttribute('aria-expanded', 'false');
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,28 @@
+{
+    "name": "Mission Placements",
+    "short_name": "MP",
+    "description": "Free placement preparation for engineering students - aptitude, coding, interviews & more",
+    "start_url": "/mission-placements/",
+    "scope": "/mission-placements/",
+    "display": "standalone",
+    "background_color": "#1B365D",
+    "theme_color": "#1B365D",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "LOGO.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "LOGO.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["education", "productivity"],
+    "lang": "en",
+    "dir": "ltr"
+}
