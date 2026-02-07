@@ -5,17 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses - Mission Placements</title>
     <style>
+        :root {
+            --primary-navy: #1B365D;
+            --primary-teal: #17A2B8;
+            --primary-green: #28A745;
+            --accent-orange: #F5A623;
+            --accent-yellow: #FFC107;
+            --light-bg: #f5f8fa;
+            --white: #ffffff;
+            --dark-text: #1B365D;
+            --gray-text: #5a6a7a;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
-        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem; text-align: center; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--dark-text); background: var(--light-bg); }
+        header { background: linear-gradient(135deg, var(--primary-navy) 0%, #2d4a6f 100%); color: white; padding: 2rem; text-align: center; }
         header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-        .back-link { display: inline-block; margin: 1rem; color: #667eea; text-decoration: none; font-weight: bold; }
-        .back-link:hover { text-decoration: underline; }
+        header p { opacity: 0.9; }
+        .back-link { display: inline-block; margin: 1rem; color: var(--primary-teal); text-decoration: none; font-weight: bold; }
+        .back-link:hover { color: var(--primary-green); }
         main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
-        .section { background: white; border-radius: 10px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .section h2 { color: #667eea; margin-bottom: 1rem; border-bottom: 2px solid #667eea; padding-bottom: 0.5rem; }
-        .coming-soon { text-align: center; padding: 3rem; color: #666; }
-        footer { background: #333; color: white; text-align: center; padding: 1.5rem; margin-top: 2rem; }
+        .section { background: var(--white); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(27, 54, 93, 0.1); }
+        .section h2 { color: var(--primary-navy); margin-bottom: 1rem; border-bottom: 3px solid #9C27B0; padding-bottom: 0.5rem; display: inline-block; }
+        .coming-soon { text-align: center; padding: 3rem; color: var(--gray-text); }
+        footer { background: var(--primary-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 2rem; }
+        footer a { color: var(--accent-yellow); }
     </style>
 </head>
 <body>
@@ -36,7 +49,7 @@
     </main>
 
     <footer>
-        <p>Mission Placements © 2026 | Your Success, Our Mission ✨</p>
+        <p>Mission Placements © 2026 | <a href="../../index.html">Home</a></p>
     </footer>
 </body>
 </html>
