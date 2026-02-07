@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aptitude & Reasoning - Mission Placements</title>
+    <meta name="description" content="Daily aptitude and logical reasoning practice questions for placement preparation">
+    <link rel="icon" type="image/png" href="../../LOGO.png">
     <style>
+        html { scroll-behavior: smooth; }
         :root {
             --primary-navy: #1B365D;
             --primary-teal: #17A2B8;
@@ -16,28 +19,67 @@
             --dark-text: #1B365D;
             --gray-text: #5a6a7a;
         }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --light-bg: #1a1a2e;
+                --white: #16213e;
+                --dark-text: #e8e8e8;
+                --gray-text: #b0b0b0;
+            }
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--dark-text); background: var(--light-bg); }
+        
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            background: var(--white);
+            padding: 0.8rem 1rem;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(27, 54, 93, 0.1);
+        }
+        .breadcrumb a {
+            color: var(--primary-teal);
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .breadcrumb span {
+            color: var(--gray-text);
+            margin: 0 0.5rem;
+        }
+        .breadcrumb .current {
+            color: var(--dark-text);
+            font-weight: 500;
+        }
+        
         header { background: linear-gradient(135deg, var(--primary-navy) 0%, #2d4a6f 100%); color: white; padding: 1.5rem 1rem; text-align: center; }
         header h1 { font-size: 1.5rem; margin-bottom: 0.3rem; }
         header p { opacity: 0.9; font-size: 0.9rem; }
-        .back-link { display: inline-flex; align-items: center; margin: 0.8rem; padding: 0.6rem 1rem; color: white; background: var(--primary-teal); text-decoration: none; font-weight: bold; border-radius: 25px; font-size: 0.9rem; }
-        .back-link:active { background: var(--primary-green); }
         main { max-width: 900px; margin: 1rem auto; padding: 0 0.5rem; }
         .section { background: var(--white); border-radius: 10px; padding: 1rem; margin-bottom: 1rem; box-shadow: 0 2px 10px rgba(27, 54, 93, 0.1); }
         .section h2 { color: var(--primary-navy); font-size: 1.1rem; margin-bottom: 0.8rem; border-bottom: 3px solid var(--primary-teal); padding-bottom: 0.5rem; display: inline-block; }
+        @media (prefers-color-scheme: dark) {
+            .section h2 { color: var(--accent-yellow); }
+        }
         .coming-soon { text-align: center; padding: 2rem 1rem; color: var(--gray-text); }
         .coming-soon p { font-size: 0.95rem; }
         footer { background: var(--primary-navy); color: white; text-align: center; padding: 1.5rem 1rem; margin-top: 1rem; }
         footer a { color: var(--accent-yellow); text-decoration: none; font-weight: bold; }
-        /* Mobile touch-friendly */
+        
+        /* Touch-friendly */
         @media (hover: none) and (pointer: coarse) {
-            .back-link { min-height: 44px; }
+            .breadcrumb a { padding: 0.3rem 0; display: inline-block; }
         }
     </style>
 </head>
 <body>
-    <a href="../../index.html" class="back-link">← Back to Home</a>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html">🏠 Home</a>
+        <span>›</span>
+        <span class="current">Aptitude & Reasoning</span>
+    </nav>
+    
     <header>
         <h1>🧮 Aptitude & Reasoning</h1>
         <p>Daily quantitative and logical reasoning practice</p>
@@ -56,7 +98,7 @@
             <h2>📊 Today's Practice Poll</h2>
             <p style="margin-bottom: 0.8rem; font-size: 0.9rem;">Answer today's question by submitting the poll below:</p>
             <div style="background: var(--light-bg); border-radius: 8px; overflow: hidden;">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfkwESQorSHqIbcH3PodeBhVehWVgZq5KZksjMclOIry9ADsQ/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0" style="border: none;">Loading…</iframe>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfkwESQorSHqIbcH3PodeBhVehWVgZq5KZksjMclOIry9ADsQ/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0" style="border: none;" loading="lazy" title="Practice Poll">Loading…</iframe>
             </div>
         </section>
     </main>

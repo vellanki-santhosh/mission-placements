@@ -69,6 +69,11 @@
     </script>
     
     <style>
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
         :root {
             --primary-navy: #1B365D;
             --primary-teal: #17A2B8;
@@ -79,6 +84,32 @@
             --white: #ffffff;
             --dark-text: #1B365D;
             --gray-text: #5a6a7a;
+            --card-bg: #f5f8fa;
+            --shadow-color: rgba(27, 54, 93, 0.1);
+        }
+        
+        /* Dark Mode */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --light-bg: #1a1a2e;
+                --white: #16213e;
+                --dark-text: #e8e8e8;
+                --gray-text: #b0b0b0;
+                --card-bg: #1f2940;
+                --shadow-color: rgba(0, 0, 0, 0.3);
+            }
+            header {
+                background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+            }
+            .card {
+                background: var(--card-bg);
+            }
+            .updates {
+                background: linear-gradient(135deg, #1f2940 0%, #1a2530 100%);
+            }
+            .logo {
+                background: white;
+            }
         }
         * {
             margin: 0;
@@ -210,14 +241,75 @@
             padding: 1.5rem;
             border-radius: 10px;
             border-left: 4px solid var(--primary-teal);
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(23, 162, 184, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        .card:hover::before {
+            left: 100%;
         }
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(27, 54, 93, 0.15);
             border-left-color: var(--primary-green);
+        }
+        .card:active {
+            transform: translateY(-2px);
+        }
+        
+        /* Scroll reveal animation */
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-teal);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background: var(--primary-green);
+            transform: translateY(-3px);
+        }
+        .back-to-top:active {
+            transform: translateY(0);
         }
         .card h3 {
             color: var(--primary-navy);
@@ -672,7 +764,11 @@
         <p style="margin-top: 1.5rem; font-size: 0.9rem;">Made with ❤️ for students | © 2026 Mission Placements</p>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top" onclick="scrollToTop()">↑</button>
+
     <script>
+        // Toggle mobile menu
         function toggleMenu() {
             const menu = document.getElementById('nav-menu');
             const hamburger = document.querySelector('.hamburger');
@@ -702,6 +798,42 @@
                 document.querySelector('.hamburger').setAttribute('aria-expanded', 'false');
             }
         });
+
+        // Back to Top Button
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        const backToTopBtn = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Scroll reveal animation for sections
+        const sections = document.querySelectorAll('.section');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Make sections visible immediately if JS fails
+        document.querySelectorAll('.section').forEach(s => s.classList.add('visible'));
     </script>
 </body>
 </html>
