@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src https://docs.google.com; connect-src 'self' https:; font-src 'self' data:;">
+    <title>404 - Page Not Found | Mission Placements</title>
+    <meta name="description" content="Oops! The page you're looking for doesn't exist.">
+    <link rel="icon" type="image/png" href="LOGO.png">
+    <style>
+        html { scroll-behavior: smooth; }
+        :root { --primary-navy: #1B365D; --primary-teal: #17A2B8; --accent-yellow: #FFC107; --light-bg: #f5f8fa; --white: #ffffff; --dark-text: #1B365D; --gray-text: #5a6a7a; }
+        @media (prefers-color-scheme: dark) { :root { --light-bg: #1a1a2e; --white: #16213e; --dark-text: #e8e8e8; --gray-text: #b0b0b0; } }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--dark-text); background: var(--light-bg); min-height: 100vh; display: flex; flex-direction: column; }
+        .error-container { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; }
+        .error-code { font-size: 6rem; font-weight: bold; color: var(--primary-teal); margin-bottom: 0.5rem; }
+        .error-title { font-size: 1.5rem; color: var(--primary-navy); margin-bottom: 1rem; }
+        @media (prefers-color-scheme: dark) { .error-title { color: var(--accent-yellow); } }
+        .error-message { color: var(--gray-text); margin-bottom: 2rem; max-width: 400px; }
+        .home-btn { display: inline-block; background: var(--primary-teal); color: white; padding: 0.8rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; }
+        .home-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(23, 162, 184, 0.4); }
+        .suggestions { margin-top: 2rem; padding: 1.5rem; background: var(--white); border-radius: 10px; max-width: 400px; }
+        .suggestions h3 { font-size: 1rem; margin-bottom: 0.8rem; color: var(--primary-navy); }
+        @media (prefers-color-scheme: dark) { .suggestions h3 { color: var(--accent-yellow); } }
+        .suggestions ul { list-style: none; text-align: left; }
+        .suggestions li { padding: 0.3rem 0; }
+        .suggestions a { color: var(--primary-teal); text-decoration: none; }
+        .suggestions a:hover { text-decoration: underline; }
+        footer { background: var(--primary-navy); color: white; text-align: center; padding: 1rem; }
+        footer a { color: var(--accent-yellow); text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <h1 class="error-title">🔍 Page Not Found</h1>
+        <p class="error-message">Oops! The page you're looking for seems to have wandered off. Don't worry, let's get you back on track!</p>
+        <a href="index.html" class="home-btn">🏠 Back to Home</a>
+        
+        <div class="suggestions">
+            <h3>📚 Popular Sections:</h3>
+            <ul>
+                <li>🧮 <a href="posts/aptitude/">Aptitude & Reasoning</a></li>
+                <li>💻 <a href="posts/coding/">Coding Challenges</a></li>
+                <li>🎤 <a href="posts/interviews/">Interview Experiences</a></li>
+                <li>📖 <a href="posts/courses/">Free Courses</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Mission Placements © 2026 | <a href="index.html">Home</a></p>
+    </footer>
+</body>
+</html>
