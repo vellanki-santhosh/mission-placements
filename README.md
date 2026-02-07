@@ -1,5 +1,7 @@
 # Mission Placements
 
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/vellanki-santhosh/mission-placements?utm_source=oss&utm_medium=github&utm_campaign=vellanki-santhosh%2Fmission-placements&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
+
 🎯 **Your One-Stop Destination for Placement Preparation**
 
 A free, community-driven platform designed to help students prepare for campus placements with daily practice content.
