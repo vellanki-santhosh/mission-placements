@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Placements</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        nav {
+            background: #333;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background: #667eea;
+        }
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .card a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .updates {
+            background: #e8f4f8;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        .updates p {
+            margin: 0.5rem 0;
+        }
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .community-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .community-links a {
+            color: white;
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .community-links a:hover {
+            background: #764ba2;
+        }
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎯 Mission Placements</h1>
+        <p>Your One-Stop Destination for Placement Preparation</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#updates">Latest Updates</a></li>
+            <li><a href="#aptitude">Aptitude</a></li>
+            <li><a href="#coding">Coding</a></li>
+            <li><a href="#soft-skills">Soft Skills</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#academics">Academics</a></li>
+            <li><a href="#interviews">Interviews</a></li>
+            <li><a href="#seminars">Seminars</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#tech-news">Tech News</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Latest Updates Section -->
+        <section id="updates" class="section">
+            <h2>📢 Latest Updates</h2>
+            <div class="updates">
+                <p>🆕 <strong>Welcome to Mission Placements!</strong> - Your placement preparation journey starts here.</p>
+                <p>📅 Daily content will be updated here. Stay tuned!</p>
+            </div>
+        </section>
+
+        <!-- Main Sections Grid -->
+        <section class="section">
+            <h2>📚 Explore Sections</h2>
+            <div class="grid">
+                <div class="card" id="aptitude">
+                    <h3>🧮 Aptitude & Reasoning</h3>
+                    <p>Daily quantitative aptitude and logical reasoning practice questions.</p>
+                    <a href="posts/aptitude/">View Questions →</a>
+                </div>
+
+                <div class="card" id="coding">
+                    <h3>💻 Coding</h3>
+                    <p>Programming challenges, DSA problems, and coding solutions.</p>
+                    <a href="posts/coding/">View Challenges →</a>
+                </div>
+
+                <div class="card" id="soft-skills">
+                    <h3>🗣️ Soft Skills</h3>
+                    <p>Communication skills, personality development, and HR tips.</p>
+                    <a href="posts/soft-skills/">Learn More →</a>
+                </div>
+
+                <div class="card" id="courses">
+                    <h3>📖 Courses</h3>
+                    <p>Free courses, certifications, and learning opportunities.</p>
+                    <a href="posts/courses/">Explore Courses →</a>
+                </div>
+
+                <div class="card" id="academics">
+                    <h3>🎓 Academics</h3>
+                    <p>Subject-wise study materials and academic resources.</p>
+                    <a href="posts/academics/">Study Materials →</a>
+                </div>
+
+                <div class="card" id="interviews">
+                    <h3>🎤 Interviews</h3>
+                    <p>Interview experiences, tips, and company-specific preparation.</p>
+                    <a href="posts/interviews/">Read Experiences →</a>
+                </div>
+
+                <div class="card" id="seminars">
+                    <h3>📅 Seminars</h3>
+                    <p>Upcoming webinars, workshops, and placement events.</p>
+                    <a href="posts/seminars/">View Events →</a>
+                </div>
+
+                <div class="card" id="projects">
+                    <h3>🛠️ Projects</h3>
+                    <p>Project ideas, guidance, and showcase your work.</p>
+                    <a href="posts/projects/">Browse Projects →</a>
+                </div>
+
+                <div class="card" id="tech-news">
+                    <h3>📰 Tech News</h3>
+                    <p>Latest technology trends, industry news, and updates.</p>
+                    <a href="posts/tech-news/">Read News →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daily Schedule -->
+        <section class="section">
+            <h2>📅 Daily Schedule</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🌅 Morning</h3>
+                    <p>Tech News & Industry Updates</p>
+                </div>
+                <div class="card">
+                    <h3>🌆 Evening</h3>
+                    <p>Aptitude Questions + Coding Challenges</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <h3>🤝 Join Our Community</h3>
+        <div class="community-links">
+            <a href="#">📢 Telegram</a>
+            <a href="#">💬 WhatsApp</a>
+            <a href="#">💼 LinkedIn</a>
+            <a href="#">📸 Instagram</a>
+        </div>
+        <p style="margin-top: 1.5rem;">Made with ❤️ for students | © 2026 Mission Placements</p>
+    </footer>
+</body>
+</html>
