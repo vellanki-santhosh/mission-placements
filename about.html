@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#1B365D" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#1a1a2e" media="(prefers-color-scheme: dark)">
+    <meta name="color-scheme" content="light only">
+    <meta name="theme-color" content="#1B365D">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src https://docs.google.com; connect-src 'self' https:; font-src 'self' data:;">
     <title>About Us - Mission Placements</title>
     <meta name="description" content="Learn about Mission Placements - A free platform helping students prepare for campus placements">
@@ -13,7 +12,6 @@
     <style>
         html { scroll-behavior: smooth; }
         :root { --primary-navy: #1B365D; --primary-teal: #17A2B8; --primary-green: #28A745; --accent-orange: #F5A623; --accent-yellow: #FFC107; --light-bg: #f5f8fa; --white: #ffffff; --dark-text: #1B365D; --gray-text: #5a6a7a; }
-        @media (prefers-color-scheme: dark) { :root { --light-bg: #1a1a2e; --white: #16213e; --dark-text: #e8e8e8; --gray-text: #b0b0b0; } }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--dark-text); background: var(--light-bg); }
         .breadcrumb { background: var(--white); padding: 0.8rem 1rem; font-size: 0.85rem; border-bottom: 1px solid rgba(27, 54, 93, 0.1); }
@@ -28,7 +26,6 @@
         main { max-width: 800px; margin: 1rem auto; padding: 0 1rem; }
         .section { background: var(--white); border-radius: 10px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 10px rgba(27, 54, 93, 0.1); }
         .section h2 { color: var(--primary-navy); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
-        @media (prefers-color-scheme: dark) { .section h2 { color: var(--accent-yellow); } }
         p { margin-bottom: 1rem; }
         .mission-box { background: linear-gradient(135deg, var(--primary-teal) 0%, #138496 100%); color: white; padding: 1.5rem; border-radius: 10px; text-align: center; margin: 1rem 0; }
         .mission-box h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
@@ -36,11 +33,9 @@
         .value-item { background: var(--light-bg); padding: 1rem; border-radius: 8px; text-align: center; }
         .value-item span { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
         .value-item strong { color: var(--primary-navy); }
-        @media (prefers-color-scheme: dark) { .value-item strong { color: var(--accent-yellow); } .value-item { background: rgba(0,0,0,0.2); } }
         .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
         .contact-item { display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background: var(--light-bg); border-radius: 8px; text-decoration: none; color: var(--dark-text); transition: transform 0.2s; }
         .contact-item:hover { transform: translateY(-2px); }
-        @media (prefers-color-scheme: dark) { .contact-item { background: rgba(0,0,0,0.2); } }
         .contact-item span { font-size: 1.5rem; }
         footer { background: var(--primary-navy); color: white; text-align: center; padding: 1.5rem 1rem; margin-top: 1rem; }
         footer a { color: var(--accent-yellow); text-decoration: none; font-weight: bold; }

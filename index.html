@@ -22,9 +22,8 @@
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#1B365D" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#1a1a2e" media="(prefers-color-scheme: dark)">
-    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#1B365D">
+    <meta name="color-scheme" content="light only">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Mission Placements">
@@ -94,29 +93,6 @@
             --shadow-color: rgba(27, 54, 93, 0.1);
         }
         
-        /* Dark Mode */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --light-bg: #1a1a2e;
-                --white: #16213e;
-                --dark-text: #e8e8e8;
-                --gray-text: #b0b0b0;
-                --card-bg: #1f2940;
-                --shadow-color: rgba(0, 0, 0, 0.3);
-            }
-            header {
-                background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
-            }
-            .card {
-                background: var(--card-bg);
-            }
-            .updates {
-                background: linear-gradient(135deg, #1f2940 0%, #1a2530 100%);
-            }
-            .logo {
-                background: white;
-            }
-        }
         * {
             margin: 0;
             padding: 0;
