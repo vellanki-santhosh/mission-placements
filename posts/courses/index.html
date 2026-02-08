@@ -37,15 +37,222 @@
         .bottom-nav a.active .nav-icon { transform: scale(1.1); }
         body { padding-bottom: 70px; }
         footer { padding-bottom: calc(1.5rem + 70px + env(safe-area-inset-bottom, 0px)); }
+        
+        /* Knowledge Hub Styles */
+        .hub-header { text-align: center; padding: 1.2rem; background: linear-gradient(135deg, #0B1C2D 0%, #132A3E 100%); border-radius: 12px; margin-bottom: 1rem; border: 1px solid rgba(58, 123, 213, 0.3); }
+        .hub-header h2 { color: #F2B705; font-size: 1.4rem; margin-bottom: 0.3rem; }
+        .hub-header p { color: #9BA8B4; font-size: 0.85rem; }
+        
+        /* Platform Card */
+        .platform-card { background: linear-gradient(135deg, #0a2540 0%, #0d1b2a 100%); border: 1px solid rgba(78, 205, 196, 0.3); border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem; }
+        .platform-card h2 { color: #4ECDC4; border-bottom-color: #4ECDC4; }
+        .platform-card > p { color: #9BA8B4; font-size: 0.85rem; font-style: italic; margin-bottom: 1rem; }
+        .platform-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 10px; overflow: hidden; font-size: 0.85rem; }
+        .platform-table thead { background: linear-gradient(135deg, #0D9488 0%, #0F766E 100%); }
+        .platform-table th { color: white; padding: 0.8rem 0.6rem; text-align: left; font-weight: 600; }
+        .platform-table tbody tr { background: rgba(78, 205, 196, 0.05); transition: all 0.2s; }
+        .platform-table tbody tr:nth-child(even) { background: rgba(78, 205, 196, 0.1); }
+        .platform-table tbody tr:hover { background: rgba(78, 205, 196, 0.2); transform: scale(1.01); }
+        .platform-table td { padding: 0.7rem 0.6rem; color: #EDEFF3; border-bottom: 1px solid rgba(78, 205, 196, 0.15); }
+        .platform-table td:first-child { color: #4ECDC4; font-weight: 600; }
+        .platform-table td:last-child { text-align: center; }
+        .explore-btn { display: inline-block; background: linear-gradient(135deg, #4ECDC4 0%, #26a69a 100%); color: #0B1C2D; padding: 0.4rem 0.8rem; border-radius: 15px; text-decoration: none; font-weight: 600; font-size: 0.75rem; transition: all 0.2s; }
+        .explore-btn:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(78, 205, 196, 0.4); }
+        .tag { display: inline-block; font-size: 0.6rem; padding: 0.15rem 0.4rem; border-radius: 4px; margin-left: 0.3rem; font-weight: 600; }
+        .tag-free { background: rgba(40, 167, 69, 0.2); color: #28A745; }
+        .tag-cert { background: rgba(242, 183, 5, 0.2); color: #F2B705; }
+        
+        /* Peer Learning Card */
+        .peer-card { background: linear-gradient(135deg, #1a1a3e 0%, #0f0f24 100%); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem; }
+        .peer-card h2 { color: #A78BFA; border-bottom-color: #8B5CF6; }
+        .peer-card > p { color: #9BA8B4; font-size: 0.85rem; font-style: italic; margin-bottom: 1rem; }
+        .peer-item { background: rgba(139, 92, 246, 0.08); border-radius: 10px; padding: 1rem; margin-bottom: 0.8rem; border-left: 4px solid #8B5CF6; transition: all 0.2s; }
+        .peer-item:hover { background: rgba(139, 92, 246, 0.15); transform: translateX(5px); }
+        .peer-item h4 { color: #A78BFA; font-size: 0.95rem; margin-bottom: 0.4rem; }
+        .peer-item p { color: #EDEFF3; font-size: 0.85rem; margin-bottom: 0.5rem; }
+        .peer-item .name { color: #F2B705; font-weight: 600; }
+        .peer-link { display: inline-block; background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%); color: white; padding: 0.4rem 0.8rem; border-radius: 15px; text-decoration: none; font-weight: 600; font-size: 0.75rem; transition: all 0.2s; }
+        .peer-link:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4); }
+        
+        /* Training Card */
+        .training-card { background: linear-gradient(135deg, #1a2f1a 0%, #0d1f0d 100%); border: 2px solid #22C55E; border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem; position: relative; overflow: hidden; }
+        .training-card::before { content: '🔥 FEATURED'; position: absolute; top: 15px; right: -35px; background: #ef4444; color: white; padding: 0.3rem 2.5rem; font-size: 0.65rem; font-weight: bold; transform: rotate(45deg); }
+        .training-card h2 { color: #22C55E; border-bottom-color: #22C55E; }
+        .training-title { color: #F2B705; font-size: 1.2rem; margin: 0.8rem 0; }
+        .training-subtitle { color: #9BA8B4; font-size: 0.85rem; font-style: italic; margin-bottom: 1rem; }
+        .training-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.8rem; margin-bottom: 1rem; }
+        .detail-item { background: rgba(34, 197, 94, 0.1); border-radius: 8px; padding: 0.8rem; text-align: center; }
+        .detail-item .icon { font-size: 1.3rem; margin-bottom: 0.3rem; }
+        .detail-item .label { color: #9BA8B4; font-size: 0.7rem; display: block; }
+        .detail-item .value { color: #EDEFF3; font-size: 0.9rem; font-weight: 600; }
+        .detail-item .value.highlight { color: #22C55E; }
+        .training-btns { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1rem; }
+        .training-btn { flex: 1; min-width: 140px; text-align: center; padding: 0.8rem 1rem; border-radius: 25px; text-decoration: none; font-weight: 700; font-size: 0.85rem; transition: all 0.2s; }
+        .btn-register { background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%); color: #0B1C2D; }
+        .btn-whatsapp { background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; }
+        .training-btn:hover { transform: scale(1.03); box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4); }
+        .credits { color: #6B7280; font-size: 0.75rem; font-style: italic; margin-top: 1rem; text-align: right; }
+        
+        /* Tips Card */
+        .tips-card { background: linear-gradient(135deg, #0B1C2D 0%, #132A3E 100%); border: 1px solid rgba(58, 123, 213, 0.3); border-radius: 12px; padding: 1.2rem; }
+        .tips-card h2 { color: #3A7BD5; border-bottom-color: #3A7BD5; }
+        .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.8rem; margin-top: 1rem; }
+        .tip-item { background: rgba(58, 123, 213, 0.1); border-radius: 8px; padding: 0.8rem; border-left: 3px solid #3A7BD5; }
+        .tip-item h4 { color: #F2B705; font-size: 0.85rem; margin-bottom: 0.3rem; }
+        .tip-item p { color: #9BA8B4; font-size: 0.75rem; }
+        
+        @media (max-width: 600px) {
+            .platform-table { font-size: 0.75rem; }
+            .platform-table th, .platform-table td { padding: 0.5rem 0.4rem; }
+            .training-card::before { font-size: 0.55rem; right: -40px; top: 12px; }
+            .training-btns { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">🏠 Home</a><span>›</span><span class="current">Courses</span></nav>
-    <header><h1>📖 Courses</h1><p>Free courses, certifications & learning opportunities</p></header>
+    <header><h1>� Knowledge Hub: Elevate Your Skills</h1><p>Your curated collection of free courses, peer insights & professional training</p></header>
     <main>
-        <section class="section">
-            <h2>🎓 Available Courses</h2>
-            <div class="coming-soon"><p>🚀 Course recommendations will appear here!</p><p style="margin-top: 0.8rem;">Check back soon for fresh content.</p></div>
+        <!-- Hub Header -->
+        <div class="hub-header">
+            <h2>✨ Learning & Opportunities Hub</h2>
+            <p>Free Learning Platforms • Peer Learning Series • Training Events</p>
+        </div>
+
+        <!-- Free Learning Platforms Section -->
+        <section class="section platform-card">
+            <h2>🌐 Top Free Learning Platforms</h2>
+            <p>Explore world-class certifications from industry leaders.</p>
+            <table class="platform-table">
+                <thead>
+                    <tr>
+                        <th>Platform</th>
+                        <th>Focus Areas</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Google Digital Garage <span class="tag tag-free">FREE</span></td>
+                        <td>Digital Marketing & Career Growth</td>
+                        <td><a href="https://learndigital.withgoogle.com/digitalgarage" target="_blank" class="explore-btn">Explore 🔗</a></td>
+                    </tr>
+                    <tr>
+                        <td>Google Cloud Boost <span class="tag tag-cert">CERT</span></td>
+                        <td>Cloud, ML, and DevOps</td>
+                        <td><a href="https://www.cloudskillsboost.google" target="_blank" class="explore-btn">Explore 🔗</a></td>
+                    </tr>
+                    <tr>
+                        <td>Microsoft Learn <span class="tag tag-free">FREE</span></td>
+                        <td>Azure, AI, and Power Platform</td>
+                        <td><a href="https://learn.microsoft.com/en-us/training/" target="_blank" class="explore-btn">Explore 🔗</a></td>
+                    </tr>
+                    <tr>
+                        <td>IBM SkillsBuild <span class="tag tag-cert">CERT</span></td>
+                        <td>Cybersecurity & Data Science</td>
+                        <td><a href="https://skillsbuild.org/" target="_blank" class="explore-btn">Explore 🔗</a></td>
+                    </tr>
+                    <tr>
+                        <td>HubSpot Academy <span class="tag tag-free">FREE</span></td>
+                        <td>Marketing, Sales, and CRM</td>
+                        <td><a href="https://academy.hubspot.com/" target="_blank" class="explore-btn">Explore 🔗</a></td>
+                    </tr>
+                    <tr>
+                        <td>Elements of AI <span class="tag tag-free">FREE</span></td>
+                        <td>AI Fundamentals</td>
+                        <td><a href="https://www.elementsofai.com/" target="_blank" class="explore-btn">Explore 🔗</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Peer Learning Section -->
+        <section class="section peer-card">
+            <h2>👥 Peer Learning Spotlight</h2>
+            <p>Support our community members as they share their learning journeys on LinkedIn.</p>
+            
+            <div class="peer-item">
+                <h4>📊 Data Analytics Series</h4>
+                <p><span class="name">Bhavya R02</span> is documenting her path in Data Analytics and Python.</p>
+                <a href="https://www.linkedin.com/posts/chegireddy-bhavya-5459872b5_dataanalytics-python-learningjourney-activity-7419793299278012416-fCjp" target="_blank" class="peer-link">Follow Bhavya's Journey ↗️</a>
+            </div>
+            
+            <div class="peer-item">
+                <h4>📈 Power BI Mastery</h4>
+                <p><span class="name">Saniya Shaik</span> has launched a series on mastering Power BI visualizations.</p>
+                <a href="https://www.linkedin.com/in/saniya-shaik36" target="_blank" class="peer-link">Learn Power BI with Saniya ↗️</a>
+            </div>
+            
+            <div class="peer-item">
+                <h4>🛡️ Cybersecurity Workshop Updates</h4>
+                <p>Check out daily insights from <span class="name">Adithya B</span>, <span class="name">C R 11</span>, <span class="name">Sai Sudha</span>, and <span class="name">Siddu</span> to stay updated on our latest workshop.</p>
+            </div>
+            
+            <div class="peer-item">
+                <h4>🎁 Free Udemy Courses</h4>
+                <p>Watch <span class="name">Kasthuri's</span> guide on how to secure premium courses for free.</p>
+                <a href="https://www.linkedin.com/in/kasthuri-anakapalli-113a7631b" target="_blank" class="peer-link">Watch Tutorial ↗️</a>
+            </div>
+        </section>
+
+        <!-- Featured Training Program Section -->
+        <section class="section training-card">
+            <h2>📅 Featured Training Program</h2>
+            <h3 class="training-title">🐍 Python for AI 2026</h3>
+            <p class="training-subtitle">A 15-Day Professional Training Program organized by Nextera Unitech (MSME Registered)</p>
+            
+            <div class="training-details">
+                <div class="detail-item">
+                    <div class="icon">🗓️</div>
+                    <span class="label">Start Date</span>
+                    <span class="value">February 9, 2026</span>
+                </div>
+                <div class="detail-item">
+                    <div class="icon">⏰</div>
+                    <span class="label">Time</span>
+                    <span class="value">6:00 PM – 7:30 PM</span>
+                </div>
+                <div class="detail-item">
+                    <div class="icon">💻</div>
+                    <span class="label">Mode</span>
+                    <span class="value">Online</span>
+                </div>
+                <div class="detail-item">
+                    <div class="icon">💰</div>
+                    <span class="label">Cost</span>
+                    <span class="value highlight">FREE</span>
+                </div>
+            </div>
+            <p style="color: #9BA8B4; font-size: 0.8rem; text-align: center;">Optional Certificate: ₹100</p>
+            
+            <div class="training-btns">
+                <a href="https://forms.gle/2w8u8HvumZUfCu4Y9" target="_blank" class="training-btn btn-register">🔗 Register Now</a>
+                <a href="https://chat.whatsapp.com/F7PKIcoHdLSI1CwUSaNaU8" target="_blank" class="training-btn btn-whatsapp">💬 Join WhatsApp Group</a>
+            </div>
+            <p class="credits">Credits: @Merlin</p>
+        </section>
+
+        <!-- Pro Tips Section -->
+        <section class="section tips-card">
+            <h2>💡 Pro-Tips for Your Learning</h2>
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <h4>🔘 Use Buttons</h4>
+                    <p>Click colorful buttons for quick access to courses and registrations.</p>
+                </div>
+                <div class="tip-item">
+                    <h4>👤 Follow Peers</h4>
+                    <p>Connect with community members sharing their learning journeys.</p>
+                </div>
+                <div class="tip-item">
+                    <h4>🏷️ Check Tags</h4>
+                    <p>Look for FREE, CERT tags to quickly filter learning resources.</p>
+                </div>
+                <div class="tip-item">
+                    <h4>📅 Stay Updated</h4>
+                    <p>Join WhatsApp groups to never miss training announcements.</p>
+                </div>
+            </div>
         </section>
     </main>
     <footer><p>Mission Placements © 2026 | <a href="../../index.html">Home</a></p></footer>
