@@ -127,10 +127,12 @@
             bottom: 0 !important;
             left: 0 !important;
             right: 0 !important;
-            background: #162F46 !important;
-            border-top: 1px solid #2F4154;
-            padding: 0.5rem 0;
+            background: linear-gradient(180deg, #162F46 0%, #0B1C2D 100%) !important;
+            border-top: 1px solid #3A7BD5;
+            padding: 0.6rem 0;
+            padding-bottom: calc(0.6rem + env(safe-area-inset-bottom, 0px));
             z-index: 1000;
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.3);
         }
         .bottom-nav ul { 
             display: flex; 
@@ -139,18 +141,41 @@
             margin: 0; 
             padding: 0; 
         }
+        .bottom-nav li {
+            flex: 1;
+            text-align: center;
+        }
         .bottom-nav a {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            gap: 0.2rem;
             text-decoration: none;
             color: #9BA8B4;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 500;
+            padding: 0.3rem 0.2rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            min-height: 50px;
         }
-        .bottom-nav a:hover, .bottom-nav a.active {
+        .bottom-nav a:hover {
             color: #F2B705;
+            background: rgba(242, 183, 5, 0.1);
         }
-        .nav-icon { font-size: 1.4rem; }
+        .bottom-nav a.active {
+            color: #F2B705;
+            background: rgba(242, 183, 5, 0.15);
+        }
+        .bottom-nav a.active .nav-icon {
+            transform: scale(1.15);
+        }
+        .nav-icon { 
+            font-size: 1.5rem; 
+            line-height: 1;
+            transition: transform 0.2s ease;
+        }
         h1, h2, h3, p { margin: 0 0 0.5rem 0; }
         h2 { color: #F2B705; border-bottom: 3px solid #3A7BD5; display: inline-block; padding-bottom: 0.5rem; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
@@ -269,9 +294,75 @@
             h1 { font-size: 1.3rem !important; }
             nav:not(.bottom-nav) {
                 display: block !important;
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 999 !important;
             }
             nav:not(.bottom-nav) ul {
                 display: none !important;
+                position: absolute !important;
+                top: 100% !important;
+                left: 0 !important;
+                right: 0 !important;
+                background: #132A3E !important;
+                flex-direction: column !important;
+                padding: 0.5rem !important;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+                max-height: 70vh !important;
+                overflow-y: auto !important;
+            }
+            nav:not(.bottom-nav) ul.active {
+                display: flex !important;
+            }
+            nav:not(.bottom-nav) ul a {
+                padding: 0.9rem 1rem !important;
+                display: block !important;
+                color: #EDEFF3 !important;
+                border-radius: 8px !important;
+            }
+            nav:not(.bottom-nav) ul a:hover {
+                background: rgba(242, 183, 5, 0.2) !important;
+                color: #F2B705 !important;
+            }
+            .hamburger {
+                display: flex !important;
+                flex-direction: column !important;
+                cursor: pointer !important;
+                padding: 10px !important;
+                background: none !important;
+                border: none !important;
+                min-width: 44px !important;
+                min-height: 44px !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+            .hamburger span {
+                width: 25px !important;
+                height: 3px !important;
+                background: #EDEFF3 !important;
+                margin: 3px 0 !important;
+                border-radius: 2px !important;
+                transition: all 0.3s !important;
+            }
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px) !important;
+            }
+            .hamburger.active span:nth-child(2) {
+                opacity: 0 !important;
+            }
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px) !important;
+            }
+            .nav-container {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                padding: 0.5rem 1rem !important;
+            }
+            .nav-title {
+                display: block !important;
+                color: #EDEFF3 !important;
+                font-weight: bold !important;
             }
             .grid {
                 grid-template-columns: 1fr !important;
@@ -390,19 +481,38 @@
         body.light-mode .nav-title {
             color: #1B365D !important;
         }
-        body.light-mode .bottom-nav {
+        body.light-mode .hamburger span {
+            background: #1B365D !important;
+        }
+        body.light-mode nav:not(.bottom-nav) ul {
             background: #FFFFFF !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
+        }
+        body.light-mode nav:not(.bottom-nav) ul a {
+            color: #1B365D !important;
+        }
+        body.light-mode nav:not(.bottom-nav) ul a:hover {
+            background: rgba(242, 183, 5, 0.15) !important;
+            color: #F2B705 !important;
+        }
+        body.light-mode .bottom-nav {
+            background: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%) !important;
             border-top: 1px solid #CBD5E1 !important;
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.1) !important;
             position: fixed !important;
             bottom: 0 !important;
             top: auto !important;
         }
         body.light-mode .bottom-nav a {
-            color: #475569 !important;
+            color: #64748B !important;
         }
-        body.light-mode .bottom-nav a:hover,
+        body.light-mode .bottom-nav a:hover {
+            color: #F2B705 !important;
+            background: rgba(242, 183, 5, 0.1) !important;
+        }
         body.light-mode .bottom-nav a.active {
             color: #F2B705 !important;
+            background: rgba(242, 183, 5, 0.15) !important;
         }
         body.light-mode .bottom-nav ul {
             display: flex !important;
@@ -659,13 +769,14 @@
         <p style="margin-top: 1.5rem; font-size: 0.9rem;">Made with ❤️ for students | © 2026 Mission Placements</p>
     </footer>
 
-    <!-- Sticky Bottom Navigation (Mobile) -->
+    <!-- Sticky Bottom Navigation (Mobile App Style) -->
     <nav class="bottom-nav" aria-label="Quick navigation">
         <ul>
-            <li><a href="index.html" class="active" aria-current="page"><span class="nav-icon">🏠</span>Home</a></li>
-            <li><a href="posts/aptitude/index.html"><span class="nav-icon">🧠</span>Aptitude</a></li>
-            <li><a href="posts/coding/index.html"><span class="nav-icon">💻</span>Coding</a></li>
-            <li><a href="posts/tech-news/index.html"><span class="nav-icon">📰</span>News</a></li>
+            <li><a href="index.html" class="active" aria-current="page"><span class="nav-icon">🏠</span><span>Home</span></a></li>
+            <li><a href="posts/aptitude/index.html"><span class="nav-icon">🧠</span><span>Aptitude</span></a></li>
+            <li><a href="posts/coding/index.html"><span class="nav-icon">💻</span><span>Coding</span></a></li>
+            <li><a href="posts/interviews/index.html"><span class="nav-icon">🏆</span><span>Interviews</span></a></li>
+            <li><a href="posts/tech-news/index.html"><span class="nav-icon">📰</span><span>News</span></a></li>
         </ul>
     </nav>
 
