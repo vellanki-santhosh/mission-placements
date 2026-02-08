@@ -37,17 +37,261 @@
         .bottom-nav a.active .nav-icon { transform: scale(1.1); }
         body { padding-bottom: 70px; }
         footer { padding-bottom: calc(1.5rem + 70px + env(safe-area-inset-bottom, 0px)); }
+        
+        /* Interview Prep Styles */
+        .prep-header { text-align: center; padding: 1.2rem; background: linear-gradient(135deg, #0B1C2D 0%, #132A3E 100%); border-radius: 12px; margin-bottom: 1rem; border: 1px solid rgba(58, 123, 213, 0.3); }
+        .prep-header h2 { color: #F2B705; font-size: 1.4rem; margin-bottom: 0.3rem; }
+        .prep-header p { color: #9BA8B4; font-size: 0.85rem; }
+        
+        /* Cheat Sheet Card */
+        .cheatsheet-card { background: linear-gradient(135deg, #1e1e2e 0%, #11111b 100%); border: 1px solid rgba(137, 180, 250, 0.3); border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem; }
+        .cheatsheet-card h2 { color: #89B4FA; border-bottom-color: #89B4FA; }
+        .cheatsheet-section { background: rgba(137, 180, 250, 0.05); border-radius: 10px; padding: 1rem; margin-bottom: 1rem; border-left: 4px solid #89B4FA; }
+        .cheatsheet-section h3 { color: #F2B705; font-size: 1rem; margin-bottom: 0.8rem; }
+        .cheatsheet-item { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.5rem 0; }
+        .cheatsheet-item .bullet { color: #89B4FA; font-weight: bold; }
+        .cheatsheet-item .content { color: #EDEFF3; font-size: 0.85rem; }
+        .cheatsheet-item .content strong { color: #F2B705; }
+        .cheatsheet-item .content code { background: rgba(137, 180, 250, 0.2); color: #89B4FA; padding: 0.15rem 0.4rem; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.8rem; }
+        .collection-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.6rem; margin-top: 0.8rem; }
+        .collection-item { background: rgba(137, 180, 250, 0.1); border-radius: 8px; padding: 0.7rem; text-align: center; border: 1px solid rgba(137, 180, 250, 0.2); }
+        .collection-item .name { color: #89B4FA; font-weight: 600; font-size: 0.85rem; }
+        .collection-item .desc { color: #9BA8B4; font-size: 0.75rem; margin-top: 0.2rem; }
+        .collection-item .speed { font-size: 0.7rem; margin-top: 0.3rem; }
+        .power-trio { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .trio-item { background: rgba(242, 183, 5, 0.1); border: 1px solid rgba(242, 183, 5, 0.3); border-radius: 6px; padding: 0.4rem 0.8rem; }
+        .trio-item .func { color: #F2B705; font-weight: 600; font-size: 0.8rem; }
+        .trio-item .use { color: #9BA8B4; font-size: 0.7rem; }
+        
+        /* Quiz Card */
+        .quiz-card { background: linear-gradient(135deg, #2d1b4e 0%, #1a0f2e 100%); border: 1px solid rgba(192, 132, 252, 0.3); border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem; }
+        .quiz-card h2 { color: #C084FC; border-bottom-color: #A855F7; }
+        .quiz-card > p { color: #9BA8B4; font-size: 0.85rem; font-style: italic; margin-bottom: 1rem; }
+        .quiz-question { background: rgba(192, 132, 252, 0.08); border-radius: 10px; padding: 1rem; margin-bottom: 0.8rem; border-left: 4px solid #A855F7; }
+        .quiz-question .number { background: linear-gradient(135deg, #A855F7 0%, #7C3AED 100%); color: white; width: 26px; height: 26px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem; margin-right: 0.5rem; }
+        .quiz-question .text { color: #EDEFF3; font-size: 0.9rem; display: inline; }
+        .quiz-options { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
+        .quiz-opt { background: rgba(192, 132, 252, 0.1); border: 1px solid rgba(192, 132, 252, 0.3); border-radius: 8px; padding: 0.5rem 0.8rem; color: #EDEFF3; font-size: 0.8rem; cursor: pointer; transition: all 0.2s; }
+        .quiz-opt:hover { background: rgba(192, 132, 252, 0.2); transform: translateY(-2px); }
+        .quiz-opt.correct { background: rgba(34, 197, 94, 0.2); border-color: #22C55E; color: #22C55E; font-weight: 600; }
+        .quiz-opt.selected-wrong { background: rgba(239, 68, 68, 0.2); border-color: #ef4444; }
+        .answer-reveal { display: none; margin-top: 0.6rem; padding: 0.6rem; background: rgba(34, 197, 94, 0.1); border-radius: 6px; color: #22C55E; font-size: 0.8rem; }
+        .answer-reveal.show { display: block; }
+        
+        /* Roadmap Card */
+        .roadmap-card { background: linear-gradient(135deg, #1a3a2e 0%, #0d2820 100%); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem; }
+        .roadmap-card h2 { color: #34D399; border-bottom-color: #10B981; }
+        .roadmap-card > p { color: #9BA8B4; font-size: 0.85rem; font-style: italic; margin-bottom: 1rem; }
+        .roadmap-item { background: rgba(52, 211, 153, 0.08); border-radius: 10px; padding: 1rem; margin-bottom: 0.8rem; border-left: 4px solid #10B981; transition: all 0.2s; }
+        .roadmap-item:hover { background: rgba(52, 211, 153, 0.15); transform: translateX(5px); }
+        .roadmap-item h4 { color: #34D399; font-size: 0.95rem; margin-bottom: 0.4rem; }
+        .roadmap-item p { color: #EDEFF3; font-size: 0.85rem; margin-bottom: 0.6rem; }
+        .roadmap-link { display: inline-block; background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: white; padding: 0.5rem 1rem; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 0.8rem; transition: all 0.2s; }
+        .roadmap-link:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); }
+        
+        /* Tips Card */
+        .tips-card { background: linear-gradient(135deg, #0B1C2D 0%, #132A3E 100%); border: 1px solid rgba(58, 123, 213, 0.3); border-radius: 12px; padding: 1.2rem; }
+        .tips-card h2 { color: #3A7BD5; border-bottom-color: #3A7BD5; }
+        .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.8rem; margin-top: 1rem; }
+        .tip-item { background: rgba(58, 123, 213, 0.1); border-radius: 8px; padding: 0.8rem; border-left: 3px solid #3A7BD5; }
+        .tip-item h4 { color: #F2B705; font-size: 0.85rem; margin-bottom: 0.3rem; }
+        .tip-item p { color: #9BA8B4; font-size: 0.75rem; }
+        
+        @media (max-width: 600px) {
+            .collection-grid { grid-template-columns: 1fr; }
+            .quiz-options { flex-direction: column; }
+            .power-trio { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">🏠 Home</a><span>›</span><span class="current">Interviews</span></nav>
-    <header><h1>🎤 Interviews</h1><p>Interview experiences, tips & company preparation</p></header>
+    <header><h1>🐍 Interview Prep: Python & ML</h1><p>Master the fundamentals and ace your technical rounds</p></header>
     <main>
-        <section class="section">
-            <h2>💼 Interview Experiences</h2>
-            <div class="coming-soon"><p>🚀 Interview experiences will appear here!</p><p style="margin-top: 0.8rem;">Check back soon for fresh content.</p></div>
+        <!-- Prep Header -->
+        <div class="prep-header">
+            <h2>🎯 Technical Interview Essentials</h2>
+            <p>Cheat sheets, quizzes, and roadmaps for placement success</p>
+        </div>
+
+        <!-- Python Cheat Sheet Section -->
+        <section class="section cheatsheet-card">
+            <h2>📝 The Python Cheat Sheet</h2>
+            
+            <!-- Core Essentials -->
+            <div class="cheatsheet-section">
+                <h3>1️⃣ Core Essentials</h3>
+                <div class="cheatsheet-item">
+                    <span class="bullet">•</span>
+                    <div class="content"><strong>Key Features:</strong> Easy readability, extensive libraries (<strong>NumPy, Pandas</strong>), and massive support community.</div>
+                </div>
+                <div class="cheatsheet-item">
+                    <span class="bullet">•</span>
+                    <div class="content"><strong>Collections Overview:</strong></div>
+                </div>
+                <div class="collection-grid">
+                    <div class="collection-item">
+                        <div class="name">List</div>
+                        <div class="desc">Mutable (Changeable)</div>
+                        <div class="speed">🐢 Slower</div>
+                    </div>
+                    <div class="collection-item">
+                        <div class="name">Tuple</div>
+                        <div class="desc">Immutable (Fixed)</div>
+                        <div class="speed">🐇 Faster</div>
+                    </div>
+                    <div class="collection-item">
+                        <div class="name">Dict</div>
+                        <div class="desc">Key-value pairs</div>
+                        <div class="speed">⚡ Fast lookups</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Functional Programming -->
+            <div class="cheatsheet-section">
+                <h3>2️⃣ Functional Programming & Files</h3>
+                <div class="cheatsheet-item">
+                    <span class="bullet">•</span>
+                    <div class="content"><strong>Lambda:</strong> Anonymous single-line functions: <code>lambda x: x*2</code></div>
+                </div>
+                <div class="cheatsheet-item">
+                    <span class="bullet">•</span>
+                    <div class="content"><strong>The Power Trio:</strong></div>
+                </div>
+                <div class="power-trio">
+                    <div class="trio-item">
+                        <div class="func">Map</div>
+                        <div class="use">Apply function to all</div>
+                    </div>
+                    <div class="trio-item">
+                        <div class="func">Filter</div>
+                        <div class="use">Select specific elements</div>
+                    </div>
+                    <div class="trio-item">
+                        <div class="func">Reduce</div>
+                        <div class="use">Combine to single value</div>
+                    </div>
+                </div>
+                <div class="cheatsheet-item" style="margin-top: 0.8rem;">
+                    <span class="bullet">•</span>
+                    <div class="content"><strong>File Modes:</strong> <code>'r'</code> (Read), <code>'w'</code> (Write), <code>'a'</code> (Append)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daily Quiz Section -->
+        <section class="section quiz-card">
+            <h2>🧠 Daily Interview Quiz</h2>
+            <p>Test your knowledge. Can you answer these without looking?</p>
+            
+            <div class="quiz-question" data-answer="B">
+                <span class="number">1</span>
+                <span class="text"><strong>Which library is primarily used for numerical computing?</strong></span>
+                <div class="quiz-options">
+                    <button class="quiz-opt" data-value="A">(A) Matplotlib</button>
+                    <button class="quiz-opt" data-value="B">(B) NumPy</button>
+                    <button class="quiz-opt" data-value="C">(C) Seaborn</button>
+                    <button class="quiz-opt" data-value="D">(D) Flask</button>
+                </div>
+                <div class="answer-reveal">✓ Correct: <strong>NumPy</strong> — The fundamental package for numerical computing in Python.</div>
+            </div>
+            
+            <div class="quiz-question" data-answer="C">
+                <span class="number">2</span>
+                <span class="text"><strong>Which data type is immutable (cannot be changed)?</strong></span>
+                <div class="quiz-options">
+                    <button class="quiz-opt" data-value="A">(A) List</button>
+                    <button class="quiz-opt" data-value="B">(B) Dictionary</button>
+                    <button class="quiz-opt" data-value="C">(C) Tuple</button>
+                    <button class="quiz-opt" data-value="D">(D) Set</button>
+                </div>
+                <div class="answer-reveal">✓ Correct: <strong>Tuple</strong> — Once created, tuple elements cannot be modified.</div>
+            </div>
+            
+            <div class="quiz-question" data-answer="D">
+                <span class="number">3</span>
+                <span class="text"><strong>Which metric is best for evaluating imbalanced datasets?</strong></span>
+                <div class="quiz-options">
+                    <button class="quiz-opt" data-value="A">(A) Accuracy</button>
+                    <button class="quiz-opt" data-value="B">(B) Precision</button>
+                    <button class="quiz-opt" data-value="C">(C) Recall</button>
+                    <button class="quiz-opt" data-value="D">(D) ROC-AUC</button>
+                </div>
+                <div class="answer-reveal">✓ Correct: <strong>ROC-AUC</strong> — It evaluates performance across all classification thresholds.</div>
+            </div>
+        </section>
+
+        <!-- Roadmap & Tools Section -->
+        <section class="section roadmap-card">
+            <h2>🚀 Placement Roadmap & Tools</h2>
+            <p>Get career-ready with these curated resources.</p>
+            
+            <div class="roadmap-item">
+                <h4>📊 Data Analytics 180-Day Roadmap</h4>
+                <p>A complete step-by-step guide to becoming placement-ready for Data Analytics roles. Follow this structured journey to master the craft.</p>
+                <a href="https://www.linkedin.com/posts/varshini-alapati-677ab52a4_dataanalytics-datascience-learningroadmap-activity-7421727133905088512-gy5T" target="_blank" class="roadmap-link">View Roadmap on LinkedIn ↗️</a>
+            </div>
+            
+            <div class="roadmap-item">
+                <h4>📄 Professional Resume Builder</h4>
+                <p>Create a standout resume that passes ATS filters and catches recruiters' attention with professional templates.</p>
+                <a href="https://www.resumae.in/" target="_blank" class="roadmap-link">Visit Resumae.in ↗️</a>
+            </div>
+        </section>
+
+        <!-- Pro Tips Section -->
+        <section class="section tips-card">
+            <h2>💡 Pro-Tips for Interview Prep</h2>
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <h4>🎯 Practice Daily</h4>
+                    <p>Solve at least one coding problem and one quiz question every day.</p>
+                </div>
+                <div class="tip-item">
+                    <h4>📝 Code by Hand</h4>
+                    <p>Practice writing code on paper — many interviews still use whiteboards.</p>
+                </div>
+                <div class="tip-item">
+                    <h4>🗣️ Explain Aloud</h4>
+                    <p>Practice explaining your thought process while solving problems.</p>
+                </div>
+                <div class="tip-item">
+                    <h4>📚 Review Basics</h4>
+                    <p>Don't skip fundamentals — interviewers love testing core concepts.</p>
+                </div>
+            </div>
         </section>
     </main>
+    
+    <script>
+        // Quiz functionality
+        document.querySelectorAll('.quiz-question').forEach(question => {
+            const correctAnswer = question.dataset.answer;
+            const revealDiv = question.querySelector('.answer-reveal');
+            
+            question.querySelectorAll('.quiz-opt').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Reset all options in this question
+                    question.querySelectorAll('.quiz-opt').forEach(b => {
+                        b.classList.remove('correct', 'selected-wrong');
+                    });
+                    
+                    // Mark selected answer
+                    if (this.dataset.value === correctAnswer) {
+                        this.classList.add('correct');
+                    } else {
+                        this.classList.add('selected-wrong');
+                        // Highlight correct answer
+                        question.querySelector(`[data-value="${correctAnswer}"]`).classList.add('correct');
+                    }
+                    
+                    // Show answer reveal
+                    revealDiv.classList.add('show');
+                });
+            });
+        });
+    </script>
     <footer><p>Mission Placements © 2026 | <a href="../../index.html">Home</a></p></footer>
     <nav class="bottom-nav" aria-label="Quick navigation">
         <ul>
