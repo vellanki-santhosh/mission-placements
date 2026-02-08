@@ -57,85 +57,49 @@
     <script>document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US', {weekday: 'long', month: 'short', day: 'numeric'});</script>
     <main>
         <section class="section">
-            <h2>🔥 Today's Challenge</h2>
-            <div class="coming-soon"><p>🚀 <span class="urgency-text">New coding problems every day!</span></p><p style="margin-top: 0.8rem;">Don't miss today's challenge.</p></div>
+            <h2>🐍 Python DSA: Beginner’s Code Lab</h2>
+            <p><em>Master the fundamentals through logic-based challenges and hands-on practice.</em></p>
+            <hr style="margin: 1rem 0;">
+            <h3>📘 Learning Path: Python Basics to DSA</h3>
+            <ul style="margin-bottom:1rem;">
+                <li><b>Fundamentals:</b> Variables, Dynamic Typing, and Syntax.</li>
+                <li><b>Logic:</b> Conditionals (<code>if-elif-else</code>) and Iteration (<code>for</code>, <code>while</code>).</li>
+                <li><b>Data Structures:</b> List operations, String methods, and Dictionaries.</li>
+                <li><b>Modular Coding:</b> Functions, Modules, and Exception Handling.</li>
+                <li><b>Advanced:</b> Basic File Handling and Introduction to OOPs.</li>
+            </ul>
+            <hr style="margin: 1rem 0;">
+            <h3>🧪 Advanced Logic: The Armstrong Number</h3>
+            <p>This snippet checks if a number is an "Armstrong Number" (the sum of its digits raised to the power of the number of digits equals the original number).</p>
+            <pre style="background:#222;color:#fff;padding:0.7rem 1rem;border-radius:6px;overflow-x:auto;">n = 153
+temp = n
+sum = 0
+while temp > 0:
+    digit = temp % 10
+    sum += digit ** 3
+    temp //= 10
+
+if sum == n:
+    print("Armstrong")
+else:
+    print("Not Armstrong")</pre>
+            <div style="margin-top:0.5rem;">Result: <code>Armstrong</code></div>
+            <hr style="margin: 1rem 0;">
+            <h3>📚 Detailed Study Notes</h3>
+            <p>For a deep dive into today's topics, including variables, looping constructs, and list operations, refer to our centralized Notion repository:</p>
+            <a href="https://www.notion.so/28-01-2026-2f6ae25f500180ddafd9f15c35ac817c?source=copy_link" target="_blank" style="display:inline-block;background:#17A2B8;color:#fff;padding:0.5rem 1rem;border-radius:6px;text-decoration:none;font-weight:bold;margin-bottom:1rem;">👉 Access Full Python DSA Notes on Notion</a>
+            <hr style="margin: 1rem 0;">
+            <h3>💡 Tips for Coding Newbies</h3>
+            <ul>
+                <li><b>Indentation is Key:</b> In Python, a missing space can break your whole program.</li>
+                <li><b>Dry Run:</b> Before running the code, try to trace the value of variables (like <code>sum</code> or <code>rev</code>) on a piece of paper.</li>
+                <li><b>Use <code>range()</code> wisely:</b> Remember that <code>range(1, 6)</code> goes from 1 to 5, not 6!</li>
+            </ul>
         </section>
-            <p style="margin-bottom: 0.8rem; font-size: 0.9rem;">Answer today's question:</p>
-            <section class="section">
-                <h2>🐍 Python DSA: Beginner’s Code Lab</h2>
-                <p><em>Master the fundamentals through logic-based challenges and hands-on practice.</em></p>
-                <hr style="margin: 1rem 0;">
-                <h3>📘 Learning Path: Python Basics to DSA</h3>
-                <ul style="margin-bottom:1rem;">
-                    <li><b>Fundamentals:</b> Variables, Dynamic Typing, and Syntax.</li>
-                    <li><b>Logic:</b> Conditionals (<code>if-elif-else</code>) and Iteration (<code>for</code>, <code>while</code>).</li>
-                    <li><b>Data Structures:</b> List operations, String methods, and Dictionaries.</li>
-                    <li><b>Modular Coding:</b> Functions, Modules, and Exception Handling.</li>
-                    <li><b>Advanced:</b> Basic File Handling and Introduction to OOPs.</li>
-                </ul>
-                <hr style="margin: 1rem 0;">
-                <h3>🧠 Daily Code Challenges</h3>
-                <p><em>Can you predict the output of these snippets?</em></p>
-                <div class="challenge-card" style="background:#f8f9fa;border:1px solid #e0e0e0;border-radius:8px;padding:1rem;margin-bottom:1rem;">
-                    <b>Challenge 1: Number Reversal</b>
-                    <pre style="background:#222;color:#fff;padding:0.7rem 1rem;border-radius:6px;overflow-x:auto;">n = 123
-            <div style="position: relative; min-height: 600px; background: var(--light-bg); border-radius: 8px; overflow: hidden;">
-                <!-- Loading indicator -->
-                <div class="iframe-loading" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gray-text);">
-                    <div style="text-align: center;">
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">⏳</div>
-                    <div style="margin-top:0.5rem;">Output Options: <b>A)</b> 123 | <b>B)</b> <u>321</u> | <b>C)</b> 231 | <b>D)</b> Error</div>
-                </div>
-                <div class="challenge-card" style="background:#f8f9fa;border:1px solid #e0e0e0;border-radius:8px;padding:1rem;margin-bottom:1rem;">
-                    <b>Challenge 2: The Fibonacci Sequence</b>
-                    <pre style="background:#222;color:#fff;padding:0.7rem 1rem;border-radius:6px;overflow-x:auto;">n = 5
-                        <p>Loading content...</p>
-                    </div>
-                </div>
-                <!-- Your iframe -->
-                    <div style="margin-top:0.5rem;">Output Options: <b>A)</b> <u>0 1 1 2 3</u> | <b>B)</b> 1 1 2 3 | <b>C)</b> 0 1 2 3 5</div>
-                </div>
-                <div class="challenge-card" style="background:#f8f9fa;border:1px solid #e0e0e0;border-radius:8px;padding:1rem;margin-bottom:1rem;">
-                    <b>Challenge 3: List Indexing (Negative Index)</b>
-                    <pre style="background:#222;color:#fff;padding:0.7rem 1rem;border-radius:6px;overflow-x:auto;">nums = [10, 20, 30, 40]
-                <iframe 
-                    <div style="margin-top:0.5rem;">Output Options: <b>A)</b> 20 | <b>B)</b> <u>30</u> | <b>C)</b> 40 | <b>D)</b> Error</div>
-                </div>
-                <hr style="margin: 1rem 0;">
-                <h3>🧪 Advanced Logic: The Armstrong Number</h3>
-                <p>This snippet checks if a number is an "Armstrong Number" (the sum of its digits raised to the power of the number of digits equals the original number).</p>
-                <pre style="background:#222;color:#fff;padding:0.7rem 1rem;border-radius:6px;overflow-x:auto;">n = 153
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSdfs5X16bP1tFWjZUHbcNQzuQ4nJeTXV16DPoGU_mmkllzdjw/viewform?embedded=true" 
-                    width="100%" 
-                    height="600" 
-                    frameborder="0" 
-                    style="border: none; position: relative; z-index: 1;" 
-                    loading="lazy"
-                    onload="this.previousElementSibling.style.display='none'"
-                    title="Practice Poll">
-                </iframe>
-            </div>
+        <section class="section" style="padding-top:0.5rem;">
+            <h2 style="font-size:1.1rem;color:#1B365D;margin-bottom:0.7rem;">📝 Submit Your Response</h2>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdfs5X16bP1tFWjZUHbcNQzuQ4nJeTXV16DPoGU_mmkllzdjw/viewform?usp=dialog" width="100%" height="600" frameborder="0" style="border:1px solid #e0e0e0;border-radius:8px;" allowfullscreen loading="lazy" title="Coding Group Google Form"></iframe>
         </section>
-                <div style="margin-top:0.5rem;">Result: <code>Armstrong</code></div>
-                <hr style="margin: 1rem 0;">
-                <h3>📚 Detailed Study Notes</h3>
-                <p>For a deep dive into today's topics, including variables, looping constructs, and list operations, refer to our centralized Notion repository:</p>
-                <a href="https://www.notion.so/28-01-2026-2f6ae25f500180ddafd9f15c35ac817c?source=copy_link" target="_blank" style="display:inline-block;background:#17A2B8;color:#fff;padding:0.5rem 1rem;border-radius:6px;text-decoration:none;font-weight:bold;margin-bottom:1rem;">👉 Access Full Python DSA Notes on Notion</a>
-                <hr style="margin: 1rem 0;">
-                <h3>💡 Tips for Coding Newbies</h3>
-                <ul>
-                    <li><b>Indentation is Key:</b> In Python, a missing space can break your whole program.</li>
-                    <li><b>Dry Run:</b> Before running the code, try to trace the value of variables (like <code>sum</code> or <code>rev</code>) on a piece of paper.</li>
-                    <li><b>Use <code>range()</code> wisely:</b> Remember that <code>range(1, 6)</code> goes from 1 to 5, not 6!</li>
-                </ul>
-                <hr style="margin: 1rem 0;">
-                <h3>🎨 Website Design Suggestions:</h3>
-                <ul>
-                    <li><b>Dark Mode Toggle:</b> Coding content always looks better in a dark theme (resembling VS Code).</li>
-                    <li><b>"Run Code" Button:</b> If your website platform supports it, use an embedded compiler (like Replit) so students can edit the code and see it run.</li>
-                    <li><b>Progress Bar:</b> Show a checklist of the "Beginner Syllabus" so students can tick off topics as they master them.</li>
-                </ul>
-            </section>
     </main>
     <footer><p>Mission Placements © 2026 | <a href="../../index.html">Home</a></p></footer>
     <nav class="bottom-nav" aria-label="Quick navigation">
