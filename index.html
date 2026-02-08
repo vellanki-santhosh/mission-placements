@@ -23,7 +23,7 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1B365D">
-    <meta name="color-scheme" content="light only">
+    <meta name="color-scheme" content="light dark">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Mission Placements">
@@ -91,6 +91,40 @@
             --gray-text: #5a6a7a;
             --card-bg: #f5f8fa;
             --shadow-color: rgba(27, 54, 93, 0.1);
+        }
+
+        /* Dark Mode Variables */
+        body.dark-mode {
+            --primary-navy: #1B365D;
+            --light-bg: #121212;
+            --white: #1e1e1e;
+            --dark-text: #e8e8e8;
+            --gray-text: #b0b0b0;
+            --card-bg: #2a2a2a;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+        body.dark-mode header {
+            background: linear-gradient(135deg, #0d1b2a 0%, #1B365D 100%);
+        }
+        body.dark-mode nav {
+            background: #0d1b2a;
+        }
+        body.dark-mode footer {
+            background: #0d1b2a;
+        }
+        body.dark-mode .card {
+            background: var(--card-bg);
+        }
+        body.dark-mode .updates {
+            background: linear-gradient(135deg, #1a2a3a 0%, #1a3a2a 100%);
+        }
+        body.dark-mode .flow-icon.morning {
+            background: linear-gradient(135deg, #3d3520 0%, #4a4020 100%);
+            border-color: #8a7a20;
+        }
+        body.dark-mode .flow-icon.evening {
+            background: linear-gradient(135deg, #1a3a2a 0%, #2a4a3a 100%);
+            border-color: #2a7a4a;
         }
         
         * {
@@ -260,6 +294,40 @@
             transform: translateY(0);
         }
         
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            padding: 0.5rem 0.8rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.25);
+        }
+        .theme-toggle .icon {
+            font-size: 1.1rem;
+        }
+        @media (max-width: 768px) {
+            .theme-toggle {
+                position: absolute;
+                right: 60px;
+                top: 50%;
+                transform: translateY(-50%);
+                padding: 0.4rem 0.6rem;
+                font-size: 0.9rem;
+            }
+            .theme-toggle .label {
+                display: none;
+            }
+        }
+
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
@@ -702,6 +770,10 @@
     <nav aria-label="Main navigation">
         <div class="nav-container">
             <span class="nav-title">☰ Menu</span>
+            <button class="theme-toggle" aria-label="Toggle dark mode" onclick="toggleTheme()">
+                <span class="icon">🌙</span>
+                <span class="label">Dark</span>
+            </button>
             <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -910,6 +982,34 @@
 
         // Make sections visible immediately if JS fails
         document.querySelectorAll('.section').forEach(s => s.classList.add('visible'));
+
+        // Dark Mode Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const themeBtn = document.querySelector('.theme-toggle');
+            const isDark = body.classList.toggle('dark-mode');
+            
+            // Update button
+            themeBtn.querySelector('.icon').textContent = isDark ? '☀️' : '🌙';
+            themeBtn.querySelector('.label').textContent = isDark ? 'Light' : 'Dark';
+            themeBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+            
+            // Save preference
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Load saved theme on page load
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeBtn = document.querySelector('.theme-toggle');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeBtn.querySelector('.icon').textContent = '☀️';
+                themeBtn.querySelector('.label').textContent = 'Light';
+                themeBtn.setAttribute('aria-label', 'Switch to light mode');
+            }
+        })();
     </script>
 </body>
 </html>
