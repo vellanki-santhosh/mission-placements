@@ -3,42 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="light only">
-    <meta name="theme-color" content="#1B365D">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#0B1C2D">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src https://docs.google.com; connect-src 'self' https:; font-src 'self' data:;">
     <title>About Us - Mission Placements</title>
     <meta name="description" content="Learn about Mission Placements - A free platform helping students prepare for campus placements">
     <link rel="icon" type="image/png" href="LOGO.png">
     <style>
         html { scroll-behavior: smooth; }
-        :root { --primary-navy: #1B365D; --primary-teal: #17A2B8; --primary-green: #28A745; --accent-orange: #F5A623; --accent-yellow: #FFC107; --light-bg: #f5f8fa; --white: #ffffff; --dark-text: #1B365D; --gray-text: #5a6a7a; }
+        :root { --bg-dark: #0B1C2D; --section-bg: #132A3E; --card-bg: #162F46; --text-light: #EDEFF3; --gray-text: #B8C5D3; --accent-gold: #F2B705; --tech-blue: #3A7BD5; --border-color: #2F4154; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--dark-text); background: var(--light-bg); }
-        .breadcrumb { background: var(--white); padding: 0.8rem 1rem; font-size: 0.85rem; border-bottom: 1px solid rgba(27, 54, 93, 0.1); }
-        .breadcrumb a { color: var(--primary-teal); text-decoration: none; }
-        .breadcrumb a:hover { text-decoration: underline; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text-light); background: var(--bg-dark); }
+        .breadcrumb { background: var(--section-bg); padding: 0.8rem 1rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-color); }
+        .breadcrumb a { color: var(--tech-blue); text-decoration: none; }
+        .breadcrumb a:hover { color: var(--accent-gold); }
         .breadcrumb span { color: var(--gray-text); margin: 0 0.5rem; }
-        .breadcrumb .current { color: var(--dark-text); font-weight: 500; }
-        header { background: linear-gradient(135deg, var(--primary-navy) 0%, #2d4a6f 100%); color: white; padding: 2rem 1rem; text-align: center; }
+        .breadcrumb .current { color: var(--text-light); font-weight: 500; }
+        header { background: linear-gradient(135deg, #081624 0%, #0B1C2D 100%); color: var(--text-light); padding: 2rem 1rem; text-align: center; }
         .header-logo { width: 100px; height: 100px; border-radius: 50%; background: white; padding: 8px; margin-bottom: 1rem; }
-        header h1 { font-size: 1.5rem; margin-bottom: 0.3rem; }
+        header h1 { font-size: 1.5rem; margin-bottom: 0.3rem; color: var(--accent-gold); }
         header p { opacity: 0.9; font-size: 0.9rem; }
         main { max-width: 800px; margin: 1rem auto; padding: 0 1rem; }
-        .section { background: var(--white); border-radius: 10px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 10px rgba(27, 54, 93, 0.1); }
-        .section h2 { color: var(--primary-navy); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
-        p { margin-bottom: 1rem; }
-        .mission-box { background: linear-gradient(135deg, var(--primary-teal) 0%, #138496 100%); color: white; padding: 1.5rem; border-radius: 10px; text-align: center; margin: 1rem 0; }
+        .section { background: var(--section-bg); border-radius: 10px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); border: 1px solid var(--border-color); }
+        .section h2 { color: var(--accent-gold); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        p { margin-bottom: 1rem; color: var(--gray-text); }
+        .mission-box { background: linear-gradient(135deg, var(--tech-blue) 0%, #2563eb 100%); color: white; padding: 1.5rem; border-radius: 10px; text-align: center; margin: 1rem 0; }
         .mission-box h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
         .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-top: 1rem; }
-        .value-item { background: var(--light-bg); padding: 1rem; border-radius: 8px; text-align: center; }
+        .value-item { background: var(--card-bg); padding: 1rem; border-radius: 8px; text-align: center; border: 1px solid var(--border-color); }
         .value-item span { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
-        .value-item strong { color: var(--primary-navy); }
+        .value-item strong { color: var(--text-light); }
         .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
-        .contact-item { display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background: var(--light-bg); border-radius: 8px; text-decoration: none; color: var(--dark-text); transition: transform 0.2s; }
-        .contact-item:hover { transform: translateY(-2px); }
+        .contact-item { display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background: var(--card-bg); border-radius: 8px; text-decoration: none; color: var(--text-light); transition: all 0.3s; border: 1px solid var(--border-color); }
+        .contact-item:hover { transform: translateY(-2px); border-color: var(--accent-gold); }
         .contact-item span { font-size: 1.5rem; }
-        footer { background: var(--primary-navy); color: white; text-align: center; padding: 1.5rem 1rem; margin-top: 1rem; }
-        footer a { color: var(--accent-yellow); text-decoration: none; font-weight: bold; }
+        ul { color: var(--gray-text); }
+        footer { background: linear-gradient(135deg, #081624 0%, #0B1C2D 100%); color: var(--text-light); text-align: center; padding: 1.5rem 1rem; margin-top: 1rem; }
+        footer a { color: var(--accent-gold); text-decoration: none; font-weight: bold; }
+        footer a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>

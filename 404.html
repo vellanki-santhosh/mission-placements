@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="light only">
-    <meta name="theme-color" content="#1B365D">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#0B1C2D">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src https://docs.google.com; connect-src 'self' https:; font-src 'self' data:;">
     <title>404 - Page Not Found | Mission Placements</title>
     <meta name="description" content="Oops! The page you're looking for doesn't exist.">
     <link rel="icon" type="image/png" href="LOGO.png">
     <style>
         html { scroll-behavior: smooth; }
-        :root { --primary-navy: #1B365D; --primary-teal: #17A2B8; --accent-yellow: #FFC107; --light-bg: #f5f8fa; --white: #ffffff; --dark-text: #1B365D; --gray-text: #5a6a7a; }
+        :root { --bg-dark: #0B1C2D; --section-bg: #132A3E; --card-bg: #162F46; --text-light: #EDEFF3; --gray-text: #B8C5D3; --accent-gold: #F2B705; --tech-blue: #3A7BD5; --border-color: #2F4154; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--dark-text); background: var(--light-bg); min-height: 100vh; display: flex; flex-direction: column; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text-light); background: var(--bg-dark); min-height: 100vh; display: flex; flex-direction: column; }
         .error-container { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; }
-        .error-code { font-size: 6rem; font-weight: bold; color: var(--primary-teal); margin-bottom: 0.5rem; }
-        .error-title { font-size: 1.5rem; color: var(--primary-navy); margin-bottom: 1rem; }
+        .error-code { font-size: 6rem; font-weight: bold; color: var(--accent-gold); margin-bottom: 0.5rem; }
+        .error-title { font-size: 1.5rem; color: var(--text-light); margin-bottom: 1rem; }
         .error-message { color: var(--gray-text); margin-bottom: 2rem; max-width: 400px; }
-        .home-btn { display: inline-block; background: var(--primary-teal); color: white; padding: 0.8rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; }
-        .home-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(23, 162, 184, 0.4); }
-        .suggestions { margin-top: 2rem; padding: 1.5rem; background: var(--white); border-radius: 10px; max-width: 400px; }
-        .suggestions h3 { font-size: 1rem; margin-bottom: 0.8rem; color: var(--primary-navy); }
+        .home-btn { display: inline-block; background: linear-gradient(135deg, var(--tech-blue) 0%, #2563eb 100%); color: white; padding: 0.8rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .home-btn:hover { background: linear-gradient(135deg, var(--accent-gold) 0%, #FFC107 100%); color: #0B1C2D; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(242, 183, 5, 0.3); }
+        .suggestions { margin-top: 2rem; padding: 1.5rem; background: var(--section-bg); border-radius: 10px; max-width: 400px; border: 1px solid var(--border-color); }
+        .suggestions h3 { font-size: 1rem; margin-bottom: 0.8rem; color: var(--accent-gold); }
         .suggestions ul { list-style: none; text-align: left; }
         .suggestions li { padding: 0.3rem 0; }
-        .suggestions a { color: var(--primary-teal); text-decoration: none; }
-        .suggestions a:hover { text-decoration: underline; }
-        footer { background: var(--primary-navy); color: white; text-align: center; padding: 1rem; }
-        footer a { color: var(--accent-yellow); text-decoration: none; }
+        .suggestions a { color: var(--tech-blue); text-decoration: none; }
+        .suggestions a:hover { color: var(--accent-gold); }
+        footer { background: linear-gradient(135deg, #081624 0%, #0B1C2D 100%); color: var(--text-light); text-align: center; padding: 1rem; border-top: 1px solid var(--border-color); }
+        footer a { color: var(--accent-gold); text-decoration: none; }
     </style>
 </head>
 <body>

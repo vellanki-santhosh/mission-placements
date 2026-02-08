@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
     <!-- Content Security Policy -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src https://docs.google.com; connect-src 'self' https:; font-src 'self' data:;">
@@ -23,8 +23,8 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1B365D">
-    <meta name="color-scheme" content="light dark">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="color-scheme" content="light only">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Mission Placements">
     
@@ -73,74 +73,21 @@
     }
     </script>
     
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Emergency visibility fix - Dark Mode Default -->
     <style>
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        :root {
-            --primary-navy: #1B365D;
-            --primary-teal: #17A2B8;
-            --primary-green: #28A745;
-            --accent-orange: #F5A623;
-            --accent-yellow: #FFC107;
-            --light-bg: #f5f8fa;
-            --white: #ffffff;
-            --dark-text: #1B365D;
-            --gray-text: #5a6a7a;
-            --card-bg: #f5f8fa;
-            --shadow-color: rgba(27, 54, 93, 0.1);
-        }
-
-        /* Dark Mode Variables */
-        body.dark-mode {
-            --primary-navy: #1B365D;
-            --light-bg: #121212;
-            --white: #1e1e1e;
-            --dark-text: #e8e8e8;
-            --gray-text: #b0b0b0;
-            --card-bg: #2a2a2a;
-            --shadow-color: rgba(0, 0, 0, 0.3);
-        }
-        body.dark-mode header {
-            background: linear-gradient(135deg, #0d1b2a 0%, #1B365D 100%);
-        }
-        body.dark-mode nav {
-            background: #0d1b2a;
-        }
-        body.dark-mode footer {
-            background: #0d1b2a;
-        }
-        body.dark-mode .card {
-            background: var(--card-bg);
-        }
-        body.dark-mode .updates {
-            background: linear-gradient(135deg, #1a2a3a 0%, #1a3a2a 100%);
-        }
-        body.dark-mode .flow-icon.morning {
-            background: linear-gradient(135deg, #3d3520 0%, #4a4020 100%);
-            border-color: #8a7a20;
-        }
-        body.dark-mode .flow-icon.evening {
-            background: linear-gradient(135deg, #1a3a2a 0%, #2a4a3a 100%);
-            border-color: #2a7a4a;
-        }
-        
-        * {
+        /* Force page to be visible - DARK MODE DEFAULT */
+        * { box-sizing: border-box; }
+        body { 
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
+            background: #0B1C2D !important; 
+            color: #EDEFF3 !important;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--dark-text);
-            background: var(--light-bg);
         }
-        header {
-            background: linear-gradient(135deg, var(--primary-navy) 0%, #2d4a6f 100%);
-            color: white;
+        header { 
+            background: linear-gradient(135deg, #081624 0%, #0B1C2D 100%) !important; 
+            color: #EDEFF3 !important; 
             padding: 1.5rem 2rem;
             text-align: center;
         }
@@ -151,607 +98,380 @@
             gap: 1.5rem;
             flex-wrap: wrap;
         }
-        .logo {
-            width: 120px;
-            height: 120px;
-            object-fit: contain;
-            background: white;
-            border-radius: 50%;
-            padding: 10px;
-        }
-        .header-text h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.3rem;
-            color: white;
-        }
-        .header-text p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        nav {
-            background: var(--primary-navy);
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 10px;
-            background: none;
-            border: none;
-            z-index: 101;
-        }
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            margin: 3px 0;
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-        nav a:hover {
-            background: var(--primary-teal);
-        }
-        main {
+        .logo { width: 100px; height: 100px; border-radius: 50%; }
+        main { 
             max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
-        .section {
-            background: var(--white);
+        .section { 
+            background: #132A3E !important; 
+            color: #EDEFF3 !important;
             border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 15px rgba(27, 54, 93, 0.1);
-        }
-        .section h2 {
-            color: var(--primary-navy);
-            margin-bottom: 1rem;
-            border-bottom: 3px solid var(--primary-teal);
-            padding-bottom: 0.5rem;
-            display: inline-block;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        .card {
-            background: var(--light-bg);
             padding: 1.5rem;
-            border-radius: 10px;
-            border-left: 4px solid var(--primary-teal);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid #2F4154;
+        }
+        .todays-focus {
+            background: linear-gradient(135deg, #132A3E 0%, #0B1C2D 100%) !important;
+            border: 2px solid #F2B705 !important;
+            color: #EDEFF3 !important;
+        }
+        nav:not(.bottom-nav) { 
+            background: #132A3E;
+            padding: 0.5rem 1rem;
+        }
+        .bottom-nav {
+            position: fixed !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            background: #162F46 !important;
+            border-top: 1px solid #2F4154;
+            padding: 0.5rem 0;
+            z-index: 1000;
+        }
+        .bottom-nav ul { 
+            display: flex; 
+            justify-content: space-around; 
+            list-style: none; 
+            margin: 0; 
+            padding: 0; 
+        }
+        .bottom-nav a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #9BA8B4;
+            font-size: 0.75rem;
+        }
+        .bottom-nav a:hover, .bottom-nav a.active {
+            color: #F2B705;
+        }
+        .nav-icon { font-size: 1.4rem; }
+        h1, h2, h3, p { margin: 0 0 0.5rem 0; }
+        h2 { color: #F2B705; border-bottom: 3px solid #3A7BD5; display: inline-block; padding-bottom: 0.5rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .card { 
+            background: linear-gradient(145deg, #162F46 0%, rgba(22, 47, 70, 0.9) 100%); 
+            padding: 1.75rem; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+            border: 1px solid rgba(58, 123, 213, 0.2); 
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(23, 162, 184, 0.1), transparent);
-            transition: left 0.5s ease;
+        .card:hover { transform: translateY(-5px); border-color: #F2B705; box-shadow: 0 10px 30px rgba(242, 183, 5, 0.15); }
+        .card h3 { color: #EDEFF3; font-size: 1.15rem; transition: color 0.3s; }
+        .card:hover h3 { color: #F2B705; }
+        .card p { color: #B8C5D3; }
+        .card p strong { color: #F2B705; }
+        .card a { 
+            display: inline-flex; 
+            background: linear-gradient(135deg, #3A7BD5 0%, #2563eb 100%); 
+            color: white; 
+            text-decoration: none; 
+            padding: 0.7rem 1.3rem; 
+            border-radius: 8px; 
+            margin-top: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
-        .card:hover::before {
-            left: 100%;
+        .card a:hover { 
+            background: linear-gradient(135deg, #F2B705 0%, #FFC107 100%); 
+            color: #0B1C2D; 
+            transform: translateX(5px);
         }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(27, 54, 93, 0.15);
-            border-left-color: var(--primary-green);
+        .card-icon {
+            font-size: 3rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(58, 123, 213, 0.15) 0%, rgba(242, 183, 5, 0.1) 100%);
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
         }
-        .card:active {
-            transform: translateY(-2px);
-        }
+        .card:hover .card-icon { transform: scale(1.1) rotate(5deg); }
+        footer { background: linear-gradient(135deg, #081624 0%, #0B1C2D 100%); color: #EDEFF3; padding: 2rem 1rem; text-align: center; margin-bottom: 70px; }
         
-        /* Scroll reveal animation */
-        .section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Dark Mode Toggle */
+        /* Theme toggle button */
         .theme-toggle {
-            background: rgba(255,255,255,0.15);
-            border: none;
-            color: white;
-            padding: 0.5rem 0.8rem;
+            display: flex !important;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.2) !important;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white !important;
+            padding: 0.5rem 1rem;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
+            font-size: 0.9rem;
+            transition: background 0.3s;
         }
         .theme-toggle:hover {
-            background: rgba(255,255,255,0.25);
+            background: rgba(255,255,255,0.3) !important;
         }
         .theme-toggle .icon {
             font-size: 1.1rem;
         }
-        @media (max-width: 768px) {
-            .theme-toggle {
-                position: absolute;
-                right: 60px;
-                top: 50%;
-                transform: translateY(-50%);
-                padding: 0.4rem 0.6rem;
-                font-size: 0.9rem;
-            }
-            .theme-toggle .label {
-                display: none;
-            }
-        }
-
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary-teal);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 99;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        .back-to-top:hover {
-            background: var(--primary-green);
-            transform: translateY(-3px);
-        }
-        .back-to-top:active {
-            transform: translateY(0);
-        }
-        .card h3 {
-            color: var(--primary-navy);
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-        .card p {
-            color: var(--gray-text);
-            font-size: 0.95rem;
-        }
-        .card a {
-            display: inline-block;
-            margin-top: 1rem;
-            color: var(--primary-teal);
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-        .card a:hover {
-            color: var(--primary-green);
-        }
-        .updates {
-            background: linear-gradient(135deg, #e8f6f8 0%, #e8f4e8 100%);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary-green);
-        }
-        .updates p {
-            margin: 0.5rem 0;
-            color: var(--dark-text);
-        }
-        footer {
-            background: var(--primary-navy);
-            color: white;
-            text-align: center;
-            padding: 2.5rem 2rem;
-            margin-top: 2rem;
-        }
-        footer h3 {
-            color: var(--accent-yellow);
-            margin-bottom: 0.5rem;
-        }
-        .community-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-        .community-links a {
-            color: white;
-            padding: 0.6rem 1.2rem;
-            background: var(--primary-teal);
-            border-radius: 25px;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-        .community-links a:hover {
-            background: var(--primary-green);
-            transform: scale(1.05);
-        }
-        /* Card color variations */
-        .card:nth-child(1) { border-left-color: var(--primary-teal); }
-        .card:nth-child(2) { border-left-color: var(--primary-green); }
-        .card:nth-child(3) { border-left-color: var(--accent-orange); }
-        .card:nth-child(4) { border-left-color: #9C27B0; }
-        .card:nth-child(5) { border-left-color: var(--primary-navy); }
-        .card:nth-child(6) { border-left-color: #E91E63; }
-        .card:nth-child(7) { border-left-color: #00BCD4; }
-        .card:nth-child(8) { border-left-color: #8BC34A; }
-        .card:nth-child(9) { border-left-color: #FF5722; }
         
-        /* MOBILE-FIRST RESPONSIVE DESIGN */
+        /* MOBILE FIX - Force visibility on mobile (Dark Mode Default) */
         @media (max-width: 768px) {
-            header {
-                padding: 1rem;
-            }
-            .header-content {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-            .logo {
-                width: 80px;
-                height: 80px;
-                padding: 8px;
-            }
-            .header-text h1 {
-                font-size: 1.5rem;
-            }
-            .header-text p {
-                font-size: 0.9rem;
-            }
-            nav {
-                padding: 0.8rem 1rem;
-                position: sticky;
-                top: 0;
-            }
-            .nav-container {
-                justify-content: space-between;
-            }
-            .hamburger {
-                display: flex;
-                min-width: 44px;
-                min-height: 44px;
-                justify-content: center;
-                align-items: center;
-            }
-            .nav-title {
-                display: block;
-                color: white;
-                font-weight: bold;
-                font-size: 1rem;
-            }
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--primary-navy);
-                flex-direction: column;
-                padding: 0.5rem;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-                max-height: 70vh;
-                overflow-y: auto;
-            }
-            nav ul.active {
-                display: flex;
-            }
-            nav li {
-                width: 100%;
-            }
-            nav a {
-                padding: 0.9rem 1rem;
-                font-size: 1rem;
-                text-align: left;
-                border-radius: 8px;
-                display: block;
-                min-height: 48px;
-                display: flex;
-                align-items: center;
-            }
-            nav a:active {
-                background: var(--primary-teal);
+            body {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                background: #0B1C2D !important;
+                color: #EDEFF3 !important;
             }
             main {
-                margin: 1rem auto;
-                padding: 0 0.5rem;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                margin: 1rem auto !important;
+                padding: 0 0.5rem !important;
             }
-            .section {
-                padding: 1rem;
-                margin-bottom: 1rem;
-                border-radius: 8px;
+            .section, section {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                background: #132A3E !important;
+                color: #EDEFF3 !important;
+                margin-bottom: 1rem !important;
+                padding: 1rem !important;
+                border: 1px solid #2F4154 !important;
             }
-            .section h2 {
-                font-size: 1.1rem;
-                margin-bottom: 0.8rem;
+            .todays-focus {
+                background: linear-gradient(135deg, #132A3E 0%, #0B1C2D 100%) !important;
+                border: 2px solid #F2B705 !important;
             }
-            .grid {
-                grid-template-columns: 1fr;
-                gap: 0.8rem;
-                margin-top: 1rem;
+            header {
+                display: block !important;
+                visibility: visible !important;
+                padding: 1rem !important;
+                position: relative !important;
+                background: #081624 !important;
             }
-            .card {
-                padding: 1rem;
-                border-radius: 8px;
+            .header-content {
+                flex-direction: column !important;
+                gap: 0.5rem !important;
             }
-            .card h3 {
-                font-size: 1rem;
-            }
-            .card p {
-                font-size: 0.85rem;
-            }
-            .card a {
-                font-size: 0.9rem;
-                padding: 0.5rem 0;
-                display: block;
-                text-align: center;
-                background: var(--primary-teal);
-                color: white;
-                border-radius: 5px;
-                margin-top: 0.8rem;
-            }
-            .card:hover {
-                transform: none;
-            }
-            .updates {
-                padding: 1rem;
-            }
-            .updates p {
-                font-size: 0.9rem;
-            }
-            footer {
-                padding: 1.5rem 1rem;
-            }
-            footer img {
+            .logo {
                 width: 60px !important;
                 height: 60px !important;
             }
-            footer h3 {
-                font-size: 1.1rem;
+            h1 { font-size: 1.3rem !important; }
+            nav:not(.bottom-nav) {
+                display: block !important;
             }
-            .community-links {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.5rem;
-                margin-top: 1rem;
+            nav:not(.bottom-nav) ul {
+                display: none !important;
             }
-            .community-links a {
-                padding: 0.8rem 0.5rem;
-                font-size: 0.8rem;
-                text-align: center;
-                border-radius: 8px;
+            .grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
             }
-        }
-
-        /* Extra small phones */
-        @media (max-width: 380px) {
-            .header-text h1 {
-                font-size: 1.3rem;
+            .bottom-nav {
+                display: block !important;
+                visibility: visible !important;
+                position: fixed !important;
+                bottom: 0 !important;
+                top: auto !important;
+                left: 0 !important;
+                right: 0 !important;
+                z-index: 1000 !important;
+                background: #162F46 !important;
+                border-top: 1px solid #2F4154 !important;
+                padding: 0.5rem 0 !important;
             }
-            .nav-title {
-                font-size: 0.9rem;
+            .bottom-nav ul {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-around !important;
+                align-items: center !important;
+                list-style: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
             }
-        }
-
-        /* Short screens - reduce heights */
-        @media (max-height: 500px) {
-            header {
-                padding: 0.5rem;
+            .bottom-nav li {
+                display: block !important;
             }
-            .logo {
-                width: 50px;
-                height: 50px;
+            .bottom-nav a {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                color: #9BA8B4 !important;
+                text-decoration: none !important;
+                font-size: 0.7rem !important;
+                padding: 0.25rem 0.5rem !important;
             }
-            nav ul {
-                max-height: 50vh;
+            .bottom-nav a:hover, .bottom-nav a.active {
+                color: #F2B705 !important;
             }
-        }
-
-        /* Desktop nav title hidden */
-        .nav-title {
-            display: none;
-        }
-
-        /* Touch-friendly improvements */
-        @media (hover: none) and (pointer: coarse) {
-            .card a {
-                min-height: 44px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+            footer {
+                margin-bottom: 80px !important;
             }
-            .community-links a {
-                min-height: 48px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            nav a {
-                min-height: 36px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+            .theme-toggle {
+                position: absolute !important;
+                top: 10px !important;
+                right: 10px !important;
+                padding: 0.4rem 0.8rem !important;
+                font-size: 0.8rem !important;
             }
         }
-
-        /* Accessibility - Skip to content link */
-        .skip-link {
-            position: absolute;
-            top: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent-yellow);
-            color: var(--primary-navy);
-            padding: 0.8rem 1.5rem;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 0 0 8px 8px;
-            z-index: 1000;
-            transition: top 0.3s;
+        
+        /* LIGHT MODE overrides (when user toggles to light) */
+        body.light-mode {
+            background: #F7F9FC !important;
+            color: #1a2a3a !important;
         }
-        .skip-link:focus {
-            top: 0;
-            outline: 3px solid var(--primary-teal);
-            outline-offset: 2px;
+        body.light-mode header {
+            background: linear-gradient(135deg, #E3E8EF 0%, #F7F9FC 100%) !important;
+            color: #1a2a3a !important;
         }
-
-        /* Accessibility - Focus styles for keyboard navigation */
-        a:focus-visible,
-        button:focus-visible {
-            outline: 3px solid var(--accent-yellow);
-            outline-offset: 2px;
+        body.light-mode header h1 {
+            color: #1B365D !important;
         }
-        nav a:focus-visible {
-            outline: 2px solid var(--accent-yellow);
-            outline-offset: 1px;
-            background: var(--primary-teal);
+        body.light-mode header p {
+            color: #475569 !important;
         }
-        .card a:focus-visible {
-            outline: 3px solid var(--primary-navy);
-            outline-offset: 2px;
+        body.light-mode .section,
+        body.light-mode .todays-focus,
+        body.light-mode section:not(.todays-focus),
+        body.light-mode .card {
+            background: #FFFFFF !important;
+            color: #1a2a3a !important;
+            border-color: #CBD5E1 !important;
         }
-        .community-links a:focus-visible {
-            outline: 3px solid var(--accent-yellow);
-            outline-offset: 2px;
-            background: var(--primary-green);
+        body.light-mode .todays-focus {
+            background: linear-gradient(135deg, #EEF2F7 0%, #F7F9FC 100%) !important;
+            border: 2px solid #F2B705 !important;
         }
-
-        /* High contrast focus for better visibility */
-        @media (prefers-contrast: high) {
-            a:focus-visible,
-            button:focus-visible {
-                outline: 4px solid #000;
-                outline-offset: 3px;
-            }
+        body.light-mode h1, body.light-mode h2, body.light-mode h3, body.light-mode h4 {
+            color: #1B365D !important;
         }
-
-        /* Daily Schedule Timeline */
-        .daily-flow {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
+        body.light-mode .section h2 {
+            color: #1B365D !important;
+            border-bottom-color: #3A7BD5 !important;
         }
-        .flow-item {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 1rem 1.5rem;
-            background: transparent;
-            border-radius: 8px;
-            position: relative;
+        body.light-mode .card h3 {
+            color: #1B365D !important;
         }
-        .flow-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            flex-shrink: 0;
+        body.light-mode .card p {
+            color: #475569 !important;
         }
-        .flow-icon.morning {
-            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-            border: 2px solid var(--accent-yellow);
+        body.light-mode .card p strong {
+            color: #F2B705 !important;
         }
-        .flow-icon.evening {
-            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-            border: 2px solid var(--primary-green);
+        body.light-mode .card a {
+            background: linear-gradient(135deg, #3A7BD5 0%, #2563eb 100%) !important;
+            color: white !important;
         }
-        .flow-content h4 {
-            font-size: 1rem;
-            color: var(--primary-navy);
-            margin-bottom: 0.2rem;
-            font-weight: 600;
+        body.light-mode .card a:hover {
+            background: linear-gradient(135deg, #F2B705 0%, #FFC107 100%) !important;
+            color: #1a2a3a !important;
         }
-        .flow-content p {
-            font-size: 0.85rem;
-            color: var(--gray-text);
-            margin: 0;
+        body.light-mode nav:not(.bottom-nav) {
+            background: #EEF2F7 !important;
         }
-        .flow-arrow {
-            font-size: 1.5rem;
-            color: var(--primary-teal);
-            opacity: 0.6;
+        body.light-mode nav:not(.bottom-nav) a {
+            color: #1B365D !important;
         }
-        @media (max-width: 768px) {
-            .daily-flow {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            .flow-item {
-                width: 100%;
-                padding: 0.8rem 1rem;
-                background: var(--light-bg);
-                border-left: 3px solid var(--primary-teal);
-                border-radius: 0 8px 8px 0;
-            }
-            .flow-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-            .flow-arrow {
-                transform: rotate(90deg);
-                margin: 0;
-            }
+        body.light-mode nav:not(.bottom-nav) a:hover {
+            color: #F2B705 !important;
+        }
+        body.light-mode .nav-title {
+            color: #1B365D !important;
+        }
+        body.light-mode .bottom-nav {
+            background: #FFFFFF !important;
+            border-top: 1px solid #CBD5E1 !important;
+            position: fixed !important;
+            bottom: 0 !important;
+            top: auto !important;
+        }
+        body.light-mode .bottom-nav a {
+            color: #475569 !important;
+        }
+        body.light-mode .bottom-nav a:hover,
+        body.light-mode .bottom-nav a.active {
+            color: #F2B705 !important;
+        }
+        body.light-mode .bottom-nav ul {
+            display: flex !important;
+            flex-direction: row !important;
+        }
+        body.light-mode footer {
+            background: linear-gradient(135deg, #E3E8EF 0%, #F7F9FC 100%) !important;
+            color: #1a2a3a !important;
+        }
+        body.light-mode footer h3 {
+            color: #1B365D !important;
+        }
+        body.light-mode footer a {
+            color: #3A7BD5 !important;
+        }
+        body.light-mode footer a:hover {
+            color: #F2B705 !important;
+        }
+        body.light-mode .updates p {
+            color: #475569 !important;
+        }
+        body.light-mode .updates a {
+            color: #3A7BD5 !important;
+        }
+        body.light-mode .focus-card {
+            background: #FFFFFF !important;
+            border: 1px solid #CBD5E1 !important;
+        }
+        body.light-mode .focus-card h3 {
+            color: #1B365D !important;
+        }
+        body.light-mode .focus-card p {
+            color: #475569 !important;
+        }
+        body.light-mode .focus-card .cta-btn {
+            background: linear-gradient(135deg, #3A7BD5 0%, #2563eb 100%) !important;
+            color: white !important;
+        }
+        body.light-mode .subtitle {
+            color: #475569 !important;
+        }
+        body.light-mode .theme-toggle {
+            background: rgba(0,0,0,0.1) !important;
+            border-color: rgba(0,0,0,0.2) !important;
+            color: #1B365D !important;
+        }
+        body.light-mode .daily-flow .flow-item {
+            background: #FFFFFF !important;
+            border-color: #CBD5E1 !important;
+        }
+        body.light-mode .daily-flow h4 {
+            color: #1B365D !important;
+        }
+        body.light-mode .daily-flow p {
+            color: #475569 !important;
+        }
+        body.light-mode .flow-arrow {
+            color: #3A7BD5 !important;
+        }
+        body.light-mode .card-icon {
+            background: linear-gradient(135deg, rgba(58, 123, 213, 0.1) 0%, rgba(242, 183, 5, 0.08) 100%) !important;
+        }
+        body.light-mode .community-links a {
+            background: rgba(58, 123, 213, 0.1) !important;
+            color: #1B365D !important;
+        }
+        body.light-mode .community-links a:hover {
+            background: #F2B705 !important;
+            color: #1a2a3a !important;
         }
     </style>
 </head>
@@ -764,16 +484,16 @@
                 <h1>MISSION PLACEMENTS</h1>
                 <p>Your Success, Our Mission ✨</p>
             </div>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Switch to light mode" title="Toggle theme">
+                <span class="icon">☀️</span>
+                <span class="label">Light</span>
+            </button>
         </div>
     </header>
 
     <nav aria-label="Main navigation">
         <div class="nav-container">
             <span class="nav-title">☰ Menu</span>
-            <button class="theme-toggle" aria-label="Toggle dark mode" onclick="toggleTheme()">
-                <span class="icon">🌙</span>
-                <span class="label">Dark</span>
-            </button>
             <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -781,6 +501,7 @@
             </button>
         </div>
         <ul role="menubar" id="nav-menu">
+            <li><a href="#todays-focus" class="nav-highlight">🎯 Today's Focus</a></li>
             <li><a href="#updates">Latest Updates</a></li>
             <li><a href="#aptitude">Aptitude</a></li>
             <li><a href="#coding">Coding</a></li>
@@ -795,14 +516,33 @@
     </nav>
 
     <main id="main-content" role="main">
+        <!-- Today's Focus Section - TOP PRIORITY -->
+        <section id="todays-focus" class="todays-focus" style="background: linear-gradient(135deg, #1a2a3a 0%, #0d1b2a 100%); border: 2px solid #FFC107; border-radius: 12px; padding: 1.5rem;">
+            <h2 style="color: #FFC107;">🎯 Today's Focus</h2>
+            <p class="subtitle" style="color: #94a3b8;">Your daily practice challenge — <span id="focus-date"></span></p>
+            <script>document.getElementById('focus-date').textContent = new Date().toLocaleDateString('en-US', {weekday: 'long', month: 'short', day: 'numeric', year: 'numeric'});</script>
+            <div class="focus-grid">
+                <div class="focus-card aptitude">
+                    <span class="icon">🧠</span>
+                    <h3>Today's Aptitude</h3>
+                    <p>Quantitative & Logical Reasoning questions for today's practice session.</p>
+                    <a href="posts/aptitude/" class="cta-btn">Attempt Now →</a>
+                </div>
+                <div class="focus-card coding">
+                    <span class="icon">💻</span>
+                    <h3>Today's Coding</h3>
+                    <p>DSA problem & coding challenge to sharpen your programming skills.</p>
+                    <a href="posts/coding/" class="cta-btn">Solve Challenge →</a>
+                </div>
+            </div>
+        </section>
+
         <!-- Latest Updates Section -->
-        <section id="updates" class="section">
+        <section id="updates" class="section highlight">
             <h2>📢 Latest Updates</h2>
             <div class="updates">
-                <p>� <strong>Feb 7, 2026:</strong> Mission Placements is now live! Start your placement prep journey today.</p>
-                <p>📱 <strong>New:</strong> Join our <a href="https://whatsapp.com/channel/0029VbBKCAFFcow15Xwq912O" target="_blank" rel="noopener noreferrer" style="color: var(--accent-yellow);">WhatsApp Channel</a> for daily updates!</p>
-                <p>💻 <strong>Daily Challenge:</strong> New aptitude & coding questions added every evening.</p>
-                <p>🤝 <strong>Community:</strong> 100+ students already joined our preparation community!</p>
+                <p data-posted="2026-02-08"><span class="new-badge">NEW</span> Mission Placements is live! <a href="https://whatsapp.com/channel/0029VbBKCAFFcow15Xwq912O" target="_blank" rel="noopener noreferrer" style="color: var(--accent-yellow);">Join WhatsApp</a> for daily updates.</p>
+                <p>💻 New aptitude & coding challenges added every evening.</p>
             </div>
         </section>
 
@@ -811,56 +551,65 @@
             <h2>📚 Explore Sections</h2>
             <div class="grid">
                 <div class="card" id="aptitude">
-                    <h3>🧮 Aptitude & Reasoning</h3>
-                    <p>Daily quantitative aptitude and logical reasoning practice questions.</p>
-                    <a href="posts/aptitude/">View Questions →</a>
+                    <span class="card-icon">🧠</span>
+                    <h3>Aptitude & Reasoning</h3>
+                    <p>Quantitative & logical reasoning practice.</p>
+                    <a href="posts/aptitude/">Practice Now →</a>
                 </div>
 
                 <div class="card" id="coding">
-                    <h3>💻 Coding</h3>
-                    <p>Programming challenges, DSA problems, and coding solutions.</p>
-                    <a href="posts/coding/">View Challenges →</a>
+                    <span class="card-icon">💻</span>
+                    <h3>Coding</h3>
+                    <p>Programming problems, DSA & solutions.</p>
+                    <a href="posts/coding/">Solve Now →</a>
                 </div>
 
                 <div class="card" id="soft-skills">
-                    <h3>🗣️ Soft Skills</h3>
-                    <p>Communication skills, personality development, and HR tips.</p>
+                    <span class="card-icon">💬</span>
+                    <h3>Soft Skills</h3>
+                    <p>Communication skills, personality development & HR tips.</p>
                     <a href="posts/soft-skills/">Learn More →</a>
                 </div>
 
                 <div class="card" id="courses">
-                    <h3>📖 Courses</h3>
-                    <p>Free courses, certifications, and learning opportunities.</p>
+                    <span class="card-icon">📖</span>
+                    <h3>Courses</h3>
+                    <p>Free courses, certifications & learning opportunities.</p>
                     <a href="posts/courses/">Explore Courses →</a>
                 </div>
 
                 <div class="card" id="academics">
-                    <h3>🎓 Academics</h3>
-                    <p>Subject-wise study materials and academic resources.</p>
+                    <span class="card-icon">🎓</span>
+                    <h3>Academics</h3>
+                    <p>Subject-wise study materials & academic resources.</p>
                     <a href="posts/academics/">Study Materials →</a>
                 </div>
 
                 <div class="card" id="interviews">
-                    <h3>🎤 Interviews</h3>
-                    <p>Interview experiences, tips, and company-specific preparation.</p>
+                    <span class="card-icon">🏆</span>
+                    <h3>Interviews</h3>
+                    <p>Interview experiences, tips & company preparation.</p>
                     <a href="posts/interviews/">Read Experiences →</a>
                 </div>
 
                 <div class="card" id="seminars">
-                    <h3>📅 Seminars</h3>
-                    <p>Upcoming webinars, workshops, and placement events.</p>
+                    <span class="card-icon">📅</span>
+                    <h3>Seminars</h3>
+                    <p>Upcoming webinars, workshops & placement events.</p>
                     <a href="posts/seminars/">View Events →</a>
                 </div>
 
                 <div class="card" id="projects">
-                    <h3>🛠️ Projects</h3>
-                    <p>Project ideas, guidance, and showcase your work.</p>
+                    <span class="card-icon">🛠️</span>
+                    <h3>Projects</h3>
+                    <p>Project ideas, guidance & showcase your work.</p>
                     <a href="posts/projects/">Browse Projects →</a>
                 </div>
 
                 <div class="card" id="tech-news">
-                    <h3>📰 Tech News</h3>
-                    <p>Latest technology trends, industry news, and updates.</p>
+                    <span class="card-icon">📰</span>
+                    <h3>Tech News</h3>
+                    <p>Latest tech trends & industry updates.</p>
                     <a href="posts/tech-news/">Read News →</a>
                 </div>
             </div>
@@ -869,7 +618,6 @@
         <!-- Daily Schedule -->
         <section class="section">
             <h2>📅 Daily Schedule</h2>
-            <p style="color: var(--gray-text); font-size: 0.95rem;">Fresh content delivered to you every day</p>
             <div class="daily-flow">
                 <div class="flow-item">
                     <div class="flow-icon morning">🌅</div>
@@ -893,7 +641,6 @@
     <footer role="contentinfo">
         <img src="LOGO.png" alt="Mission Placements logo" width="80" height="80" loading="lazy" decoding="async" style="width: 80px; height: 80px; border-radius: 50%; background: white; padding: 5px; margin-bottom: 1rem;">
         <h3>🤝 Join Our Community</h3>
-        <p style="margin: 0.5rem 0; opacity: 0.9;">Your Success, Our Mission ✨</p>
         <div class="community-links">
             <a href="https://whatsapp.com/channel/0029VbBKCAFFcow15Xwq912O" target="_blank" rel="noopener noreferrer">📢 Daily Updates</a>
             <a href="https://chat.whatsapp.com/K9tUvkhzCf2AaWwK7Zo5Ra" target="_blank" rel="noopener noreferrer">💬 WhatsApp Community</a>
@@ -912,104 +659,19 @@
         <p style="margin-top: 1.5rem; font-size: 0.9rem;">Made with ❤️ for students | © 2026 Mission Placements</p>
     </footer>
 
+    <!-- Sticky Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav" aria-label="Quick navigation">
+        <ul>
+            <li><a href="index.html" class="active" aria-current="page"><span class="nav-icon">🏠</span>Home</a></li>
+            <li><a href="posts/aptitude/index.html"><span class="nav-icon">🧠</span>Aptitude</a></li>
+            <li><a href="posts/coding/index.html"><span class="nav-icon">💻</span>Coding</a></li>
+            <li><a href="posts/tech-news/index.html"><span class="nav-icon">📰</span>News</a></li>
+        </ul>
+    </nav>
+
     <!-- Back to Top Button -->
     <button class="back-to-top" aria-label="Back to top" onclick="scrollToTop()">↑</button>
 
-    <script>
-        // Toggle mobile menu
-        function toggleMenu() {
-            const menu = document.getElementById('nav-menu');
-            const hamburger = document.querySelector('.hamburger');
-            const isActive = menu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-            hamburger.setAttribute('aria-expanded', isActive);
-        }
-
-        // Close menu when clicking a link
-        document.querySelectorAll('#nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                const menu = document.getElementById('nav-menu');
-                const hamburger = document.querySelector('.hamburger');
-                menu.classList.remove('active');
-                hamburger.classList.remove('active');
-                hamburger.setAttribute('aria-expanded', 'false');
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            const nav = document.querySelector('nav');
-            const menu = document.getElementById('nav-menu');
-            if (!nav.contains(e.target) && menu.classList.contains('active')) {
-                menu.classList.remove('active');
-                document.querySelector('.hamburger').classList.remove('active');
-                document.querySelector('.hamburger').setAttribute('aria-expanded', 'false');
-            }
-        });
-
-        // Back to Top Button
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        const backToTopBtn = document.querySelector('.back-to-top');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.add('visible');
-            } else {
-                backToTopBtn.classList.remove('visible');
-            }
-        });
-
-        // Scroll reveal animation for sections
-        const sections = document.querySelectorAll('.section');
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        sections.forEach(section => {
-            sectionObserver.observe(section);
-        });
-
-        // Make sections visible immediately if JS fails
-        document.querySelectorAll('.section').forEach(s => s.classList.add('visible'));
-
-        // Dark Mode Toggle
-        function toggleTheme() {
-            const body = document.body;
-            const themeBtn = document.querySelector('.theme-toggle');
-            const isDark = body.classList.toggle('dark-mode');
-            
-            // Update button
-            themeBtn.querySelector('.icon').textContent = isDark ? '☀️' : '🌙';
-            themeBtn.querySelector('.label').textContent = isDark ? 'Light' : 'Dark';
-            themeBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-            
-            // Save preference
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        }
-
-        // Load saved theme on page load
-        (function() {
-            const savedTheme = localStorage.getItem('theme');
-            const themeBtn = document.querySelector('.theme-toggle');
-            
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-                themeBtn.querySelector('.icon').textContent = '☀️';
-                themeBtn.querySelector('.label').textContent = 'Light';
-                themeBtn.setAttribute('aria-label', 'Switch to light mode');
-            }
-        })();
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>

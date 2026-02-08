@@ -10,7 +10,7 @@
     <meta name="description" content="Daily coding challenges, DSA problems, and programming solutions">
     <link rel="icon" type="image/png" href="../../LOGO.png">
     <style>
-        html { scroll-behavior: smooth; }
+        html, body { scroll-behavior: smooth; overflow-x: hidden; max-width: 100vw; }
         :root { --primary-navy: #1B365D; --primary-teal: #17A2B8; --primary-green: #28A745; --accent-orange: #F5A623; --accent-yellow: #FFC107; --light-bg: #f5f8fa; --white: #ffffff; --dark-text: #1B365D; --gray-text: #5a6a7a; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--dark-text); background: var(--light-bg); }
@@ -28,24 +28,71 @@
         .coming-soon { text-align: center; padding: 2rem 1rem; color: var(--gray-text); }
         footer { background: var(--primary-navy); color: white; text-align: center; padding: 1.5rem 1rem; margin-top: 1rem; }
         footer a { color: var(--accent-yellow); text-decoration: none; font-weight: bold; }
+        /* Sticky Bottom Navigation */
+        .bottom-nav { display: block; position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 1px solid rgba(27,54,93,0.1); z-index: 1000; padding: 0.5rem 0; padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px)); box-shadow: 0 -2px 10px rgba(0,0,0,0.1); }
+        .bottom-nav ul { display: flex; justify-content: space-around; align-items: center; list-style: none; margin: 0; padding: 0; }
+        .bottom-nav a { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; padding: 0.5rem 1rem; color: var(--gray-text); text-decoration: none; font-size: 0.7rem; font-weight: 500; min-height: 48px; min-width: 60px; justify-content: center; border-radius: 8px; transition: all 0.2s; }
+        .bottom-nav a .nav-icon { font-size: 1.4rem; line-height: 1; }
+        .bottom-nav a:hover, .bottom-nav a:focus { color: var(--primary-teal); background: rgba(23,162,184,0.1); }
+        .bottom-nav a.active { color: var(--primary-green); }
+        .bottom-nav a.active .nav-icon { transform: scale(1.1); }
+        body { padding-bottom: 70px; }
+        footer { padding-bottom: calc(1.5rem + 70px + env(safe-area-inset-bottom, 0px)); }
+        /* Daily Date Badge */
+        .date-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: linear-gradient(135deg, var(--primary-green), #20c997); color: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.5rem; animation: pulse 2s infinite; }
+        .date-badge::before { content: '📅'; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
+        .new-badge { display: inline-block; background: #ff4757; color: white; padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.65rem; font-weight: bold; margin-left: 0.5rem; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+        .urgency-text { color: var(--primary-green); font-weight: 600; }
     </style>
 </head>
 <body>
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">🏠 Home</a><span>›</span><span class="current">Coding Challenges</span></nav>
-    <header><h1>💻 Coding Challenges</h1><p>Programming problems, DSA, and coding solutions</p></header>
+    <header>
+        <div class="date-badge" id="today-date"></div>
+        <h1>💻 Today's Coding Challenge<span class="new-badge">NEW</span></h1>
+        <p>Daily problems to level up your skills</p>
+    </header>
+    <script>document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US', {weekday: 'long', month: 'short', day: 'numeric'});</script>
     <main>
         <section class="section">
-            <h2>🔥 Daily Challenges</h2>
-            <div class="coming-soon"><p>🚀 Daily coding challenges will appear here!</p><p style="margin-top: 0.8rem;">Check back soon for fresh content.</p></div>
+            <h2>🔥 Today's Challenge</h2>
+            <div class="coming-soon"><p>🚀 <span class="urgency-text">New coding problems every day!</span></p><p style="margin-top: 0.8rem;">Don't miss today's challenge.</p></div>
         </section>
         <section class="section">
             <h2>📊 Today's Practice Poll</h2>
             <p style="margin-bottom: 0.8rem; font-size: 0.9rem;">Answer today's question:</p>
-            <div style="background: var(--light-bg); border-radius: 8px; overflow: hidden;">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdfs5X16bP1tFWjZUHbcNQzuQ4nJeTXV16DPoGU_mmkllzdjw/viewform?embedded=true" width="100%" height="600" frameborder="0" style="border: none;" loading="lazy" title="Practice Poll">Loading…</iframe>
+            <div style="position: relative; min-height: 600px; background: var(--light-bg); border-radius: 8px; overflow: hidden;">
+                <!-- Loading indicator -->
+                <div class="iframe-loading" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gray-text);">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">⏳</div>
+                        <p>Loading content...</p>
+                    </div>
+                </div>
+                <!-- Your iframe -->
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSdfs5X16bP1tFWjZUHbcNQzuQ4nJeTXV16DPoGU_mmkllzdjw/viewform?embedded=true" 
+                    width="100%" 
+                    height="600" 
+                    frameborder="0" 
+                    style="border: none; position: relative; z-index: 1;" 
+                    loading="lazy"
+                    onload="this.previousElementSibling.style.display='none'"
+                    title="Practice Poll">
+                </iframe>
             </div>
         </section>
     </main>
     <footer><p>Mission Placements © 2026 | <a href="../../index.html">Home</a></p></footer>
+    <nav class="bottom-nav" aria-label="Quick navigation">
+        <ul>
+            <li><a href="../../index.html"><span class="nav-icon">🏠</span>Home</a></li>
+            <li><a href="../aptitude/index.html"><span class="nav-icon">🧠</span>Aptitude</a></li>
+            <li><a href="../coding/index.html" class="active" aria-current="page"><span class="nav-icon">💻</span>Coding</a></li>
+            <li><a href="../tech-news/index.html"><span class="nav-icon">📰</span>News</a></li>
+        </ul>
+    </nav>
 </body>
 </html>
