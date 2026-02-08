@@ -37,15 +37,173 @@
         .bottom-nav a.active .nav-icon { transform: scale(1.1); }
         body { padding-bottom: 70px; }
         footer { padding-bottom: calc(1.5rem + 70px + env(safe-area-inset-bottom, 0px)); }
+        
+        /* Academic Resource Center Styles */
+        .resource-header { text-align: center; padding: 1.2rem; background: linear-gradient(135deg, #0B1C2D 0%, #132A3E 100%); border-radius: 12px; margin-bottom: 1rem; border: 1px solid rgba(58, 123, 213, 0.3); }
+        .resource-header h2 { color: #F2B705; font-size: 1.4rem; margin-bottom: 0.5rem; }
+        .resource-header .note { background: rgba(58, 123, 213, 0.2); border-left: 4px solid #3A7BD5; padding: 0.8rem; border-radius: 0 8px 8px 0; color: #EDEFF3; font-size: 0.85rem; text-align: left; margin-top: 0.8rem; }
+        .resource-header .note strong { color: #F2B705; }
+        .drive-btn { display: inline-block; background: linear-gradient(135deg, #4285F4 0%, #1a73e8 100%); color: white; padding: 0.6rem 1.2rem; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 0.85rem; margin-top: 0.8rem; transition: all 0.2s; }
+        .drive-btn:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(66, 133, 244, 0.4); }
+        
+        /* Urgent Notice Card */
+        .urgent-card { background: linear-gradient(135deg, #4a1c1c 0%, #2d0f0f 100%); border: 2px solid #ef4444; border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem; position: relative; animation: urgentPulse 2s infinite; }
+        @keyframes urgentPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); } 50% { box-shadow: 0 0 20px 5px rgba(239, 68, 68, 0.2); } }
+        .urgent-card h2 { color: #ef4444; border-bottom-color: #ef4444; }
+        .urgent-card > p { color: #EDEFF3; font-size: 0.9rem; margin-bottom: 1rem; }
+        .urgent-item { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.8rem; background: rgba(239, 68, 68, 0.1); border-radius: 8px; margin-bottom: 0.5rem; border-left: 4px solid #ef4444; }
+        .urgent-item .icon { font-size: 1.2rem; }
+        .urgent-item p { color: #EDEFF3; font-size: 0.85rem; margin: 0; }
+        .urgent-item strong { color: #fca5a5; }
+        
+        /* Materials Card */
+        .materials-card { background: linear-gradient(135deg, #0a2540 0%, #0d1b2a 100%); border: 1px solid rgba(78, 205, 196, 0.3); border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem; }
+        .materials-card h2 { color: #4ECDC4; border-bottom-color: #4ECDC4; }
+        .materials-card > p { color: #9BA8B4; font-size: 0.85rem; font-style: italic; margin-bottom: 1rem; }
+        .unit-section { background: rgba(78, 205, 196, 0.08); border-radius: 10px; padding: 1rem; margin-bottom: 1rem; border-left: 4px solid #4ECDC4; }
+        .unit-section h3 { color: #F2B705; font-size: 1rem; margin-bottom: 0.8rem; }
+        .unit-section .note { color: #9BA8B4; font-size: 0.8rem; font-style: italic; margin-top: 0.5rem; }
+        .resource-link { display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.8rem; background: rgba(78, 205, 196, 0.1); border-radius: 8px; margin-bottom: 0.5rem; transition: all 0.2s; text-decoration: none; }
+        .resource-link:hover { background: rgba(78, 205, 196, 0.2); transform: translateX(5px); }
+        .resource-link .label { color: #EDEFF3; font-size: 0.85rem; flex: 1; }
+        .resource-link .btn { background: linear-gradient(135deg, #4ECDC4 0%, #26a69a 100%); color: #0B1C2D; padding: 0.3rem 0.8rem; border-radius: 15px; font-weight: 600; font-size: 0.75rem; white-space: nowrap; }
+        
+        /* Quick Links Section */
+        .quick-links { background: rgba(242, 183, 5, 0.1); border-radius: 10px; padding: 1rem; margin-top: 1rem; border: 1px dashed rgba(242, 183, 5, 0.4); }
+        .quick-links h4 { color: #F2B705; font-size: 0.95rem; margin-bottom: 0.8rem; }
+        .quick-links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem; }
+        .quick-link { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.8rem; background: rgba(242, 183, 5, 0.1); border-radius: 8px; text-decoration: none; transition: all 0.2s; }
+        .quick-link:hover { background: rgba(242, 183, 5, 0.2); }
+        .quick-link .icon { font-size: 1rem; }
+        .quick-link .text { color: #EDEFF3; font-size: 0.8rem; }
+        
+        /* Tips Card */
+        .tips-card { background: linear-gradient(135deg, #1a2f1a 0%, #0d1f0d 100%); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 12px; padding: 1.2rem; }
+        .tips-card h2 { color: #22C55E; border-bottom-color: #22C55E; }
+        .tip-item { display: flex; align-items: flex-start; gap: 0.8rem; padding: 0.8rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; margin-bottom: 0.6rem; transition: all 0.2s; }
+        .tip-item:hover { background: rgba(34, 197, 94, 0.15); transform: translateX(5px); }
+        .tip-item .number { background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%); color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; flex-shrink: 0; }
+        .tip-item .content h4 { color: #22C55E; font-size: 0.9rem; margin-bottom: 0.2rem; }
+        .tip-item .content p { color: #9BA8B4; font-size: 0.8rem; margin: 0; }
+        
+        @media (max-width: 600px) {
+            .quick-links-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">🏠 Home</a><span>›</span><span class="current">Academics</span></nav>
-    <header><h1>🎓 Academics</h1><p>Subject-wise study materials & resources</p></header>
+    <header><h1>📚 CSE-DS Academic Resource Center</h1><p>Subject-wise study materials & exam preparation resources</p></header>
     <main>
-        <section class="section">
-            <h2>📚 Study Materials</h2>
-            <div class="coming-soon"><p>🚀 Academic resources will appear here!</p><p style="margin-top: 0.8rem;">Check back soon for fresh content.</p></div>
+        <!-- Resource Header -->
+        <div class="resource-header">
+            <h2>🎓 CSE-Data Science Resources</h2>
+            <div class="note">
+                <strong>Note:</strong> This section is exclusively for <strong>CSE-Data Science</strong> students.
+            </div>
+            <a href="https://drive.google.com/drive/folders/1scZfR_RVvkJJ8I--4ry_WF7CWYJJNdLc" target="_blank" class="drive-btn">📂 Access Complete Drive Resources</a>
+        </div>
+
+        <!-- Urgent Notice Section -->
+        <section class="section urgent-card">
+            <h2>⚠️ Important: Mid-Exam Guidelines</h2>
+            <p>Based on the performance in the last weekly exam, please strictly adhere to the following for tomorrow's Mid Exam:</p>
+            
+            <div class="urgent-item">
+                <span class="icon">📝</span>
+                <p><strong>Derivations & Diagrams:</strong> You <strong>must</strong> include detailed derivations and labeled diagrams in your answers.</p>
+            </div>
+            
+            <div class="urgent-item">
+                <span class="icon">⏰</span>
+                <p><strong>Time Management:</strong> Allocate proper time for each section based on marks weightage.</p>
+            </div>
+            
+            <div class="urgent-item">
+                <span class="icon">✍️</span>
+                <p><strong>Presentation:</strong> Write neatly and organize your answers with proper headings.</p>
+            </div>
+        </section>
+
+        <!-- Data Visualization Materials Section -->
+        <section class="section materials-card">
+            <h2>📖 Data Visualization (DV) Materials</h2>
+            <p>Refer to the following links for syllabus-aligned preparation.</p>
+            
+            <!-- Unit 1 -->
+            <div class="unit-section">
+                <h3>📘 Unit 1: Fundamentals</h3>
+                <a href="https://chatgpt.com/share/69860646-b028-800d-b483-01bf2f745c8c" target="_blank" class="resource-link">
+                    <span class="label">Primary Study Material</span>
+                    <span class="btn">Access 🔗</span>
+                </a>
+                <a href="https://chatgpt.com/share/6953e179-9628-800d-8636-ae5e1fd8f1e0" target="_blank" class="resource-link">
+                    <span class="label">Supplementary Notes</span>
+                    <span class="btn">View 🔗</span>
+                </a>
+                <p class="note">📌 Note: If PDFs are unavailable, please refer to your physical class notebooks.</p>
+            </div>
+            
+            <!-- Unit 2 -->
+            <div class="unit-section">
+                <h3>📗 Unit 2: Advanced Visualization</h3>
+                <a href="https://chatgpt.com/share/6970f4fe-fa1c-800d-bc92-3a42567c7f3a" target="_blank" class="resource-link">
+                    <span class="label">Primary Study Material</span>
+                    <span class="btn">Access 🔗</span>
+                </a>
+                <a href="https://chatgpt.com/share/6981fbae-4034-800d-9155-408bd92acbcf" target="_blank" class="resource-link">
+                    <span class="label">Additional Reference</span>
+                    <span class="btn">View 🔗</span>
+                </a>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="quick-links">
+                <h4>🎯 Quick Links & Question Banks</h4>
+                <div class="quick-links-grid">
+                    <a href="https://chatgpt.com/share/6980c59b-f0e0-800d-bf7f-1d88fbbc3a2f" target="_blank" class="quick-link">
+                        <span class="icon">🎯</span>
+                        <span class="text">DV Question Bank</span>
+                    </a>
+                    <a href="https://chatgpt.com/share/6942c9bf-e988-800d-96e2-4cc9bf2fce61" target="_blank" class="quick-link">
+                        <span class="icon">📂</span>
+                        <span class="text">Syllabus Reference 1</span>
+                    </a>
+                    <a href="https://chatgpt.com/share/697a1f44-d8dc-800d-b096-08b50df85f48" target="_blank" class="quick-link">
+                        <span class="icon">📂</span>
+                        <span class="text">Syllabus Reference 2</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preparation Tips Section -->
+        <section class="section tips-card">
+            <h2>💡 Preparation Tips</h2>
+            
+            <div class="tip-item">
+                <span class="number">1</span>
+                <div class="content">
+                    <h4>Don't Skip the Math</h4>
+                    <p>Ensure your derivations are step-by-step and clearly explained.</p>
+                </div>
+            </div>
+            
+            <div class="tip-item">
+                <span class="number">2</span>
+                <div class="content">
+                    <h4>Visualize Everything</h4>
+                    <p>Use clear, neat diagrams as requested by faculty. Label all parts properly.</p>
+                </div>
+            </div>
+            
+            <div class="tip-item">
+                <span class="number">3</span>
+                <div class="content">
+                    <h4>Review the Question Bank</h4>
+                    <p>Focus on the DV Question Bank for high-probability topics and patterns.</p>
+                </div>
+            </div>
         </section>
     </main>
     <footer><p>Mission Placements © 2026 | <a href="../../index.html">Home</a></p></footer>

@@ -22,6 +22,8 @@
         header { background: linear-gradient(135deg, var(--primary-navy) 0%, #2d4a6f 100%); color: white; padding: 1.5rem 1rem; text-align: center; }
         header h1 { font-size: 1.5rem; margin-bottom: 0.3rem; }
         header p { opacity: 0.9; font-size: 0.9rem; }
+            .top-syllabus-btn { display: inline-block; margin-top: 0.8rem; background: #F2B705; color: #07203A; padding: 0.45rem 0.9rem; border-radius: 999px; font-weight: 700; text-decoration: none; box-shadow: 0 6px 18px rgba(242,183,5,0.12); }
+            .top-syllabus-btn:hover, .top-syllabus-btn:focus { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(242,183,5,0.16); }
         main { max-width: 900px; margin: 1rem auto; padding: 0 0.5rem; }
         .section { background: var(--white); border-radius: 10px; padding: 1rem; margin-bottom: 1rem; box-shadow: 0 2px 10px rgba(27, 54, 93, 0.1); }
         .section h2 { color: var(--primary-navy); font-size: 1.1rem; margin-bottom: 0.8rem; border-bottom: 3px solid var(--primary-teal); padding-bottom: 0.5rem; display: inline-block; }
@@ -81,79 +83,11 @@
         <div class="date-badge" id="today-date"></div>
         <h1>🧮 Today's Aptitude Challenge<span class="new-badge">NEW</span></h1>
         <p>Fresh daily problems to sharpen your mind</p>
+        <p><a href="#full-syllabus" class="top-syllabus-btn" id="view-syllabus-top">View Full Syllabus</a></p>
     </header>
     <script>document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US', {weekday: 'long', month: 'short', day: 'numeric'});</script>
     <main>
-        <!-- Syllabus Section -->
-        <section class="section syllabus-section">
-            <h2>📚 Complete Aptitude Syllabus</h2>
-            <p class="syllabus-intro">Master these 10 cycles to ace any placement aptitude test. Each cycle covers both Quantitative Aptitude and Logical Reasoning topics.</p>
-            <table class="syllabus-table">
-                <thead>
-                    <tr>
-                        <th>Cycle</th>
-                        <th>🔢 Quantitative Aptitude</th>
-                        <th>🧩 Logical Reasoning</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td class="quant-col">Number System & Simplification<br><small style="opacity:0.7">(Divisibility, HCF/LCM, Remainders)</small></td>
-                        <td class="logic-col">Series Completion<br><small style="opacity:0.7">(Number, Alphabet, & Alphanumeric)</small></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td class="quant-col">Percentages</td>
-                        <td class="logic-col">Coding-Decoding</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td class="quant-col">Profit, Loss & Discount</td>
-                        <td class="logic-col">Blood Relations</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td class="quant-col">Ratio, Proportion & Ages</td>
-                        <td class="logic-col">Direction Sense Test</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td class="quant-col">Averages & Mixtures</td>
-                        <td class="logic-col">Order, Ranking & Odd Man Out</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td class="quant-col">Simple & Compound Interest</td>
-                        <td class="logic-col">Seating Arrangement<br><small style="opacity:0.7">(Linear & Circular)</small></td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td class="quant-col">Time & Work<br><small style="opacity:0.7">(Pipes & Cisterns)</small></td>
-                        <td class="logic-col">Syllogisms<br><small style="opacity:0.7">(Logic Statements)</small></td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td class="quant-col">Time, Speed & Distance<br><small style="opacity:0.7">(Trains, Boats)</small></td>
-                        <td class="logic-col">Clocks & Calendars</td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td class="quant-col">Permutation, Combination & Probability</td>
-                        <td class="logic-col">Data Sufficiency</td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td class="quant-col">Mensuration & Geometry<br><small style="opacity:0.7">(2D & 3D)</small></td>
-                        <td class="logic-col">Data Interpretation & Visual Reasoning</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="syllabus-legend">
-                <div class="legend-item"><span class="legend-dot quant"></span> Quantitative</div>
-                <div class="legend-item"><span class="legend-dot logic"></span> Logical Reasoning</div>
-            </div>
-        </section>
+        <!-- Syllabus removed from here and moved to page bottom -->
 
         <section class="section">
             <h2>📝 Today's Practice Questions</h2>
@@ -184,6 +118,76 @@
             </div>
         </section>
     </main>
+    <!-- Full syllabus placed at the bottom so top button scrolls here -->
+    <section id="full-syllabus" class="section syllabus-section" aria-label="Complete Aptitude Syllabus">
+        <h2>📚 Complete Aptitude Syllabus</h2>
+        <p class="syllabus-intro">Master these 10 cycles to ace any placement aptitude test. Each cycle covers both Quantitative Aptitude and Logical Reasoning topics.</p>
+        <table class="syllabus-table">
+            <thead>
+                <tr>
+                    <th>Cycle</th>
+                    <th>🔢 Quantitative Aptitude</th>
+                    <th>🧩 Logical Reasoning</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td class="quant-col">Number System & Simplification<br><small style="opacity:0.7">(Divisibility, HCF/LCM, Remainders)</small></td>
+                    <td class="logic-col">Series Completion<br><small style="opacity:0.7">(Number, Alphabet, & Alphanumeric)</small></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td class="quant-col">Percentages</td>
+                    <td class="logic-col">Coding-Decoding</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td class="quant-col">Profit, Loss & Discount</td>
+                    <td class="logic-col">Blood Relations</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td class="quant-col">Ratio, Proportion & Ages</td>
+                    <td class="logic-col">Direction Sense Test</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td class="quant-col">Averages & Mixtures</td>
+                    <td class="logic-col">Order, Ranking & Odd Man Out</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td class="quant-col">Simple & Compound Interest</td>
+                    <td class="logic-col">Seating Arrangement<br><small style="opacity:0.7">(Linear & Circular)</small></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td class="quant-col">Time & Work<br><small style="opacity:0.7">(Pipes & Cisterns)</small></td>
+                    <td class="logic-col">Syllogisms<br><small style="opacity:0.7">(Logic Statements)</small></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td class="quant-col">Time, Speed & Distance<br><small style="opacity:0.7">(Trains, Boats)</small></td>
+                    <td class="logic-col">Clocks & Calendars</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td class="quant-col">Permutation, Combination & Probability</td>
+                    <td class="logic-col">Data Sufficiency</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td class="quant-col">Mensuration & Geometry<br><small style="opacity:0.7">(2D & 3D)</small></td>
+                    <td class="logic-col">Data Interpretation & Visual Reasoning</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="syllabus-legend">
+            <div class="legend-item"><span class="legend-dot quant"></span> Quantitative</div>
+            <div class="legend-item"><span class="legend-dot logic"></span> Logical Reasoning</div>
+        </div>
+    </section>
     <footer><p>Mission Placements © 2026 | <a href="../../index.html">Home</a></p></footer>
     <nav class="bottom-nav" aria-label="Quick navigation">
         <ul>
