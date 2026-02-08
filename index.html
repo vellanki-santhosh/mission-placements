@@ -610,6 +610,81 @@
                 outline-offset: 3px;
             }
         }
+
+        /* Daily Schedule Timeline */
+        .daily-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .flow-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 1.5rem;
+            background: transparent;
+            border-radius: 8px;
+            position: relative;
+        }
+        .flow-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .flow-icon.morning {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 2px solid var(--accent-yellow);
+        }
+        .flow-icon.evening {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border: 2px solid var(--primary-green);
+        }
+        .flow-content h4 {
+            font-size: 1rem;
+            color: var(--primary-navy);
+            margin-bottom: 0.2rem;
+            font-weight: 600;
+        }
+        .flow-content p {
+            font-size: 0.85rem;
+            color: var(--gray-text);
+            margin: 0;
+        }
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: var(--primary-teal);
+            opacity: 0.6;
+        }
+        @media (max-width: 768px) {
+            .daily-flow {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .flow-item {
+                width: 100%;
+                padding: 0.8rem 1rem;
+                background: var(--light-bg);
+                border-left: 3px solid var(--primary-teal);
+                border-radius: 0 8px 8px 0;
+            }
+            .flow-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+                margin: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -722,14 +797,22 @@
         <!-- Daily Schedule -->
         <section class="section">
             <h2>📅 Daily Schedule</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>🌅 Morning</h3>
-                    <p>Tech News & Industry Updates</p>
+            <p style="color: var(--gray-text); font-size: 0.95rem;">Fresh content delivered to you every day</p>
+            <div class="daily-flow">
+                <div class="flow-item">
+                    <div class="flow-icon morning">🌅</div>
+                    <div class="flow-content">
+                        <h4>Morning</h4>
+                        <p>Tech News & Industry Updates</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>🌆 Evening</h3>
-                    <p>Aptitude Questions + Coding Challenges</p>
+                <span class="flow-arrow">→</span>
+                <div class="flow-item">
+                    <div class="flow-icon evening">🌆</div>
+                    <div class="flow-content">
+                        <h4>Evening</h4>
+                        <p>Aptitude Questions + Coding Challenges</p>
+                    </div>
                 </div>
             </div>
         </section>
