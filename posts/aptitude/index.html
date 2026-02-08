@@ -38,6 +38,34 @@
         .bottom-nav a.active .nav-icon { transform: scale(1.1); }
         body { padding-bottom: 70px; }
         footer { padding-bottom: calc(1.5rem + 70px + env(safe-area-inset-bottom, 0px)); }
+        /* Syllabus Table Styles */
+        .syllabus-section { background: linear-gradient(135deg, #0B1C2D 0%, #132A3E 100%); border: 1px solid rgba(58, 123, 213, 0.3); }
+        .syllabus-section h2 { color: #F2B705; border-bottom-color: #3A7BD5; }
+        .syllabus-intro { color: #9BA8B4; font-size: 0.9rem; margin-bottom: 1rem; }
+        .syllabus-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 10px; overflow: hidden; font-size: 0.85rem; }
+        .syllabus-table thead { background: linear-gradient(135deg, #3A7BD5 0%, #2563eb 100%); }
+        .syllabus-table th { color: white; padding: 0.8rem 0.6rem; text-align: left; font-weight: 600; font-size: 0.8rem; }
+        .syllabus-table th:first-child { width: 50px; text-align: center; }
+        .syllabus-table tbody tr { background: rgba(22, 47, 70, 0.5); transition: all 0.2s ease; }
+        .syllabus-table tbody tr:nth-child(even) { background: rgba(19, 42, 62, 0.7); }
+        .syllabus-table tbody tr:hover { background: rgba(58, 123, 213, 0.2); transform: scale(1.01); }
+        .syllabus-table td { padding: 0.7rem 0.6rem; color: #EDEFF3; border-bottom: 1px solid rgba(58, 123, 213, 0.15); }
+        .syllabus-table td:first-child { text-align: center; font-weight: bold; color: #F2B705; background: rgba(242, 183, 5, 0.1); }
+        .syllabus-table .quant-col { color: #4ECDC4; }
+        .syllabus-table .logic-col { color: #FF6B9D; }
+        .topic-tag { display: inline-block; font-size: 0.7rem; padding: 0.15rem 0.4rem; border-radius: 4px; margin-left: 0.3rem; }
+        .tag-quant { background: rgba(78, 205, 196, 0.2); color: #4ECDC4; }
+        .tag-logic { background: rgba(255, 107, 157, 0.2); color: #FF6B9D; }
+        .syllabus-legend { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; justify-content: center; }
+        .legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: #9BA8B4; }
+        .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .legend-dot.quant { background: #4ECDC4; }
+        .legend-dot.logic { background: #FF6B9D; }
+        @media (max-width: 600px) {
+            .syllabus-table { font-size: 0.75rem; }
+            .syllabus-table th, .syllabus-table td { padding: 0.5rem 0.4rem; }
+            .syllabus-table th:first-child, .syllabus-table td:first-child { width: 35px; }
+        }
         /* Daily Date Badge */
         .date-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: linear-gradient(135deg, var(--primary-teal), #20c997); color: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.5rem; animation: pulse 2s infinite; }
         .date-badge::before { content: '📅'; }
@@ -56,6 +84,77 @@
     </header>
     <script>document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US', {weekday: 'long', month: 'short', day: 'numeric'});</script>
     <main>
+        <!-- Syllabus Section -->
+        <section class="section syllabus-section">
+            <h2>📚 Complete Aptitude Syllabus</h2>
+            <p class="syllabus-intro">Master these 10 cycles to ace any placement aptitude test. Each cycle covers both Quantitative Aptitude and Logical Reasoning topics.</p>
+            <table class="syllabus-table">
+                <thead>
+                    <tr>
+                        <th>Cycle</th>
+                        <th>🔢 Quantitative Aptitude</th>
+                        <th>🧩 Logical Reasoning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td class="quant-col">Number System & Simplification<br><small style="opacity:0.7">(Divisibility, HCF/LCM, Remainders)</small></td>
+                        <td class="logic-col">Series Completion<br><small style="opacity:0.7">(Number, Alphabet, & Alphanumeric)</small></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td class="quant-col">Percentages</td>
+                        <td class="logic-col">Coding-Decoding</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td class="quant-col">Profit, Loss & Discount</td>
+                        <td class="logic-col">Blood Relations</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td class="quant-col">Ratio, Proportion & Ages</td>
+                        <td class="logic-col">Direction Sense Test</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td class="quant-col">Averages & Mixtures</td>
+                        <td class="logic-col">Order, Ranking & Odd Man Out</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td class="quant-col">Simple & Compound Interest</td>
+                        <td class="logic-col">Seating Arrangement<br><small style="opacity:0.7">(Linear & Circular)</small></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td class="quant-col">Time & Work<br><small style="opacity:0.7">(Pipes & Cisterns)</small></td>
+                        <td class="logic-col">Syllogisms<br><small style="opacity:0.7">(Logic Statements)</small></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td class="quant-col">Time, Speed & Distance<br><small style="opacity:0.7">(Trains, Boats)</small></td>
+                        <td class="logic-col">Clocks & Calendars</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td class="quant-col">Permutation, Combination & Probability</td>
+                        <td class="logic-col">Data Sufficiency</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td class="quant-col">Mensuration & Geometry<br><small style="opacity:0.7">(2D & 3D)</small></td>
+                        <td class="logic-col">Data Interpretation & Visual Reasoning</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="syllabus-legend">
+                <div class="legend-item"><span class="legend-dot quant"></span> Quantitative</div>
+                <div class="legend-item"><span class="legend-dot logic"></span> Logical Reasoning</div>
+            </div>
+        </section>
+
         <section class="section">
             <h2>📝 Today's Practice Questions</h2>
             <div class="coming-soon"><p>🚀 <span class="urgency-text">New questions drop daily!</span></p><p style="margin-top: 0.8rem;">Come back every day for fresh challenges.</p></div>
