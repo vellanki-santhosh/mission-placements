@@ -11,67 +11,401 @@
     <link rel="icon" type="image/png" href="../../LOGO.png">
     <style>
         html, body { scroll-behavior: smooth; overflow-x: hidden; max-width: 100vw; }
-        :root { --primary-navy: #1B365D; --primary-teal: #17A2B8; --primary-green: #28A745; --accent-orange: #F5A623; --accent-yellow: #FFC107; --light-bg: #f5f8fa; --white: #ffffff; --dark-text: #1B365D; --gray-text: #5a6a7a; }
+        :root { 
+            --primary-navy: #1B365D; 
+            --primary-teal: #17A2B8; 
+            --primary-green: #28A745; 
+            --accent-orange: #F5A623; 
+            --accent-yellow: #FFC107; 
+            --light-bg: #f5f8fa; 
+            --white: #ffffff; 
+            --dark-text: #1B365D; 
+            --gray-text: #5a6a7a;
+            --code-bg: #282c34;
+            --code-text: #abb2bf;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--dark-text); background: var(--light-bg); }
-        .breadcrumb { background: var(--white); padding: 0.8rem 1rem; font-size: 0.85rem; border-bottom: 1px solid rgba(27, 54, 93, 0.1); }
-        .breadcrumb a { color: var(--primary-teal); text-decoration: none; }
-        .breadcrumb a:hover { text-decoration: underline; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            color: var(--dark-text); 
+            background: var(--light-bg); 
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb { 
+            background: var(--white); 
+            padding: 0.8rem 1rem; 
+            font-size: 0.85rem; 
+            border-bottom: 1px solid rgba(27, 54, 93, 0.1); 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .breadcrumb a { color: var(--primary-teal); text-decoration: none; transition: color 0.2s; }
+        .breadcrumb a:hover { text-decoration: underline; color: var(--primary-green); }
         .breadcrumb span { color: var(--gray-text); margin: 0 0.5rem; }
         .breadcrumb .current { color: var(--dark-text); font-weight: 500; }
-        header { background: linear-gradient(135deg, var(--primary-navy) 0%, #2d4a6f 100%); color: white; padding: 1.5rem 1rem; text-align: center; }
-        header h1 { font-size: 1.5rem; margin-bottom: 0.3rem; }
-        header p { opacity: 0.9; font-size: 0.9rem; }
-        main { max-width: 900px; margin: 1rem auto; padding: 0 0.5rem; }
-        .section { background: var(--white); border-radius: 10px; padding: 1rem; margin-bottom: 1rem; box-shadow: 0 2px 10px rgba(27, 54, 93, 0.1); }
-        .section h2 { color: var(--primary-navy); font-size: 1.1rem; margin-bottom: 0.8rem; border-bottom: 3px solid var(--primary-green); padding-bottom: 0.5rem; display: inline-block; }
-        .coming-soon { text-align: center; padding: 2rem 1rem; color: var(--gray-text); }
-        footer { background: var(--primary-navy); color: white; text-align: center; padding: 1.5rem 1rem; margin-top: 1rem; }
-        footer a { color: var(--accent-yellow); text-decoration: none; font-weight: bold; }
-        /* Sticky Bottom Navigation */
-        .bottom-nav { display: block; position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 1px solid rgba(27,54,93,0.1); z-index: 1000; padding: 0.5rem 0; padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px)); box-shadow: 0 -2px 10px rgba(0,0,0,0.1); }
-        .bottom-nav ul { display: flex; justify-content: space-around; align-items: center; list-style: none; margin: 0; padding: 0; }
-        .bottom-nav a { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; padding: 0.5rem 1rem; color: var(--gray-text); text-decoration: none; font-size: 0.7rem; font-weight: 500; min-height: 48px; min-width: 60px; justify-content: center; border-radius: 8px; transition: all 0.2s; }
-        .bottom-nav a .nav-icon { font-size: 1.4rem; line-height: 1; }
-        .bottom-nav a:hover, .bottom-nav a:focus { color: var(--primary-teal); background: rgba(23,162,184,0.1); }
-        .bottom-nav a.active { color: var(--primary-green); }
-        .bottom-nav a.active .nav-icon { transform: scale(1.1); }
-        body { padding-bottom: 70px; }
-        footer { padding-bottom: calc(1.5rem + 70px + env(safe-area-inset-bottom, 0px)); }
-        /* Daily Date Badge */
-        .date-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: linear-gradient(135deg, var(--primary-green), #20c997); color: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.5rem; animation: pulse 2s infinite; }
-        .date-badge::before { content: '📅'; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
-        .new-badge { display: inline-block; background: #ff4757; color: white; padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.65rem; font-weight: bold; margin-left: 0.5rem; animation: blink 1.5s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
-        .urgency-text { color: var(--primary-green); font-weight: 600; }
+        
+        /* Header */
+        header { 
+            background: linear-gradient(135deg, var(--primary-navy) 0%, #2d4a6f 100%); 
+            color: white; 
+            padding: 2rem 1rem; 
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="rgba(255,255,255,0.05)"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.3;
+        }
+        header h1 { 
+            font-size: 1.8rem; 
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        header p { 
+            opacity: 0.95; 
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Date Badge */
+        .date-badge { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            background: linear-gradient(135deg, var(--primary-green), #20c997); 
+            color: white; 
+            padding: 0.5rem 1rem; 
+            border-radius: 25px; 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            margin-bottom: 0.8rem;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            animation: pulse 2s infinite;
+            position: relative;
+            z-index: 1;
+        }
+        .date-badge::before { content: '📅'; font-size: 1.1rem; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        
+        .new-badge { 
+            display: inline-block; 
+            background: linear-gradient(135deg, #ff4757, #ff6b81);
+            color: white; 
+            padding: 0.2rem 0.6rem; 
+            border-radius: 12px; 
+            font-size: 0.7rem; 
+            font-weight: bold; 
+            margin-left: 0.5rem;
+            box-shadow: 0 2px 8px rgba(255, 71, 87, 0.4);
+            animation: blink 1.5s infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        
+        /* Main Content */
+        main { max-width: 1000px; margin: 1.5rem auto; padding: 0 1rem; }
+        
+        .section { 
+            background: var(--white); 
+            border-radius: 12px; 
+            padding: 1.5rem; 
+            margin-bottom: 1.5rem; 
+            box-shadow: 0 4px 20px rgba(27, 54, 93, 0.08);
+            border: 1px solid rgba(27, 54, 93, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(27, 54, 93, 0.12);
+        }
+        
+        .section h2 { 
+            color: var(--primary-navy); 
+            font-size: 1.3rem; 
+            margin-bottom: 1rem; 
+            border-bottom: 3px solid var(--primary-green); 
+            padding-bottom: 0.6rem; 
+            display: inline-block;
+        }
+        
+        .section h3 {
+            color: var(--primary-navy);
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Form Section - Highlighted */
+        .form-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid var(--primary-teal);
+            position: relative;
+        }
+        .form-section::before {
+            content: '⚡ SUBMIT YOUR SOLUTION';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--primary-teal);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        
+        iframe {
+            border: 2px solid rgba(27, 54, 93, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        /* Code Block */
+        pre { 
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--primary-green);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            color: #e83e8c;
+            font-size: 0.9em;
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+        
+        /* Notion Link Button */
+        .notion-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--primary-teal), #20c997);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 1rem 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(23, 162, 184, 0.3);
+        }
+        .notion-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(23, 162, 184, 0.4);
+        }
+        
+        /* Divider */
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(27, 54, 93, 0.2), transparent);
+        }
+        
+        /* Result Box */
+        .result-box {
+            background: #d4edda;
+            border-left: 4px solid var(--primary-green);
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            margin-top: 0.8rem;
+            color: #155724;
+            font-weight: 500;
+        }
+        
+        /* Tips Box */
+        .tips-box {
+            background: #fff3cd;
+            border-left: 4px solid var(--accent-yellow);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+        
+        /* Footer */
+        footer { 
+            background: var(--primary-navy); 
+            color: white; 
+            text-align: center; 
+            padding: 2rem 1rem; 
+            margin-top: 2rem;
+        }
+        footer a { 
+            color: var(--accent-yellow); 
+            text-decoration: none; 
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        footer a:hover {
+            color: white;
+        }
+        
+        /* Bottom Navigation */
+        .bottom-nav { 
+            display: block; 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            background: var(--white); 
+            border-top: 2px solid rgba(27,54,93,0.1); 
+            z-index: 1000; 
+            padding: 0.5rem 0; 
+            padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px)); 
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+        }
+        .bottom-nav ul { 
+            display: flex; 
+            justify-content: space-around; 
+            align-items: center; 
+            list-style: none; 
+            margin: 0; 
+            padding: 0; 
+        }
+        .bottom-nav a { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 0.25rem; 
+            padding: 0.5rem 1rem; 
+            color: var(--gray-text); 
+            text-decoration: none; 
+            font-size: 0.7rem; 
+            font-weight: 500; 
+            min-height: 48px; 
+            min-width: 60px; 
+            justify-content: center; 
+            border-radius: 10px; 
+            transition: all 0.3s;
+        }
+        .bottom-nav a .nav-icon { 
+            font-size: 1.4rem; 
+            line-height: 1;
+            transition: transform 0.3s;
+        }
+        .bottom-nav a:hover, .bottom-nav a:focus { 
+            color: var(--primary-teal); 
+            background: rgba(23,162,184,0.1);
+        }
+        .bottom-nav a:hover .nav-icon {
+            transform: scale(1.2);
+        }
+        .bottom-nav a.active { 
+            color: var(--primary-green);
+            background: rgba(40, 167, 69, 0.1);
+        }
+        .bottom-nav a.active .nav-icon { 
+            transform: scale(1.15);
+        }
+        
+        body { padding-bottom: 80px; }
+        footer { padding-bottom: calc(2rem + 80px + env(safe-area-inset-bottom, 0px)); }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.5rem; }
+            .section { padding: 1rem; }
+            main { padding: 0 0.5rem; }
+        }
     </style>
 </head>
 <body>
-    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">🏠 Home</a><span>›</span><span class="current">Coding Challenges</span></nav>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html">🏠 Home</a>
+        <span>›</span>
+        <span class="current">Coding Challenges</span>
+    </nav>
+    
     <header>
         <div class="date-badge" id="today-date"></div>
         <h1>💻 Today's Coding Challenge<span class="new-badge">NEW</span></h1>
         <p>Daily problems to level up your skills</p>
     </header>
-    <script>document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US', {weekday: 'long', month: 'short', day: 'numeric'});</script>
+    
+    <script>
+        document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US', {
+            weekday: 'long', 
+            month: 'short', 
+            day: 'numeric'
+        });
+    </script>
+    
     <main>
+        <!-- FORM SECTION - MOVED TO TOP -->
+        <section class="section form-section" style="margin-top: 0.5rem;">
+            <h2 style="margin-top: 1rem;">📝 Submit Your Solution</h2>
+            <p style="color: var(--gray-text); margin-bottom: 1rem;">Complete today's challenge? Submit your code below!</p>
+            <iframe 
+                src="https://docs.google.com/forms/d/e/1FAIpQLSdfs5X16bP1tFWjZUHbcNQzuQ4nJeTXV16DPoGU_mmkllzdjw/viewform?usp=dialog" 
+                width="100%" 
+                height="650" 
+                frameborder="0" 
+                allowfullscreen 
+                loading="lazy" 
+                title="Coding Challenge Submission Form">
+            </iframe>
+        </section>
+
+        <!-- CHALLENGE CONTENT -->
         <section class="section">
-            <h2>🐍 Python DSA: Beginner’s Code Lab</h2>
-            <p><em>Master the fundamentals through logic-based challenges and hands-on practice.</em></p>
-            <hr style="margin: 1rem 0;">
+            <h2>🐍 Python DSA: Beginner's Code Lab</h2>
+            <p style="color: var(--gray-text); font-style: italic; margin-bottom: 1rem;">
+                Master the fundamentals through logic-based challenges and hands-on practice.
+            </p>
+            
             <h3>📘 Learning Path: Python Basics to DSA</h3>
-            <ul style="margin-bottom:1rem;">
-                <li><b>Fundamentals:</b> Variables, Dynamic Typing, and Syntax.</li>
-                <li><b>Logic:</b> Conditionals (<code>if-elif-else</code>) and Iteration (<code>for</code>, <code>while</code>).</li>
-                <li><b>Data Structures:</b> List operations, String methods, and Dictionaries.</li>
-                <li><b>Modular Coding:</b> Functions, Modules, and Exception Handling.</li>
-                <li><b>Advanced:</b> Basic File Handling and Introduction to OOPs.</li>
+            <ul>
+                <li><b>Fundamentals:</b> Variables, Dynamic Typing, and Syntax</li>
+                <li><b>Logic:</b> Conditionals (<code>if-elif-else</code>) and Iteration (<code>for</code>, <code>while</code>)</li>
+                <li><b>Data Structures:</b> List operations, String methods, and Dictionaries</li>
+                <li><b>Modular Coding:</b> Functions, Modules, and Exception Handling</li>
+                <li><b>Advanced:</b> Basic File Handling and Introduction to OOPs</li>
             </ul>
-            <hr style="margin: 1rem 0;">
+            
+            <hr>
+            
             <h3>🧪 Advanced Logic: The Armstrong Number</h3>
-            <p>This snippet checks if a number is an "Armstrong Number" (the sum of its digits raised to the power of the number of digits equals the original number).</p>
-            <pre style="background:#222;color:#fff;padding:0.7rem 1rem;border-radius:6px;overflow-x:auto;">n = 153
+            <p style="margin-bottom: 1rem;">
+                An <strong>Armstrong Number</strong> (also called a Narcissistic Number) is a number that equals 
+                the sum of its digits raised to the power of the number of digits.
+            </p>
+            <p style="margin-bottom: 1rem; color: var(--gray-text);">
+                <strong>Example:</strong> 153 is an Armstrong number because 1³ + 5³ + 3³ = 1 + 125 + 27 = 153
+            </p>
+            
+            <pre>n = 153
 temp = n
 sum = 0
 while temp > 0:
@@ -83,25 +417,42 @@ if sum == n:
     print("Armstrong")
 else:
     print("Not Armstrong")</pre>
-            <div style="margin-top:0.5rem;">Result: <code>Armstrong</code></div>
-            <hr style="margin: 1rem 0;">
+            
+            <div class="result-box">
+                ✅ Result: <code style="background: transparent; color: inherit;">Armstrong</code>
+            </div>
+            
+            <hr>
+            
             <h3>📚 Detailed Study Notes</h3>
-            <p>For a deep dive into today's topics, including variables, looping constructs, and list operations, refer to our centralized Notion repository:</p>
-            <a href="https://www.notion.so/28-01-2026-2f6ae25f500180ddafd9f15c35ac817c?source=copy_link" target="_blank" style="display:inline-block;background:#17A2B8;color:#fff;padding:0.5rem 1rem;border-radius:6px;text-decoration:none;font-weight:bold;margin-bottom:1rem;">👉 Access Full Python DSA Notes on Notion</a>
-            <hr style="margin: 1rem 0;">
+            <p style="margin-bottom: 1rem;">
+                For a deep dive into today's topics, including variables, looping constructs, and list operations, 
+                refer to our centralized Notion repository:
+            </p>
+            <a href="https://www.notion.so/28-01-2026-2f6ae25f500180ddafd9f15c35ac817c?source=copy_link" 
+               target="_blank" 
+               class="notion-link">
+                📖 Access Full Python DSA Notes on Notion
+            </a>
+            
+            <hr>
+            
             <h3>💡 Tips for Coding Newbies</h3>
-            <ul>
-                <li><b>Indentation is Key:</b> In Python, a missing space can break your whole program.</li>
-                <li><b>Dry Run:</b> Before running the code, try to trace the value of variables (like <code>sum</code> or <code>rev</code>) on a piece of paper.</li>
-                <li><b>Use <code>range()</code> wisely:</b> Remember that <code>range(1, 6)</code> goes from 1 to 5, not 6!</li>
-            </ul>
-        </section>
-        <section class="section" style="padding-top:0.5rem;">
-            <h2 style="font-size:1.1rem;color:#1B365D;margin-bottom:0.7rem;">📝 Submit Your Response</h2>
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdfs5X16bP1tFWjZUHbcNQzuQ4nJeTXV16DPoGU_mmkllzdjw/viewform?usp=dialog" width="100%" height="600" frameborder="0" style="border:1px solid #e0e0e0;border-radius:8px;" allowfullscreen loading="lazy" title="Coding Group Google Form"></iframe>
+            <div class="tips-box">
+                <ul style="margin: 0;">
+                    <li><b>Indentation is Key:</b> In Python, a missing space can break your whole program</li>
+                    <li><b>Dry Run:</b> Before running the code, trace variable values (like <code>sum</code> or <code>temp</code>) on paper</li>
+                    <li><b>Use <code>range()</code> wisely:</b> Remember that <code>range(1, 6)</code> goes from 1 to 5, not 6!</li>
+                    <li><b>Practice Daily:</b> Consistency beats intensity - solve at least one problem every day</li>
+                </ul>
+            </div>
         </section>
     </main>
-    <footer><p>Mission Placements © 2026 | <a href="../../index.html">Home</a></p></footer>
+    
+    <footer>
+        <p>Mission Placements © 2026 | <a href="../../index.html">Back to Home</a></p>
+    </footer>
+    
     <nav class="bottom-nav" aria-label="Quick navigation">
         <ul>
             <li><a href="../../index.html"><span class="nav-icon">🏠</span><span>Home</span></a></li>
