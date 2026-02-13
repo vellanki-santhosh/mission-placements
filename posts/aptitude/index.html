@@ -240,27 +240,63 @@
             border-radius: 2px;
         }
 
-        /* Alert/Empty State */
+        /* Alert/Empty State - Compact Banner */
         .coming-soon {
-            background: #f8fafc;
-            border: 1px dashed var(--border);
+            background: linear-gradient(to right, #f8fafc, #f1f5f9);
+            border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 3rem;
+            padding: 0.75rem 1rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
+            min-height: 60px;
+        }
+
+        .coming-soon div {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
+            align-items: flex-start;
+            /* Align text to the left */
         }
 
         .coming-soon h3 {
             color: var(--primary);
-            font-size: 1.1rem;
+            font-size: 1rem;
+            margin: 0;
+            white-space: normal;
+            /* Allow wrap if needed on very small screens */
+            font-weight: 600;
+            line-height: 1.2;
         }
 
         .coming-soon p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.8rem;
+            margin: 0.25rem 0 0 0;
+            display: block;
+            /* Always visible */
+            line-height: 1.2;
+        }
+
+        .coming-soon span {
+            font-size: 1.5rem !important;
+            animation: bounce 2s infinite ease-in-out;
+            flex-shrink: 0;
+            /* Prevent icon from shrinking */
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
         }
 
         /* Iframe */
@@ -436,10 +472,27 @@
             color: var(--text-main);
         }
 
-        /* Responsive */
+        /* Enhanced Mobile Responsiveness */
         @media (max-width: 640px) {
+            :root {
+                --radius: 8px;
+            }
+
             h1 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+                padding: 0 0.5rem;
+            }
+
+            header {
+                padding: 2rem 0;
+            }
+
+            .container {
+                padding: 0 1rem;
             }
 
             .section {
@@ -449,167 +502,405 @@
             .card {
                 padding: 1rem;
             }
+
+            .section-header {
+                margin-bottom: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.15rem;
+            }
+
+            /* Make CTA full width for better touch target */
+            .cta-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* Adjust iframe height */
+            .iframe-container {
+                height: 500px;
+            }
+
+            /* Bottom Nav labels smaller */
+            .bottom-nav {
+                padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+            }
+
+            .nav-label {
+                font-size: 0.65rem;
+            }
+
+            .nav-icon {
+                font-size: 1.2rem;
+            }
+
+            .nav-item {
+                min-width: auto;
+                padding: 0.25rem 0.4rem;
+            }
+
+            /* Table adjustments */
+            .syllabus-table th,
+            .syllabus-table td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            .syllabus-table td:first-child {
+                width: 40px;
+            }
+
+            /* Ensure footer doesn't get hidden behind nav */
+            footer {
+                margin-top: 3rem;
+                padding-bottom: 6rem;
+            }
+        }
+
+        /* Welcome Splash Screen */
+        #welcome-screen {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(-45deg, #020617, #0f172a, #1e293b, #0f172a);
+            background-size: 400% 400%;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 1s cubic-bezier(0.7, 0, 0.3, 1), visibility 1s;
+            animation: gradientBG 6s ease infinite;
+        }
+
+        .welcome-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .welcome-title {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            background: linear-gradient(to right, #60a5fa, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: heroEnter 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            text-shadow: 0 10px 30px rgba(168, 85, 247, 0.2);
+        }
+
+        .welcome-subtitle {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            opacity: 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            animation: fadeUp 1s ease-out 0.4s forwards;
+        }
+
+        /* Progress Bar */
+        .loading-line {
+            width: 180px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 99px;
+            overflow: hidden;
+            position: relative;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 0.8s forwards;
+        }
+
+        .loading-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #60a5fa, #c084fc);
+            border-radius: 99px;
+            animation: loadProgress 2.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes heroEnter {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+                filter: blur(10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes loadProgress {
+            0% {
+                width: 0%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        .hidden-splash {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Breadcrumb -->
-    <nav class="breadcrumb">
-        <div class="container breadcrumb-list">
-            <a href="../../index.html" class="breadcrumb-link">Home</a>
-            <span>/</span>
-            <span class="breadcrumb-current">Aptitude & Reasoning</span>
+    <!-- Welcome Splash Screen -->
+    <div id="welcome-screen">
+        <div class="welcome-content">
+            <h1 class="welcome-title">Welcome</h1>
+            <p class="welcome-subtitle">Mission Placements Daily Challenge</p>
+            <div class="loading-line"></div>
         </div>
-    </nav>
+    </div>
+    <script>
+        // Remove Splash Screen after 2.5 seconds (2s wait + 0.5s fade)
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('welcome-screen');
+                if (splash) {
+                    splash.classList.add('hidden-splash');
+                }
+            }, 2000);
+        });
+    </script>
 
-    <!-- Hero Header -->
-    <header>
-        <div class="container header-content text-center">
-            <div class="badge date-badge" id="today-date">Loading date...</div>
-            <div class="text-center">
-                <h1>Daily Aptitude Challenge <span class="badge badge-warning"
-                        style="vertical-align: middle; font-size: 0.7rem;">NEW</span></h1>
-                <p class="subtitle">Sharpen your logical reasoning and quantitative skills with our daily curated
-                    problems.</p>
+    <!-- HOME VIEW -->
+    <div id="home-view" class="view-section active">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <div class="container breadcrumb-list">
+                <a href="../../index.html" class="breadcrumb-link">Home</a>
+                <span>/</span>
+                <span class="breadcrumb-current">Aptitude & Reasoning</span>
             </div>
-            <a href="#full-syllabus" class="cta-button">
-                <span>View Full Syllabus</span>
-                <span style="font-size: 1.1em;">↓</span>
-            </a>
-        </div>
-    </header>
+        </nav>
 
-    <main class="container">
-
-        <!-- Practice Section -->
-        <section class="section reveal">
-            <div class="section-header">
-                <h2 class="section-title">Today's Practice</h2>
-            </div>
-            <div class="card">
-                <div class="coming-soon">
-                    <span style="font-size: 2.5rem;">📝</span>
-                    <h3>Placements Series Day 45 is Live!</h3>
-                    <p>Scroll down to access today's challenge content below.</p>
+        <!-- Hero Header -->
+        <header>
+            <div class="container header-content text-center">
+                <div class="badge date-badge" id="today-date">Loading date...</div>
+                <div class="text-center">
+                    <h1>Daily Aptitude Challenge <span class="badge badge-warning"
+                            style="vertical-align: middle; font-size: 0.7rem;">NEW</span></h1>
+                    <p class="subtitle">Sharpen your logical reasoning and quantitative skills with our daily curated
+                        problems.</p>
                 </div>
+                <button onclick="showSyllabus()" class="cta-button" style="border:none; cursor:pointer;">
+                    <span>View Full Syllabus</span>
+                    <span style="font-size: 1.1em;">→</span>
+                </button>
             </div>
-        </section>
+        </header>
 
-        <!-- Poll Section -->
-        <section class="section reveal" style="animation-delay: 0.1s;">
-            <div class="section-header">
-                <h2 class="section-title">Daily Poll</h2>
-            </div>
-            <div class="card">
-                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Participate in today's quick poll to test
-                    your knowledge:</p>
-                <div class="iframe-container">
-                    <div class="iframe-loader">
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">⏳</div>
-                        <p>Loading form...</p>
+        <main class="container">
+            <!-- Practice Section -->
+            <section class="section reveal">
+                <div class="section-header">
+                    <h2 class="section-title">Today's Practice</h2>
+                </div>
+                <div class="card">
+                    <div class="coming-soon">
+                        <span style="font-size: 2.5rem;">📝</span>
+                        <div>
+                            <h3 id="series-day-title">Placements Series Day 45 is Live!</h3>
+                            <p>Scroll down to access today's challenge content below.</p>
+                        </div>
                     </div>
-                    <iframe
-                        src="https://docs.google.com/forms/d/e/1FAIpQLSdUjqoA4QM6NwxKUcsed_fm-Nkiy40ZSly9yG47cXsKBLnxiQ/viewform?usp=dialog"
-                        loading="lazy" onload="this.previousElementSibling.style.display='none'" title="Practice Poll">
-                    </iframe>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Syllabus Section -->
-        <section id="full-syllabus" class="section reveal" style="animation-delay: 0.2s;">
-            <div class="section-header">
-                <h2 class="section-title">Complete Syllabus</h2>
-            </div>
-            <div class="card">
-                <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">Master these 10 cycles to ace any
-                    placement aptitude test. Covering both Quantitative Aptitude and Logical Reasoning.</p>
-                <div class="syllabus-table-container">
-                    <table class="syllabus-table">
-                        <thead>
-                            <tr>
-                                <th>Cycle</th>
-                                <th>Quantitative Aptitude</th>
-                                <th>Logical Reasoning</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td class="topic-cell">Number System & Simplification<small>Divisibility, HCF/LCM,
-                                        Remainders</small></td>
-                                <td class="topic-cell">Series Completion<small>Number, Alphabet, & Alphanumeric</small>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td class="topic-cell">Percentages</td>
-                                <td class="topic-cell">Coding-Decoding</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td class="topic-cell">Profit, Loss & Discount</td>
-                                <td class="topic-cell">Blood Relations</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td class="topic-cell">Ratio, Proportion & Ages</td>
-                                <td class="topic-cell">Direction Sense Test</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td class="topic-cell">Averages & Mixtures</td>
-                                <td class="topic-cell">Order, Ranking & Odd Man Out</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td class="topic-cell">Simple & Compound Interest</td>
-                                <td class="topic-cell">Seating Arrangement<small>Linear & Circular</small></td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td class="topic-cell">Time & Work<small>Pipes & Cisterns</small></td>
-                                <td class="topic-cell">Syllogisms<small>Logic Statements</small></td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td class="topic-cell">Time, Speed & Distance<small>Trains, Boats</small></td>
-                                <td class="topic-cell">Clocks & Calendars</td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td class="topic-cell">Permutation, Combination & Probability</td>
-                                <td class="topic-cell">Data Sufficiency</td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td class="topic-cell">Mensuration & Geometry<small>2D & 3D</small></td>
-                                <td class="topic-cell">Data Interpretation & Visual Reasoning</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <!-- Poll Section -->
+            <section class="section reveal" style="animation-delay: 0.1s;">
+                <div class="section-header">
+                    <h2 class="section-title">Daily Poll</h2>
                 </div>
+                <div class="card">
+                    <p style="margin-bottom: 1rem; color: var(--text-secondary);">Participate in today's quick poll to
+                        test your knowledge:</p>
+                    <div class="iframe-container">
+                        <div class="iframe-loader">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">⏳</div>
+                            <p>Loading form...</p>
+                        </div>
+                        <iframe
+                            src="https://docs.google.com/forms/d/e/1FAIpQLSdUjqoA4QM6NwxKUcsed_fm-Nkiy40ZSly9yG47cXsKBLnxiQ/viewform?usp=dialog"
+                            loading="lazy" onload="this.previousElementSibling.style.display='none'"
+                            title="Practice Poll">
+                        </iframe>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center">
+            <div class="container">
+                <p>Mission Placements © 2026 | <a href="../../index.html">Home</a></p>
             </div>
-        </section>
+        </footer>
+    </div>
 
-    </main>
+    <!-- SYLLABUS VIEW -->
+    <div id="syllabus-view" class="view-section" style="display: none;">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <div class="container breadcrumb-list">
+                <a href="#" onclick="showHome(); return false;" class="breadcrumb-link">Home</a>
+                <span>/</span>
+                <span class="breadcrumb-link" onclick="showHome(); return false;"
+                    style="cursor: pointer;">Aptitude</span>
+                <span>/</span>
+                <span class="breadcrumb-current">Syllabus</span>
+            </div>
+        </nav>
 
-    <!-- Footer -->
-    <footer class="text-center">
-        <div class="container">
-            <p>Mission Placements © 2026 | <a href="../../index.html">Home</a></p>
+        <div class="container" style="padding-top: 2rem; padding-bottom: 2rem;">
+            <button onclick="showHome()" class="cta-button"
+                style="border:none; cursor:pointer; background: var(--surface); color: var(--primary); border: 1px solid var(--border); box-shadow: var(--shadow-sm); margin-bottom: 1.5rem;">
+                <span style="font-size: 1.1em;">←</span>
+                <span>Back to Daily Challenge</span>
+            </button>
+
+            <section id="full-syllabus" class="section reveal active">
+                <div class="section-header">
+                    <h2 class="section-title">Complete Syllabus</h2>
+                </div>
+                <div class="card">
+                    <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">Master these 10 cycles to ace any
+                        placement aptitude test. Covering both Quantitative Aptitude and Logical Reasoning.</p>
+                    <div class="syllabus-table-container">
+                        <table class="syllabus-table">
+                            <thead>
+                                <tr>
+                                    <th>Cycle</th>
+                                    <th>Quantitative Aptitude</th>
+                                    <th>Logical Reasoning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td class="topic-cell">Number System & Simplification<small>Divisibility, HCF/LCM,
+                                            Remainders</small></td>
+                                    <td class="topic-cell">Series Completion<small>Number, Alphabet, &
+                                            Alphanumeric</small></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td class="topic-cell">Percentages</td>
+                                    <td class="topic-cell">Coding-Decoding</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td class="topic-cell">Profit, Loss & Discount</td>
+                                    <td class="topic-cell">Blood Relations</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td class="topic-cell">Ratio, Proportion & Ages</td>
+                                    <td class="topic-cell">Direction Sense Test</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td class="topic-cell">Averages & Mixtures</td>
+                                    <td class="topic-cell">Order, Ranking & Odd Man Out</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td class="topic-cell">Simple & Compound Interest</td>
+                                    <td class="topic-cell">Seating Arrangement<small>Linear & Circular</small></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td class="topic-cell">Time & Work<small>Pipes & Cisterns</small></td>
+                                    <td class="topic-cell">Syllogisms<small>Logic Statements</small></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td class="topic-cell">Time, Speed & Distance<small>Trains, Boats</small></td>
+                                    <td class="topic-cell">Clocks & Calendars</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td class="topic-cell">Permutation, Combination & Probability</td>
+                                    <td class="topic-cell">Data Sufficiency</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td class="topic-cell">Mensuration & Geometry<small>2D & 3D</small></td>
+                                    <td class="topic-cell">Data Interpretation & Visual Reasoning</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
         </div>
-    </footer>
+
+        <!-- Footer -->
+        <footer class="text-center" style="margin-top: 2rem;">
+            <div class="container">
+                <p>Mission Placements © 2026 | <a href="#" onclick="showHome(); return false;">Home</a></p>
+            </div>
+        </footer>
+    </div>
 
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
         <ul class="nav-list">
             <li><a href="../../index.html" class="nav-item"><span class="nav-icon">🏠</span><span
                         class="nav-label">Home</span></a></li>
-            <li><a href="../aptitude/index.html" class="nav-item active"><span class="nav-icon">🧠</span><span
-                        class="nav-label">Aptitude</span></a></li>
+            <li><a href="#" onclick="showHome(); return false;" class="nav-item active"><span
+                        class="nav-icon">🧠</span><span class="nav-label">Aptitude</span></a></li>
             <li><a href="../coding/index.html" class="nav-item"><span class="nav-icon">💻</span><span
                         class="nav-label">Coding</span></a></li>
             <li><a href="../soft-skills/index.html" class="nav-item"><span class="nav-icon">🗣️</span><span
@@ -620,6 +911,41 @@
     </nav>
 
     <script>
+        // View Navigation Logic
+        function showSyllabus() {
+            document.getElementById('home-view').style.display = 'none';
+            document.getElementById('syllabus-view').style.display = 'block';
+            window.scrollTo(0, 0);
+            // Optional: Add history state
+            history.pushState({ view: 'syllabus' }, 'Syllabus', '#syllabus');
+        }
+
+        function showHome() {
+            document.getElementById('syllabus-view').style.display = 'none';
+            document.getElementById('home-view').style.display = 'block';
+            window.scrollTo(0, 0);
+            // Optional: Update history
+            if (window.location.hash === '#syllabus') {
+                history.back();
+            } else {
+                history.replaceState({ view: 'home' }, 'Home', ' ');
+            }
+        }
+
+        // Handle Back Button
+        window.onpopstate = function (event) {
+            if (event.state && event.state.view === 'syllabus') {
+                showSyllabus();
+            } else {
+                showHome();
+            }
+        };
+
+        // Check hash on load
+        if (window.location.hash === '#syllabus') {
+            showSyllabus();
+        }
+
         // Set Date and Time (IST)
         function updateDateTime() {
             const now = new Date();
@@ -627,10 +953,25 @@
             const timeOptions = { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'Asia/Kolkata' };
             const dateStr = now.toLocaleDateString('en-US', dateOptions);
             const timeStr = now.toLocaleTimeString('en-US', timeOptions);
-            document.getElementById('today-date').innerHTML = `📅 ${dateStr} &nbsp;•&nbsp; ⏰ ${timeStr} IST`;
+            const dateEl = document.getElementById('today-date');
+            if (dateEl) dateEl.innerHTML = `📅 ${dateStr} &nbsp;•&nbsp; ⏰ ${timeStr} IST`;
         }
         updateDateTime();
         setInterval(updateDateTime, 1000);
+
+        // Calculate and Set Series Day
+        function updateSeriesDay() {
+            const startDate = new Date('2025-12-30T00:00:00+05:30'); // Start Date
+            const now = new Date();
+            const timeDiff = now - startDate;
+            const dayDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+            const titleEl = document.getElementById('series-day-title');
+            if (titleEl) {
+                titleEl.textContent = `Placements Series Day ${dayDiff} is Live!`;
+            }
+        }
+        updateSeriesDay();
 
         // Intersection Observer for Scroll Reveal
         document.addEventListener('DOMContentLoaded', () => {
