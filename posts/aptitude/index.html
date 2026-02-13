@@ -1,230 +1,651 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light only">
-    <meta name="theme-color" content="#1B365D">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src https://docs.google.com; connect-src 'self' https:; font-src 'self' data:;">
+    <meta name="theme-color" content="#0f172a">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; frame-src https://docs.google.com; connect-src 'self' https:; font-src 'self' data: https://fonts.gstatic.com;">
     <title>Aptitude & Reasoning - Mission Placements</title>
-    <meta name="description" content="Daily aptitude and logical reasoning practice questions for placement preparation">
+    <meta name="description"
+        content="Daily aptitude and logical reasoning practice questions for placement preparation">
     <link rel="icon" type="image/png" href="../../LOGO.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        html, body { scroll-behavior: smooth; overflow-x: hidden; max-width: 100vw; }
-        :root { --primary-navy: #1B365D; --primary-teal: #17A2B8; --primary-green: #28A745; --accent-orange: #F5A623; --accent-yellow: #FFC107; --light-bg: #f5f8fa; --white: #ffffff; --dark-text: #1B365D; --gray-text: #5a6a7a; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--dark-text); background: var(--light-bg); }
-        .breadcrumb { background: var(--white); padding: 0.8rem 1rem; font-size: 0.85rem; border-bottom: 1px solid rgba(27, 54, 93, 0.1); }
-        .breadcrumb a { color: var(--primary-teal); text-decoration: none; }
-        .breadcrumb a:hover { text-decoration: underline; }
-        .breadcrumb span { color: var(--gray-text); margin: 0 0.5rem; }
-        .breadcrumb .current { color: var(--dark-text); font-weight: 500; }
-        header { background: linear-gradient(135deg, var(--primary-navy) 0%, #2d4a6f 100%); color: white; padding: 1.5rem 1rem; text-align: center; }
-        header h1 { font-size: 1.5rem; margin-bottom: 0.3rem; }
-        header p { opacity: 0.9; font-size: 0.9rem; }
-            .top-syllabus-btn { display: inline-block; margin-top: 0.8rem; background: #F2B705; color: #07203A; padding: 0.45rem 0.9rem; border-radius: 999px; font-weight: 700; text-decoration: none; box-shadow: 0 6px 18px rgba(242,183,5,0.12); }
-            .top-syllabus-btn:hover, .top-syllabus-btn:focus { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(242,183,5,0.16); }
-        main { max-width: 900px; margin: 1rem auto; padding: 0 0.5rem; }
-        .section { background: var(--white); border-radius: 10px; padding: 1rem; margin-bottom: 1rem; box-shadow: 0 2px 10px rgba(27, 54, 93, 0.1); }
-        .section h2 { color: var(--primary-navy); font-size: 1.1rem; margin-bottom: 0.8rem; border-bottom: 3px solid var(--primary-teal); padding-bottom: 0.5rem; display: inline-block; }
-        .coming-soon { text-align: center; padding: 2rem 1rem; color: var(--gray-text); }
-        footer { background: var(--primary-navy); color: white; text-align: center; padding: 1.5rem 1rem; margin-top: 1rem; }
-        footer a { color: var(--accent-yellow); text-decoration: none; font-weight: bold; }
-        /* Sticky Bottom Navigation */
-        .bottom-nav { display: block; position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 1px solid rgba(27,54,93,0.1); z-index: 1000; padding: 0.5rem 0; padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px)); box-shadow: 0 -2px 10px rgba(0,0,0,0.1); }
-        .bottom-nav ul { display: flex; justify-content: space-around; align-items: center; list-style: none; margin: 0; padding: 0; }
-        .bottom-nav a { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; padding: 0.5rem 1rem; color: var(--gray-text); text-decoration: none; font-size: 0.7rem; font-weight: 500; min-height: 48px; min-width: 60px; justify-content: center; border-radius: 8px; transition: all 0.2s; }
-        .bottom-nav a .nav-icon { font-size: 1.4rem; line-height: 1; }
-        .bottom-nav a:hover, .bottom-nav a:focus { color: var(--primary-teal); background: rgba(23,162,184,0.1); }
-        .bottom-nav a.active { color: var(--primary-teal); }
-        .bottom-nav a.active .nav-icon { transform: scale(1.1); }
-        body { padding-bottom: 70px; }
-        footer { padding-bottom: calc(1.5rem + 70px + env(safe-area-inset-bottom, 0px)); }
-        /* Syllabus Table Styles */
-        .syllabus-section { background: linear-gradient(135deg, #0B1C2D 0%, #132A3E 100%); border: 1px solid rgba(58, 123, 213, 0.3); }
-        .syllabus-section h2 { color: #F2B705; border-bottom-color: #3A7BD5; }
-        .syllabus-intro { color: #9BA8B4; font-size: 0.9rem; margin-bottom: 1rem; }
-        .syllabus-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 10px; overflow: hidden; font-size: 0.85rem; }
-        .syllabus-table thead { background: linear-gradient(135deg, #3A7BD5 0%, #2563eb 100%); }
-        .syllabus-table th { color: white; padding: 0.8rem 0.6rem; text-align: left; font-weight: 600; font-size: 0.8rem; }
-        .syllabus-table th:first-child { width: 50px; text-align: center; }
-        .syllabus-table tbody tr { background: rgba(22, 47, 70, 0.5); transition: all 0.2s ease; }
-        .syllabus-table tbody tr:nth-child(even) { background: rgba(19, 42, 62, 0.7); }
-        .syllabus-table tbody tr:hover { background: rgba(58, 123, 213, 0.2); transform: scale(1.01); }
-        .syllabus-table td { padding: 0.7rem 0.6rem; color: #EDEFF3; border-bottom: 1px solid rgba(58, 123, 213, 0.15); }
-        .syllabus-table td:first-child { text-align: center; font-weight: bold; color: #F2B705; background: rgba(242, 183, 5, 0.1); }
-        .syllabus-table .quant-col { color: #4ECDC4; }
-        .syllabus-table .logic-col { color: #FF6B9D; }
-        .topic-tag { display: inline-block; font-size: 0.7rem; padding: 0.15rem 0.4rem; border-radius: 4px; margin-left: 0.3rem; }
-        .tag-quant { background: rgba(78, 205, 196, 0.2); color: #4ECDC4; }
-        .tag-logic { background: rgba(255, 107, 157, 0.2); color: #FF6B9D; }
-        .syllabus-legend { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; justify-content: center; }
-        .legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: #9BA8B4; }
-        .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
-        .legend-dot.quant { background: #4ECDC4; }
-        .legend-dot.logic { background: #FF6B9D; }
-        @media (max-width: 600px) {
-            .syllabus-table { font-size: 0.75rem; }
-            .syllabus-table th, .syllabus-table td { padding: 0.5rem 0.4rem; }
-            .syllabus-table th:first-child, .syllabus-table td:first-child { width: 35px; }
+        :root {
+            --primary: #0f172a;
+            --primary-light: #1e293b;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #0f172a;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --radius: 12px;
         }
-        /* Daily Date Badge */
-        .date-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: linear-gradient(135deg, var(--primary-teal), #20c997); color: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.5rem; animation: pulse 2s infinite; }
-        .date-badge::before { content: '📅'; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
-        .new-badge { display: inline-block; background: #ff4757; color: white; padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.65rem; font-weight: bold; margin-left: 0.5rem; animation: blink 1.5s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
-        .urgency-text { color: var(--primary-teal); font-weight: 600; }
-        /* Scroll reveal utility */
-        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 600ms cubic-bezier(0.2,0.8,0.2,1), transform 600ms cubic-bezier(0.2,0.8,0.2,1); will-change: opacity, transform; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 80px;
+            /* Space for bottom nav */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Helpers */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            gap: 0.4rem;
+        }
+
+        .badge-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .badge-accent {
+            background: var(--accent);
+            color: white;
+        }
+
+        .badge-warning {
+            background: var(--warning);
+            color: #fff;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            animation: fadeIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .reveal.active {
+            opacity: 1;
+        }
+
+        /* Navigation */
+        .breadcrumb {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 0;
+            font-size: 0.875rem;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .breadcrumb-list {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--accent);
+        }
+
+        .breadcrumb-current {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* Header */
+        header {
+            padding: 3rem 0;
+            background: linear-gradient(to bottom, #dbeafe, #f8fafc);
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .date-badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            max-width: 600px;
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        /* Content Sections */
+        .section {
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            padding: 1.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 1.5rem;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Alert/Empty State */
+        .coming-soon {
+            background: #f8fafc;
+            border: 1px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .coming-soon h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .coming-soon p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Iframe */
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: #f1f5f9;
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .iframe-loader {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            z-index: 0;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Syllabus Table */
+        .syllabus-table-container {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .syllabus-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+            font-size: 0.9rem;
+        }
+
+        .syllabus-table th {
+            background: var(--primary);
+            color: white;
+            text-align: left;
+            padding: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        .syllabus-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .syllabus-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .syllabus-table tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .syllabus-table td:first-child {
+            font-weight: 700;
+            color: var(--accent);
+            text-align: center;
+            background: #fdfdfd;
+            width: 60px;
+        }
+
+        .topic-cell small {
+            display: block;
+            margin-top: 0.25rem;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        .syllabus-footer {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .legend-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        .ind-quant {
+            background-color: var(--success);
+        }
+
+        .ind-logic {
+            background-color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        footer a {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border);
+            padding: 0.5rem 0;
+            padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+            z-index: 100;
+            box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-list {
+            display: flex;
+            justify-content: space-around;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+            color: var(--text-secondary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 8px;
+            min-width: 64px;
+        }
+
+        .nav-item.active {
+            color: var(--accent);
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .nav-icon {
+            font-size: 1.25rem;
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            color: var(--text-main);
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .section {
+                margin: 1.5rem 0;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+        }
     </style>
 </head>
-<body>
-    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">🏠 Home</a><span>›</span><span class="current">Aptitude & Reasoning</span></nav>
-    <header>
-        <div class="date-badge" id="today-date"></div>
-        <h1>🧮 Today's Aptitude Challenge<span class="new-badge">NEW</span></h1>
-        <p>Fresh daily problems to sharpen your mind</p>
-        <p><a href="#full-syllabus" class="top-syllabus-btn" id="view-syllabus-top">View Full Syllabus</a></p>
-    </header>
-    <script>document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US', {weekday: 'long', month: 'short', day: 'numeric'});</script>
-    <main>
-        <!-- Syllabus removed from here and moved to page bottom -->
 
-        <section class="section">
-            <h2>📝 Today's Practice Questions</h2>
-            <div class="coming-soon reveal">
-                <p style="font-weight:700; font-size:1.05rem;">Placements Series day 45 is live now ! </p>
-                <p style="margin-top:0.4rem; color:var(--gray-text);">Scroll down for today's content and practice items.</p>
-                
-            </div>
-        </section>
-        <section class="section">
-            <h2>📊 Today's Practice Poll</h2>
-            <p style="margin-bottom: 0.8rem; font-size: 0.9rem;">Answer today's question:</p>
-            <div style="position: relative; min-height: 600px; background: var(--light-bg); border-radius: 8px; overflow: hidden;">
-                <!-- Loading indicator -->
-                <div class="iframe-loading" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gray-text);">
-                    <div style="text-align: center;">
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">⏳</div>
-                        <p>Loading content...</p>
-                    </div>
-                </div>
-                <!-- Your iframe -->
-                <iframe 
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSdUjqoA4QM6NwxKUcsed_fm-Nkiy40ZSly9yG47cXsKBLnxiQ/viewform?usp=dialog" 
-                    width="100%" 
-                    height="600" 
-                    frameborder="0" 
-                    style="border: none; position: relative; z-index: 1;" 
-                    loading="lazy"
-                    onload="this.previousElementSibling.style.display='none'"
-                    title="Practice Poll">
-                </iframe>
-            </div>
-        </section>
-    </main>
-    <!-- Full syllabus placed at the bottom so top button scrolls here -->
-    <section id="full-syllabus" class="section syllabus-section" aria-label="Complete Aptitude Syllabus">
-        <h2>📚 Complete Aptitude Syllabus</h2>
-        <p class="syllabus-intro">Master these 10 cycles to ace any placement aptitude test. Each cycle covers both Quantitative Aptitude and Logical Reasoning topics.</p>
-        <table class="syllabus-table">
-            <thead>
-                <tr>
-                    <th>Cycle</th>
-                    <th>🔢 Quantitative Aptitude</th>
-                    <th>🧩 Logical Reasoning</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td class="quant-col">Number System & Simplification<br><small style="opacity:0.7">(Divisibility, HCF/LCM, Remainders)</small></td>
-                    <td class="logic-col">Series Completion<br><small style="opacity:0.7">(Number, Alphabet, & Alphanumeric)</small></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td class="quant-col">Percentages</td>
-                    <td class="logic-col">Coding-Decoding</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td class="quant-col">Profit, Loss & Discount</td>
-                    <td class="logic-col">Blood Relations</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td class="quant-col">Ratio, Proportion & Ages</td>
-                    <td class="logic-col">Direction Sense Test</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td class="quant-col">Averages & Mixtures</td>
-                    <td class="logic-col">Order, Ranking & Odd Man Out</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td class="quant-col">Simple & Compound Interest</td>
-                    <td class="logic-col">Seating Arrangement<br><small style="opacity:0.7">(Linear & Circular)</small></td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td class="quant-col">Time & Work<br><small style="opacity:0.7">(Pipes & Cisterns)</small></td>
-                    <td class="logic-col">Syllogisms<br><small style="opacity:0.7">(Logic Statements)</small></td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td class="quant-col">Time, Speed & Distance<br><small style="opacity:0.7">(Trains, Boats)</small></td>
-                    <td class="logic-col">Clocks & Calendars</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td class="quant-col">Permutation, Combination & Probability</td>
-                    <td class="logic-col">Data Sufficiency</td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td class="quant-col">Mensuration & Geometry<br><small style="opacity:0.7">(2D & 3D)</small></td>
-                    <td class="logic-col">Data Interpretation & Visual Reasoning</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="syllabus-legend">
-            <div class="legend-item"><span class="legend-dot quant"></span> Quantitative</div>
-            <div class="legend-item"><span class="legend-dot logic"></span> Logical Reasoning</div>
+<body>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <div class="container breadcrumb-list">
+            <a href="../../index.html" class="breadcrumb-link">Home</a>
+            <span>/</span>
+            <span class="breadcrumb-current">Aptitude & Reasoning</span>
         </div>
-    </section>
-    <footer><p>Mission Placements © 2026 | <a href="../../index.html">Home</a></p></footer>
-    <nav class="bottom-nav" aria-label="Quick navigation">
-        <ul>
-            <li><a href="../../index.html"><span class="nav-icon">🏠</span><span>Home</span></a></li>
-            <li><a href="../aptitude/index.html" class="active" aria-current="page"><span class="nav-icon">🧠</span><span>Aptitude</span></a></li>
-            <li><a href="../coding/index.html"><span class="nav-icon">💻</span><span>Coding</span></a></li>
-            <li><a href="../soft-skills/index.html"><span class="nav-icon">🗣️</span><span>Soft Skills</span></a></li>
-            <li><a href="../tech-news/index.html"><span class="nav-icon">📰</span><span>News</span></a></li>
+    </nav>
+
+    <!-- Hero Header -->
+    <header>
+        <div class="container header-content text-center">
+            <div class="badge date-badge" id="today-date">Loading date...</div>
+            <div class="text-center">
+                <h1>Daily Aptitude Challenge <span class="badge badge-warning"
+                        style="vertical-align: middle; font-size: 0.7rem;">NEW</span></h1>
+                <p class="subtitle">Sharpen your logical reasoning and quantitative skills with our daily curated
+                    problems.</p>
+            </div>
+            <a href="#full-syllabus" class="cta-button">
+                <span>View Full Syllabus</span>
+                <span style="font-size: 1.1em;">↓</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Practice Section -->
+        <section class="section reveal">
+            <div class="section-header">
+                <h2 class="section-title">Today's Practice</h2>
+            </div>
+            <div class="card">
+                <div class="coming-soon">
+                    <span style="font-size: 2.5rem;">📝</span>
+                    <h3>Placements Series Day 45 is Live!</h3>
+                    <p>Scroll down to access today's challenge content below.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Poll Section -->
+        <section class="section reveal" style="animation-delay: 0.1s;">
+            <div class="section-header">
+                <h2 class="section-title">Daily Poll</h2>
+            </div>
+            <div class="card">
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">Participate in today's quick poll to test
+                    your knowledge:</p>
+                <div class="iframe-container">
+                    <div class="iframe-loader">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">⏳</div>
+                        <p>Loading form...</p>
+                    </div>
+                    <iframe
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSdUjqoA4QM6NwxKUcsed_fm-Nkiy40ZSly9yG47cXsKBLnxiQ/viewform?usp=dialog"
+                        loading="lazy" onload="this.previousElementSibling.style.display='none'" title="Practice Poll">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Syllabus Section -->
+        <section id="full-syllabus" class="section reveal" style="animation-delay: 0.2s;">
+            <div class="section-header">
+                <h2 class="section-title">Complete Syllabus</h2>
+            </div>
+            <div class="card">
+                <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">Master these 10 cycles to ace any
+                    placement aptitude test. Covering both Quantitative Aptitude and Logical Reasoning.</p>
+                <div class="syllabus-table-container">
+                    <table class="syllabus-table">
+                        <thead>
+                            <tr>
+                                <th>Cycle</th>
+                                <th>Quantitative Aptitude</th>
+                                <th>Logical Reasoning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td class="topic-cell">Number System & Simplification<small>Divisibility, HCF/LCM,
+                                        Remainders</small></td>
+                                <td class="topic-cell">Series Completion<small>Number, Alphabet, & Alphanumeric</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td class="topic-cell">Percentages</td>
+                                <td class="topic-cell">Coding-Decoding</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td class="topic-cell">Profit, Loss & Discount</td>
+                                <td class="topic-cell">Blood Relations</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td class="topic-cell">Ratio, Proportion & Ages</td>
+                                <td class="topic-cell">Direction Sense Test</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td class="topic-cell">Averages & Mixtures</td>
+                                <td class="topic-cell">Order, Ranking & Odd Man Out</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td class="topic-cell">Simple & Compound Interest</td>
+                                <td class="topic-cell">Seating Arrangement<small>Linear & Circular</small></td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td class="topic-cell">Time & Work<small>Pipes & Cisterns</small></td>
+                                <td class="topic-cell">Syllogisms<small>Logic Statements</small></td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td class="topic-cell">Time, Speed & Distance<small>Trains, Boats</small></td>
+                                <td class="topic-cell">Clocks & Calendars</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td class="topic-cell">Permutation, Combination & Probability</td>
+                                <td class="topic-cell">Data Sufficiency</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td class="topic-cell">Mensuration & Geometry<small>2D & 3D</small></td>
+                                <td class="topic-cell">Data Interpretation & Visual Reasoning</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>Mission Placements © 2026 | <a href="../../index.html">Home</a></p>
+        </div>
+    </footer>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <ul class="nav-list">
+            <li><a href="../../index.html" class="nav-item"><span class="nav-icon">🏠</span><span
+                        class="nav-label">Home</span></a></li>
+            <li><a href="../aptitude/index.html" class="nav-item active"><span class="nav-icon">🧠</span><span
+                        class="nav-label">Aptitude</span></a></li>
+            <li><a href="../coding/index.html" class="nav-item"><span class="nav-icon">💻</span><span
+                        class="nav-label">Coding</span></a></li>
+            <li><a href="../soft-skills/index.html" class="nav-item"><span class="nav-icon">🗣️</span><span
+                        class="nav-label">Soft Skills</span></a></li>
+            <li><a href="../tech-news/index.html" class="nav-item"><span class="nav-icon">📰</span><span
+                        class="nav-label">News</span></a></li>
         </ul>
     </nav>
+
     <script>
-        // Scroll reveal using IntersectionObserver
-        document.addEventListener('DOMContentLoaded', function(){
-            const reveals = document.querySelectorAll('.reveal');
-            if(!('IntersectionObserver' in window)){
-                // Fallback: just show them
-                reveals.forEach(r => r.classList.add('active'));
-                return;
-            }
-            const observer = new IntersectionObserver((entries, obs) => {
+        // Set Date and Time (IST)
+        function updateDateTime() {
+            const now = new Date();
+            const dateOptions = { weekday: 'short', month: 'short', day: 'numeric' };
+            const timeOptions = { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'Asia/Kolkata' };
+            const dateStr = now.toLocaleDateString('en-US', dateOptions);
+            const timeStr = now.toLocaleTimeString('en-US', timeOptions);
+            document.getElementById('today-date').innerHTML = `📅 ${dateStr} &nbsp;•&nbsp; ⏰ ${timeStr} IST`;
+        }
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+        // Intersection Observer for Scroll Reveal
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if(entry.isIntersecting){
+                    if (entry.isIntersecting) {
                         entry.target.classList.add('active');
-                        obs.unobserve(entry.target);
+                        observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.12 });
-            reveals.forEach(el => observer.observe(el));
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         });
     </script>
 </body>
+
 </html>
