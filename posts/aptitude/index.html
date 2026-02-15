@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -210,8 +211,11 @@
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
-            overflow: hidden;
+            overflow: visible;
+            /* Changed from hidden to allow image to sit on top/outside */
             padding: 1.5rem;
+            position: relative;
+            /* Added for absolute positioning context */
         }
 
         .section-header {
@@ -687,6 +691,101 @@
             visibility: hidden !important;
             pointer-events: none;
         }
+
+        /* Divine Presence Animation */
+        .divine-container {
+            position: absolute;
+            pointer-events: none;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .divine-welcome {
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            /* Placeholder for image */
+            background: radial-gradient(circle, rgba(255, 223, 0, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            animation: divineFloat 4s ease-in-out infinite, divineGlow 3s ease-in-out infinite alternate;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+        }
+
+        .divine-practice {
+            position: absolute;
+            top: -60px;
+            right: 20px;
+            width: 120px;
+            height: 120px;
+            z-index: 5;
+            /* Placeholder styling */
+            font-size: 4rem;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+            animation: divineBlessing 3s ease-in-out infinite alternate;
+        }
+
+        /* Simulating "Drawing" effect for welcome */
+        .divine-drawing-effect {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* If it were an image */
+            /* filter: drop-shadow(0 0 5px gold); */
+            animation: drawingReveal 2s ease-out forwards;
+        }
+
+        @keyframes divineFloat {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(-15px);
+            }
+        }
+
+        @keyframes divineGlow {
+            0% {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+            }
+
+            100% {
+                box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
+            }
+        }
+
+        @keyframes divineBlessing {
+            0% {
+                transform: translateY(0) scale(1);
+                filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+            }
+
+            100% {
+                transform: translateY(-5px) scale(1.05);
+                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 1));
+            }
+        }
+
+        @keyframes drawingReveal {
+            0% {
+                opacity: 0;
+                clip-path: circle(0% at 50% 50%);
+            }
+
+            100% {
+                opacity: 1;
+                clip-path: circle(100% at 50% 50%);
+            }
+        }
     </style>
 </head>
 
@@ -697,18 +796,46 @@
         <div class="welcome-content">
             <h1 class="welcome-title">Welcome</h1>
             <p class="welcome-subtitle">Mission Placements Daily Challenge</p>
+            <p id="festival-msg" class="welcome-subtitle"
+                style="display:none; color: #ffd700; font-size: 1.3rem; margin-top: -1rem; text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);">
+                Happy Mahashivaratri ✨</p>
             <div class="loading-line"></div>
         </div>
     </div>
     <script>
         // Remove Splash Screen after 2.5 seconds (2s wait + 0.5s fade)
         window.addEventListener('load', () => {
+            // Festival Message Logic
+            const now = new Date();
+            const cutoff = new Date('2026-02-16T12:00:00+05:30'); // Feb 16, 2026 12:00 PM IST
+
+            if (now < cutoff) {
+                const festMsg = document.getElementById('festival-msg');
+                if (festMsg) {
+                    festMsg.style.display = 'block';
+                }
+
+                // Update "Today's Practice" Box
+                const practiceTitle = document.getElementById('series-day-title');
+                if (practiceTitle) {
+                    practiceTitle.textContent = 'Today is a Holiday!';
+                    const practiceDesc = practiceTitle.nextElementSibling;
+                    if (practiceDesc) {
+                        practiceDesc.innerHTML = 'Wishing you and your family a Happy Maha Shivaratri!<br>Enjoy the festive day.';
+                    }
+                    const iconSpan = practiceTitle.closest('.coming-soon').querySelector('span');
+                    if (iconSpan) {
+                        iconSpan.textContent = '✨';
+                    }
+                }
+            }
+
             setTimeout(() => {
                 const splash = document.getElementById('welcome-screen');
                 if (splash) {
                     splash.classList.add('hidden-splash');
                 }
-            }, 2000);
+            }, 3000); // Keep the splash screen for 3 seconds
         });
     </script>
 
