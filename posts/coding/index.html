@@ -29,7 +29,23 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             line-height: 1.6; 
             color: var(--dark-text); 
-            background: var(--light-bg); 
+            background: var(--light-bg);
+            position: relative;
+        }
+
+        /* Animated background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(23, 162, 184, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(40, 167, 69, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
         }
         
         /* Breadcrumb */
@@ -39,6 +55,7 @@
             font-size: 0.85rem; 
             border-bottom: 1px solid rgba(27, 54, 93, 0.1); 
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            animation: slideDown 0.5s ease-out;
         }
         .breadcrumb a { color: var(--primary-teal); text-decoration: none; transition: color 0.2s; }
         .breadcrumb a:hover { text-decoration: underline; color: var(--primary-green); }
@@ -53,6 +70,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
         }
         header::before {
             content: '';
@@ -64,18 +82,21 @@
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="rgba(255,255,255,0.05)"></path></svg>') no-repeat bottom;
             background-size: cover;
             opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
         }
         header h1 { 
             font-size: 1.8rem; 
             margin-bottom: 0.5rem;
             position: relative;
             z-index: 1;
+            animation: slideUp 0.6s ease-out 0.2s both;
         }
         header p { 
             opacity: 0.95; 
             font-size: 1rem;
             position: relative;
             z-index: 1;
+            animation: slideUp 0.6s ease-out 0.4s both;
         }
         
         /* Date Badge */
@@ -91,12 +112,21 @@
             font-weight: 600; 
             margin-bottom: 0.8rem;
             box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
-            animation: pulse 2s infinite;
+            animation: pulse 2s infinite, slideUp 0.6s ease-out both;
             position: relative;
             z-index: 1;
         }
         .date-badge::before { content: '📅'; font-size: 1.1rem; }
+        
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(20px); } }
+        @keyframes glow { 0%, 100% { box-shadow: 0 4px 15px rgba(23, 162, 184, 0.3); } 50% { box-shadow: 0 4px 25px rgba(23, 162, 184, 0.6); } }
+        @keyframes slideInLeft { from { transform: translateX(-30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes typewriter { from { width: 0; } to { width: 100%; } }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
         
         .new-badge { 
             display: inline-block; 
@@ -110,7 +140,6 @@
             box-shadow: 0 2px 8px rgba(255, 71, 87, 0.4);
             animation: blink 1.5s infinite;
         }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
         
         /* Main Content */
         main { max-width: 1000px; margin: 1.5rem auto; padding: 0 1rem; }
@@ -122,12 +151,36 @@
             margin-bottom: 1.5rem; 
             box-shadow: 0 4px 20px rgba(27, 54, 93, 0.08);
             border: 1px solid rgba(27, 54, 93, 0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+            animation: slideInLeft 0.6s ease-out both;
+            position: relative;
+            overflow: hidden;
         }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .section:hover::before {
+            left: 100%;
+        }
+        
         .section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(27, 54, 93, 0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(27, 54, 93, 0.15);
         }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
         
         .section h2 { 
             color: var(--primary-navy); 
@@ -136,6 +189,22 @@
             border-bottom: 3px solid var(--primary-green); 
             padding-bottom: 0.6rem; 
             display: inline-block;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary-teal);
+            transition: width 0.4s ease;
+        }
+
+        .section:hover h2::after {
+            width: 100%;
         }
         
         .section h3 {
@@ -145,6 +214,57 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            animation: slideInLeft 0.5s ease-out both;
+        }
+
+        .section h3 span {
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        
+        /* Difficulty Badge */
+        .difficulty {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-left: 0.5rem;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .difficulty.easy {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            color: #155724;
+            border: 1px solid #b1dfbb;
+        }
+
+        .difficulty.medium {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            color: #856404;
+            border: 1px solid #ffeb99;
+        }
+
+        .difficulty.hard {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            color: #721c24;
+            border: 1px solid #f1b0b7;
+        }
+
+        /* Time Badge */
+        .time-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: linear-gradient(135deg, rgba(23, 162, 184, 0.1), rgba(40, 167, 69, 0.1));
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--primary-navy);
+            font-weight: 600;
+            margin-left: 1rem;
         }
         
         /* Form Section - Highlighted */
@@ -152,8 +272,9 @@
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             border: 2px solid var(--primary-teal);
             position: relative;
+            box-shadow: 0 8px 32px rgba(23, 162, 184, 0.15);
         }
-        .form-section::before {
+        .form-section::after {
             content: '⚡ SUBMIT YOUR SOLUTION';
             position: absolute;
             top: -12px;
@@ -165,17 +286,23 @@
             font-size: 0.75rem;
             font-weight: bold;
             letter-spacing: 0.5px;
+            animation: slideDown 0.5s ease-out;
         }
         
         iframe {
             border: 2px solid rgba(27, 54, 93, 0.1);
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s;
+        }
+
+        iframe:hover {
+            box-shadow: 0 4px 20px rgba(23, 162, 184, 0.2);
         }
         
         /* Code Block */
         pre { 
-            background: var(--code-bg);
+            background: linear-gradient(135deg, var(--code-bg) 0%, #2a2d36 100%);
             color: var(--code-text);
             padding: 1rem 1.2rem;
             border-radius: 8px;
@@ -184,7 +311,26 @@
             font-size: 0.9rem;
             line-height: 1.5;
             border-left: 4px solid var(--primary-green);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            animation: slideInLeft 0.6s ease-out;
+            transition: all 0.3s;
+        }
+
+        pre::before {
+            content: '< />';
+            position: absolute;
+            top: 0.8rem;
+            right: 1.2rem;
+            color: rgba(171, 178, 191, 0.3);
+            font-weight: bold;
+            font-size: 1.2rem;
+            font-family: 'Segoe UI';
+        }
+
+        pre:hover {
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
         }
         
         code {
@@ -195,6 +341,12 @@
             color: #e83e8c;
             font-size: 0.9em;
         }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--code-text);
+        }
         
         /* Lists */
         ul, ol {
@@ -204,6 +356,11 @@
         li {
             margin-bottom: 0.5rem;
             line-height: 1.7;
+            transition: transform 0.2s;
+        }
+
+        li:hover {
+            transform: translateX(5px);
         }
         
         /* Notion Link Button */
@@ -218,40 +375,134 @@
             text-decoration: none;
             font-weight: 600;
             margin: 1rem 0;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             box-shadow: 0 4px 15px rgba(23, 162, 184, 0.3);
+            position: relative;
+            overflow: hidden;
         }
+
+        .notion-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .notion-link:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
         .notion-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(23, 162, 184, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(23, 162, 184, 0.5);
+        }
+
+        .notion-link span {
+            position: relative;
+            z-index: 2;
         }
         
         /* Divider */
         hr {
             margin: 1.5rem 0;
             border: none;
-            height: 1px;
+            height: 2px;
             background: linear-gradient(to right, transparent, rgba(27, 54, 93, 0.2), transparent);
+            animation: slideInLeft 0.6s ease-out;
         }
         
         /* Result Box */
         .result-box {
-            background: #d4edda;
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
             border-left: 4px solid var(--primary-green);
             padding: 0.8rem 1rem;
             border-radius: 6px;
             margin-top: 0.8rem;
             color: #155724;
             font-weight: 500;
+            animation: slideInLeft 0.6s ease-out;
+            transition: all 0.3s;
+            border: 1px solid #b1dfbb;
+        }
+
+        .result-box:hover {
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
+            transform: translateX(5px);
+        }
+
+        .result-box::before {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            animation: pulse 2s infinite;
         }
         
         /* Tips Box */
         .tips-box {
-            background: #fff3cd;
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
             border-left: 4px solid var(--accent-yellow);
             padding: 1rem;
             border-radius: 6px;
             margin-top: 1rem;
+            border: 1px solid #ffeb99;
+            transition: all 0.3s;
+        }
+
+        .tips-box:hover {
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.2);
+        }
+        
+        /* Output Box */
+        .output-box {
+            background: linear-gradient(135deg, #e7f3ff 0%, #d0e8ff 100%);
+            border-left: 4px solid var(--primary-teal);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            color: #004085;
+            font-family: 'Consolas', 'Monaco', monospace;
+            border: 1px solid #b8daff;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        /* Challenge Card */
+        .challenge-card {
+            background: linear-gradient(135deg, rgba(23, 162, 184, 0.05), rgba(40, 167, 69, 0.05));
+            border: 1px solid rgba(23, 162, 184, 0.2);
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            transition: all 0.3s;
+        }
+
+        .challenge-card:hover {
+            border-color: var(--primary-teal);
+            box-shadow: 0 4px 15px rgba(23, 162, 184, 0.15);
+            transform: translateX(5px);
+        }
+
+        .challenge-card h4 {
+            color: var(--primary-navy);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .challenge-card p {
+            color: var(--gray-text);
+            font-size: 0.95rem;
         }
         
         /* Footer */
@@ -261,13 +512,51 @@
             text-align: center; 
             padding: 2rem 1rem; 
             margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
         }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="rgba(255,255,255,0.08)"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.5;
+        }
+
+        footer p {
+            position: relative;
+            z-index: 1;
+        }
+
         footer a { 
             color: var(--accent-yellow); 
             text-decoration: none; 
             font-weight: bold;
-            transition: color 0.2s;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
         }
+
+        footer a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s;
+        }
+
+        footer a:hover::after {
+            width: 100%;
+        }
+
         footer a:hover {
             color: white;
         }
@@ -285,6 +574,7 @@
             padding: 0.5rem 0; 
             padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px)); 
             box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            animation: slideUp 0.5s ease-out;
         }
         .bottom-nav ul { 
             display: flex; 
@@ -320,7 +610,7 @@
             background: rgba(23,162,184,0.1);
         }
         .bottom-nav a:hover .nav-icon {
-            transform: scale(1.2);
+            transform: scale(1.2) rotateZ(10deg);
         }
         .bottom-nav a.active { 
             color: var(--primary-green);
@@ -328,16 +618,43 @@
         }
         .bottom-nav a.active .nav-icon { 
             transform: scale(1.15);
+            animation: bounce 0.6s ease-out;
         }
         
         body { padding-bottom: 80px; }
         footer { padding-bottom: calc(2rem + 80px + env(safe-area-inset-bottom, 0px)); }
         
+        /* Syntax Highlighting */
+        .keyword { color: #61afef; }
+        .string { color: #98c379; }
+        .number { color: #d19a66; }
+        .comment { color: #5c6370; font-style: italic; }
+
+        /* Counter Animation */
+        .counter {
+            display: inline-block;
+            font-weight: bold;
+            color: var(--primary-green);
+            animation: countUp 2s ease-out;
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             header h1 { font-size: 1.5rem; }
             .section { padding: 1rem; }
             main { padding: 0 0.5rem; }
+            .difficulty, .time-badge { display: block; margin: 0.5rem 0; }
         }
     </style>
 </head>
@@ -380,12 +697,12 @@
 
         <!-- CHALLENGE CONTENT -->
         <section class="section">
-            <h2>🐍 Python DSA: Beginner's Code Lab</h2>
+            <h2>🐍 <span>Python DSA: Beginner's Code Lab</span></h2>
             <p style="color: var(--gray-text); font-style: italic; margin-bottom: 1rem;">
                 Master the fundamentals through logic-based challenges and hands-on practice.
             </p>
             
-            <h3>📘 Learning Path: Python Basics to DSA</h3>
+            <h3>📘 <span>Learning Path: Python Basics to DSA</span></h3>
             <ul>
                 <li><b>Fundamentals:</b> Variables, Dynamic Typing, and Syntax</li>
                 <li><b>Logic:</b> Conditionals (<code>if-elif-else</code>) and Iteration (<code>for</code>, <code>while</code>)</li>
@@ -396,7 +713,7 @@
             
             <hr>
             
-            <h3>🧪 Advanced Logic: The Armstrong Number</h3>
+            <h3>🧪 <span>Advanced Logic: The Armstrong Number</span> <span class="difficulty easy">Beginner</span> <span class="time-badge">⏱️ 5-10 mins</span></h3>
             <p style="margin-bottom: 1rem;">
                 An <strong>Armstrong Number</strong> (also called a Narcissistic Number) is a number that equals 
                 the sum of its digits raised to the power of the number of digits.
@@ -404,47 +721,132 @@
             <p style="margin-bottom: 1rem; color: var(--gray-text);">
                 <strong>Example:</strong> 153 is an Armstrong number because 1³ + 5³ + 3³ = 1 + 125 + 27 = 153
             </p>
-            
-            <pre>n = 153
-temp = n
-sum = 0
-while temp > 0:
-    digit = temp % 10
-    sum += digit ** 3
-    temp //= 10
 
-if sum == n:
-    print("Armstrong")
-else:
-    print("Not Armstrong")</pre>
+            <h4 style="color: var(--primary-navy); margin: 1rem 0 0.5rem 0;">Approach:</h4>
+            <ol style="margin-bottom: 1rem;">
+                <li>Count the total number of digits in the number</li>
+                <li>Extract each digit using modulo operator (<code>%</code>)</li>
+                <li>Raise each digit to the power of digit count</li>
+                <li>Sum all the powered digits</li>
+                <li>Compare the sum with original number</li>
+            </ol>
+
+            <pre><span class="comment"># Armstrong Number Checker</span>
+<span class="keyword">def</span> is_armstrong(n):
+    digits = <span class="number">0</span>
+    temp = n
+    
+    <span class="comment"># Count digits</span>
+    <span class="keyword">while</span> temp > <span class="number">0</span>:
+        digits += <span class="number">1</span>
+        temp //= <span class="number">10</span>
+    
+    <span class="comment"># Check if Armstrong</span>
+    sum_powers = <span class="number">0</span>
+    temp = n
+    <span class="keyword">while</span> temp > <span class="number">0</span>:
+        digit = temp % <span class="number">10</span>
+        sum_powers += digit ** digits
+        temp //= <span class="number">10</span>
+    
+    <span class="keyword">return</span> sum_powers == n
+
+<span class="comment"># Test cases</span>
+test_nums = [<span class="number">153</span>, <span class="number">370</span>, <span class="number">9474</span>, <span class="number">100</span>]
+<span class="keyword">for</span> num <span class="keyword">in</span> test_nums:
+    result = <span class="string">"Armstrong"</span> <span class="keyword">if</span> is_armstrong(num) <span class="keyword">else</span> <span class="string">"Not Armstrong"</span>
+    <span class="keyword">print</span>(<span class="string">f"{num}: {result}"</span>)</pre>
             
             <div class="result-box">
-                ✅ Result: <code style="background: transparent; color: inherit;">Armstrong</code>
+                ✅ Output: <code style="background: transparent; color: inherit;">153: Armstrong | 370: Armstrong | 9474: Armstrong | 100: Not Armstrong</code>
             </div>
-            
+
             <hr>
+
+            <h3>🎯 <span>Related Challenges</span></h3>
             
-            <h3>📚 Detailed Study Notes</h3>
+            <div class="challenge-card">
+                <h4>💪 Challenge 1: Palindrome Number</h4>
+                <p>Check if a number reads the same forwards and backwards. Example: 121, 1331, 12321</p>
+            </div>
+
+            <div class="challenge-card">
+                <h4>🔢 Challenge 2: Sum of Digits</h4>
+                <p>Calculate the sum of all digits in a number recursively. Example: 234 → 2+3+4 = 9</p>
+            </div>
+
+            <div class="challenge-card">
+                <h4>🌟 Challenge 3: Perfect Number</h4>
+                <p>A perfect number equals the sum of its divisors (excluding itself). Example: 6 = 1+2+3</p>
+            </div>
+
+            <hr>
+
+            <h3>📚 <span>Detailed Study Notes</span></h3>
             <p style="margin-bottom: 1rem;">
-                For a deep dive into today's topics, including variables, looping constructs, and list operations, 
-                refer to our centralized Notion repository:
+                For a deep dive into today's topics, including variables, looping constructs, list operations, and number theory, 
+                refer to our centralized Notion repository with interactive examples and practice problems:
             </p>
             <a href="https://www.notion.so/28-01-2026-2f6ae25f500180ddafd9f15c35ac817c?source=copy_link" 
                target="_blank" 
                class="notion-link">
-                📖 Access Full Python DSA Notes on Notion
+                <span>📖 Access Full Python DSA Notes on Notion</span>
             </a>
-            
+
             <hr>
-            
-            <h3>💡 Tips for Coding Newbies</h3>
+
+            <h3>💡 <span>Tips for Coding Newbies</span></h3>
             <div class="tips-box">
                 <ul style="margin: 0;">
-                    <li><b>Indentation is Key:</b> In Python, a missing space can break your whole program</li>
-                    <li><b>Dry Run:</b> Before running the code, trace variable values (like <code>sum</code> or <code>temp</code>) on paper</li>
+                    <li><b>Indentation is Key:</b> In Python, a missing space can break your whole program - always use consistent spacing</li>
+                    <li><b>Dry Run:</b> Before running code, trace variable values (like <code>sum</code> or <code>temp</code>) on paper to debug logic</li>
                     <li><b>Use <code>range()</code> wisely:</b> Remember that <code>range(1, 6)</code> goes from 1 to 5, not 6!</li>
                     <li><b>Practice Daily:</b> Consistency beats intensity - solve at least one problem every day</li>
+                    <li><b>Read Error Messages:</b> Python errors tell you exactly what went wrong - don't ignore them!</li>
+                    <li><b>Test Edge Cases:</b> Always test with 0, 1, negative numbers, and large numbers</li>
                 </ul>
+            </div>
+
+            <hr>
+
+            <h3>🔥 <span>Key Concepts Covered Today</span></h3>
+            <div class="output-box">
+                <strong>Operators:</strong> Modulo (%), Power (**), Integer Division (//)<br>
+                <strong>Control Flow:</strong> while loops, conditional statements<br>
+                <strong>Algorithms:</strong> Digit extraction, accumulation pattern<br>
+                <strong>Complexity:</strong> Time O(d²) where d = number of digits | Space O(1)
+            </div>
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section">
+            <h2>⚡ <span>Quick Reference</span></h2>
+            
+            <h3>🐍 <span>Python Operators Cheat Sheet</span></h3>
+            <pre><span class="comment"># Arithmetic Operators</span>
+<span class="number">10</span> + <span class="number">5</span>      <span class="comment"># 15 - Addition</span>
+<span class="number">10</span> - <span class="number">5</span>      <span class="comment"># 5  - Subtraction</span>
+<span class="number">10</span> * <span class="number">5</span>      <span class="comment"># 50 - Multiplication</span>
+<span class="number">10</span> / <span class="number">5</span>      <span class="comment"># 2.0 - Division</span>
+<span class="number">10</span> // <span class="number">3</span>     <span class="comment"># 3 - Floor Division</span>
+<span class="number">10</span> % <span class="number">3</span>      <span class="comment"># 1 - Modulo (Remainder)</span>
+<span class="number">2</span> ** <span class="number">3</span>      <span class="comment"># 8 - Exponentiation</span></pre>
+
+            <h3>🔄 <span>Loop Patterns</span></h3>
+            <pre><span class="comment"># While Loop - Use when you don't know how many iterations</span>
+<span class="keyword">while</span> condition:
+    <span class="comment"># Do something</span>
+    
+<span class="comment"># For Loop - Use when you know the number of iterations</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="keyword">range</span>(<span class="number">5</span>):
+    <span class="comment"># Do something 5 times</span></pre>
+
+            <h3>📊 <span>Common Number Patterns</span></h3>
+            <div class="output-box">
+                <b>Armstrong Numbers:</b> 1, 2, 3, 4, 5, 6, 7, 8, 9, 153, 370, 371, 407, 1634...<br>
+                <b>Palindrome:</b> Numbers that read same forwards & backwards<br>
+                <b>Prime:</b> Numbers divisible only by 1 and themselves<br>
+                <b>Perfect:</b> Sum of divisors equals the number itself
             </div>
         </section>
     </main>
